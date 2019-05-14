@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_people">
+    <fragment
+        android:id="@+id/navigation_people"
+        android:name="com.universodoandroid.starwarsjetpack.modules.home.PeopleFragment"
+        android:label="fragment_home" />
+    <fragment
+        android:id="@+id/navigation_planets"
+        android:name="com.universodoandroid.starwarsjetpack.modules.planets.PlanetsFragment"
+        android:label="fragment_home" />
+</navigation>
