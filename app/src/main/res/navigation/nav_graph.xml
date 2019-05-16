@@ -6,7 +6,7 @@
     app:startDestination="@+id/navigation_people">
     <fragment
         android:id="@+id/navigation_people"
-        android:name="com.universodoandroid.starwarsjetpack.modules.home.PeopleFragment"
+        android:name="com.universodoandroid.starwarsjetpack.modules.people.PeopleFragment"
         android:label="fragment_home" />
     <fragment
         android:id="@+id/navigation_planets"

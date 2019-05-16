@@ -6,7 +6,7 @@
 
         <variable
             name="handler"
-            type="com.universodoandroid.starwarsjetpack.modules.home.PeopleFragment" />
+            type="com.universodoandroid.starwarsjetpack.modules.people.PeopleFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -28,12 +28,13 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation project(":remote")
+    implementation project(":presentation")
 
     //Design
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "com.google.android.material:material:$material_design_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
     //Core
     implementation 'androidx.core:core-ktx:1.0.2'
