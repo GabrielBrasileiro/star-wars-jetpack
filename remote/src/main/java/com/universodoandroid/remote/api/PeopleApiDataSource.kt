@@ -9,5 +9,4 @@ interface PeopleApiDataSource {
     @GET("people")
     fun people(): Observable<PeopleResponse>
 
-
 }

@@ -1,11 +1,13 @@
 package com.universodoandroid.remote.api
 
+import com.universodoandroid.remote.BuildConfig
+
 class InjectionApiDataSourceMain {
 
     companion object {
 
         private fun provideApiDataSource(): ApiDataSource {
-            val baseUrl = "https://swapi.co/api/"
+            val baseUrl = BuildConfig.BASE_URL
             return ApiDataSource.getInstance(baseUrl)
         }
 
