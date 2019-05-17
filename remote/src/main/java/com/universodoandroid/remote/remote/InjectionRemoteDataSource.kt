@@ -4,15 +4,11 @@ import com.universodoandroid.remote.api.InjectionApiDataSourceMain
 import com.universodoandroid.remote.remote.people.PeopleRemoteDataSource
 import com.universodoandroid.remote.remote.people.PeopleRemoteDataSourceImpl
 
-class InjectionRemoteDataSource {
+object InjectionRemoteDataSource {
 
-    companion object {
-
-        fun providePeopleRemoteDataSource(): PeopleRemoteDataSource {
-            val peopleApiDataSourceMain = InjectionApiDataSourceMain.providePeopleApiDataSource()
-            return PeopleRemoteDataSourceImpl.getInstance(peopleApiDataSource = peopleApiDataSourceMain)
-        }
-
+    fun providePeopleRemoteDataSource(): PeopleRemoteDataSource {
+        val peopleApiDataSourceMain = InjectionApiDataSourceMain.providePeopleApiDataSource()
+        return PeopleRemoteDataSourceImpl.getInstance(peopleApiDataSource = peopleApiDataSourceMain)
     }
 
 }
