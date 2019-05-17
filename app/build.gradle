@@ -37,7 +37,7 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
     //Core
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation "androidx.core:core-ktx:$kotlin_tx_version"
 
     //Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_fragment_version"

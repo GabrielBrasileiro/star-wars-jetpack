@@ -19,7 +19,9 @@ import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
 class PeopleFragment : Fragment() {
 
     private val viewModel: PeopleListViewModel by lazy {
-        ViewModelProviders.of(this, PeopleViewModelFactory()).get(PeopleListViewModel::class.java)
+        ViewModelProviders.of(this, PeopleViewModelFactory(
+            application = requireActivity().application
+        )).get(PeopleListViewModel::class.java)
     }
 
     private var binding: FragmentPeopleBinding? = null
@@ -28,13 +30,13 @@ class PeopleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_people, container, false)
         binding?.handler = this
 
-        viewModel.loadPeople()
-
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.loadPeople()
 
         viewModel.peopleLiveData.observe(this, Observer {
             val columns =
