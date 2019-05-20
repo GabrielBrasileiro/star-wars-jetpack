@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -20,11 +23,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(":response")
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
@@ -35,6 +39,7 @@ dependencies {
 
     //Core
     implementation "androidx.core:core-ktx:$kotlin_tx_version"
+    kapt "androidx.room:room-compiler:$room_version"
     
     testImplementation 'junit:junit:4.12'
     testImplementation "androidx.room:room-testing:$room_version"

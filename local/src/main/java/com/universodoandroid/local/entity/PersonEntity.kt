@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Person(
+data class PersonEntity(
     @PrimaryKey
     var id: String,
     var birthYear: String,

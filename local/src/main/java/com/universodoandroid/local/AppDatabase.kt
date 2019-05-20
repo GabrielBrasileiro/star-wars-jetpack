@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.universodoandroid.local.dao.PersonDao
-import com.universodoandroid.local.entity.Person
+import com.universodoandroid.local.entity.PersonEntity
 
-@Database(entities = [Person::class], version = 1, exportSchema = false)
+@Database(entities = [PersonEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun personDao(): PersonDao

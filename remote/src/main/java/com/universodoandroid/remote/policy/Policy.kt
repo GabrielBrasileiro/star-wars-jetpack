@@ -1,5 +1,9 @@
 package com.universodoandroid.remote.policy
 
-class Policy<T> {
+interface Policy {
+    fun withPolicy(police: Case)
 
+    enum class Case {
+        REMOTE, LOCAL
+    }
 }

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.universodoandroid.local.entity.Person
+import com.universodoandroid.local.entity.PersonEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -12,9 +12,9 @@ import io.reactivex.Flowable
 interface PersonDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(person: Person): Completable
+    fun save(personEntity: PersonEntity): Completable
 
     @Query("SELECT * FROM person")
-    fun getPeople(): Flowable<List<Person>>
+    fun getPeople(): Flowable<List<PersonEntity>>
 
 }

@@ -1,6 +1,7 @@
 package com.universodoandroid.domain.people
 
 data class Person(
+    val id: String,
     val birth_year: String,
     val created: String,
     val edited: String,
