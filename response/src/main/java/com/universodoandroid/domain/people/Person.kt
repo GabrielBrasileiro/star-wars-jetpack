@@ -6,7 +6,7 @@ data class Person(
     val created: String,
     val edited: String,
     val eye_color: String,
-    val films: List<String>,
+    val films: List<String>? = null,
     val gender: String,
     val hair_color: String,
     val height: String,
@@ -14,8 +14,8 @@ data class Person(
     val mass: String,
     val name: String,
     val skin_color: String,
-    val species: List<String>,
-    val starships: List<String>,
+    val species: List<String>? = null,
+    val starships: List<String>? = null,
     val url: String,
-    val vehicles: List<String>
+    val vehicles: List<String>? = null
 )

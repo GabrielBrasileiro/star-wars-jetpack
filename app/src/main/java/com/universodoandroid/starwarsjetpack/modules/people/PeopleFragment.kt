@@ -60,7 +60,7 @@ class PeopleFragment : Fragment() {
             binding?.peopleRecyclerView?.run {
                 layoutManager = GridLayoutManager(requireContext(), columns)
                 adapter = PeopleAdapter(it) {
-                    Toast.makeText(context, "ClickOn: ${it.name}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "ClickOn: ${it.id}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : PeopleRemoteDataSource {
 
     companion object {
-        var apiDataSource: PeopleRemoteDataSourceImpl? = null
+        private var apiDataSource: PeopleRemoteDataSourceImpl? = null
 
         fun getInstance(peopleApiDataSource: PeopleApiDataSource): PeopleRemoteDataSource {
             if (apiDataSource == null) {
@@ -21,15 +21,11 @@ class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : Peopl
         }
     }
 
-    override fun loadPeople(onSuccess: (result: PeopleResponse) -> Unit, onError: (error: String) -> Unit) {
+    override fun loadPeople(onSuccess: (result: PeopleResponse) -> Unit, onError: (Throwable) -> Unit) {
         apiDataSource.people()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                onSuccess(it)
-            }) { error ->
-                onError(error.localizedMessage)
-            }
+            .subscribe(onSuccess, onError)
     }
 
 

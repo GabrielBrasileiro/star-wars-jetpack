@@ -12,9 +12,14 @@ import io.reactivex.Flowable
 interface PersonDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(personEntity: PersonEntity): Completable
+    fun insertPeople(people: List<PersonEntity>): Completable
 
-    @Query("SELECT * FROM personEntity")
+
+    @Query("SELECT * FROM PersonEntity")
     fun getPeople(): Flowable<List<PersonEntity>>
+
+    @Query("SELECT COUNT(id) FROM PersonEntity")
+    fun countPeople(): Flowable<Int>
+
 
 }

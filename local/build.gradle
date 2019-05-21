@@ -28,7 +28,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(":response")
+    implementation project(":response")
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
@@ -36,6 +36,9 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-guava:$room_version"
+
+    //Reactive
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 
     //Core
     implementation "androidx.core:core-ktx:$kotlin_tx_version"
