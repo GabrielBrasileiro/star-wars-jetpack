@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@+id/navigation_people">
     <fragment
         android:id="@+id/navigation_people"
         android:name="com.universodoandroid.starwarsjetpack.modules.people.PeopleFragment"
-        android:label="fragment_home" />
+        android:label="fragment_home">
+        <action
+            android:id="@+id/people_navigation_to_person_details"
+            app:destination="@id/person_details_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_people" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_planets"
         android:name="com.universodoandroid.starwarsjetpack.modules.planets.PlanetsFragment"
         android:label="fragment_home" />
+    <fragment
+        android:id="@+id/person_details_fragment"
+        android:name="com.universodoandroid.starwarsjetpack.modules.personDetails.PersonDetailsFragment"
+        android:label="PersonDetailsFragment" >
+        <argument
+            android:name="person"
+            app:argType="com.universodoandroid.presentation.dto.PersonDto" />
+    </fragment>
 </navigation>

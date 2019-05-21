@@ -35,4 +35,14 @@ class PersonRepositoryImpl(private val personDao: PersonDao) : PersonRepository 
             }, onError)
     }
 
+    override fun loadPerson(id: String, onSuccess: (Person) -> Unit, onError: (Throwable) -> Unit) {
+        personDao.getPerson(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                onSuccess(PersonMapper.fromData(it))
+            }, onError)
+    }
+
+
 }

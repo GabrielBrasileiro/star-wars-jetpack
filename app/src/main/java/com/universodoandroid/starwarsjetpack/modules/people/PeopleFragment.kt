@@ -5,20 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.universodoandroid.presentation.PeopleViewModelFactory
+import com.universodoandroid.presentation.factory.PeopleViewModelFactory
 import com.universodoandroid.presentation.ViewState
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.models.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.R
+import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
+import com.universodoandroid.starwarsjetpack.modules.BaseFragment
 
-class PeopleFragment : Fragment() {
+class PeopleFragment : BaseFragment() {
 
     private val viewModel: PeopleListViewModel by lazy {
         ViewModelProviders.of(
@@ -59,8 +59,8 @@ class PeopleFragment : Fragment() {
 
             binding?.peopleRecyclerView?.run {
                 layoutManager = GridLayoutManager(requireContext(), columns)
-                adapter = PeopleAdapter(it) {
-                    Toast.makeText(context, "ClickOn: ${it.id}", Toast.LENGTH_SHORT).show()
+                adapter = PeopleAdapter(it) { personDto ->
+                    personDetails(personDto)
                 }
             }
         }
@@ -71,6 +71,13 @@ class PeopleFragment : Fragment() {
         binding?.progressBar?.visibility  = View.GONE
 
         println("Error: $message")
+    }
+
+    private fun personDetails(personDto: PersonDto) {
+        val args = Bundle().apply {
+            putSerializable(Constants.PERSON_DTO, personDto)
+        }
+        navController.navigate(R.id.people_navigation_to_person_details, args)
     }
 
 }

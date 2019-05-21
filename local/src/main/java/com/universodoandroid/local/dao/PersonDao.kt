@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.universodoandroid.domain.people.Person
 import com.universodoandroid.local.entity.PersonEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -18,8 +19,7 @@ interface PersonDao {
     @Query("SELECT * FROM PersonEntity")
     fun getPeople(): Flowable<List<PersonEntity>>
 
-    @Query("SELECT COUNT(id) FROM PersonEntity")
-    fun countPeople(): Flowable<Int>
-
+    @Query("SELECT * FROM PersonEntity WHERE id = :personId")
+    fun getPerson(personId: String): Flowable<PersonEntity>
 
 }

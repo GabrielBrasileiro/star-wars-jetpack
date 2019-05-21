@@ -7,5 +7,6 @@ import io.reactivex.Flowable
 
 interface PersonRepository {
     fun loadPeople(onSuccess: (List<Person>) -> Unit, onError: (Throwable) -> Unit)
+    fun loadPerson(id: String, onSuccess: (Person) -> Unit, onError: (Throwable) -> Unit)
     fun savePeople(people: PeopleResponse, onComplete: () -> Unit, onError: (Throwable) -> Unit)
 }

@@ -17,9 +17,9 @@ class PeopleUseCase(private val application: Application) {
     fun getPeople(onSuccess: (List<Person>) -> Unit, onError: (error: Throwable) -> Unit) {
         repository.loadPeople({ people ->
             if (people.isEmpty()) {
-                PeoplePolicy().firstSync(repository, {
+                PeoplePolicy().firstSync(repository, onComplete = {
                     getPeople(onSuccess, onError)
-                }, onError)
+                }, onError = onError)
             } else {
                 onSuccess(people)
             }
@@ -30,8 +30,8 @@ class PeopleUseCase(private val application: Application) {
 
     }
 
-    fun loadPerson(uuid: String) {
-
+    fun loadPerson(uuid: String, onSuccess: (Person) -> Unit, onError: (error: Throwable) -> Unit) {
+        repository.loadPerson(uuid, onSuccess, onError)
     }
 
 }

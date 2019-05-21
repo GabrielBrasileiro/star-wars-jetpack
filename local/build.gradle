@@ -28,7 +28,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":response")
+    implementation project(':domain')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 

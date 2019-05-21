@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigation.setupWithNavController(Navigation.findNavController(this, R.id.my_nav_host_fragment))
+        navigation.setupWithNavController(Navigation.findNavController(this, R.id.navigation_host_fragment))
     }
 
 }

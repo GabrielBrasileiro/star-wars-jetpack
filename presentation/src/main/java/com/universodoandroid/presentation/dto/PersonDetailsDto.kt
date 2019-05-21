@@ -1,9 +1,7 @@
 package com.universodoandroid.presentation.dto
 
-import java.io.Serializable
-
-data class PersonDto(
+data class PersonDetailsDto(
     val id: String,
     val name: String,
-    val planet: String
-) : Serializable
+    val height: String
+)
