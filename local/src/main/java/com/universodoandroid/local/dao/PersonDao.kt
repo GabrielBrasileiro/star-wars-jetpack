@@ -14,7 +14,7 @@ interface PersonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(personEntity: PersonEntity): Completable
 
-    @Query("SELECT * FROM person")
+    @Query("SELECT * FROM personEntity")
     fun getPeople(): Flowable<List<PersonEntity>>
 
 }

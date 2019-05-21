@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="personEntity"
+            name="person"
             type="com.universodoandroid.presentation.dto.PersonDto" />
     </data>
 
@@ -36,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{personEntity.name}"
+                android:text="@{person.name}"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@{personEntity.planet}"
+                android:text="@{person.planet}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toBottomOf="@+id/person_name"
