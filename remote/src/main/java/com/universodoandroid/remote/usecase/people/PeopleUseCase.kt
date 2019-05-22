@@ -34,4 +34,8 @@ class PeopleUseCase(private val application: Application) {
         repository.loadPerson(uuid, onSuccess, onError)
     }
 
+    fun dispose() {
+        repository.dispose()
+    }
+
 }

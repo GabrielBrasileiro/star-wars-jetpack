@@ -15,11 +15,10 @@ interface PersonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPeople(people: List<PersonEntity>): Completable
 
-
     @Query("SELECT * FROM PersonEntity")
     fun getPeople(): Flowable<List<PersonEntity>>
 
-    @Query("SELECT * FROM PersonEntity WHERE id = :personId")
-    fun getPerson(personId: String): Flowable<PersonEntity>
+    @Query("SELECT * FROM PersonEntity WHERE id = :id")
+    fun getPerson(id: String): Flowable<PersonEntity>
 
 }

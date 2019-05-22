@@ -10,7 +10,7 @@ object PeopleMapper {
 
     fun entityToDto(entities: List<Person>) : List<PersonDto> {
         val viewData = ArrayList<PersonDto>()
-        entities.forEach { viewData.add(PersonDto(UUID.randomUUID().toString(), it.name, "")) }
+        entities.forEach { viewData.add(PersonDto(it.id, it.name, "")) }
         return viewData
     }
 

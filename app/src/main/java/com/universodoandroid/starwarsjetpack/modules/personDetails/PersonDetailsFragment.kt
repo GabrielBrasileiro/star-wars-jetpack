@@ -59,6 +59,7 @@ class PersonDetailsFragment : BaseFragment() {
     }
 
     private fun showError(error: String?) {
+        binding?.progressBar?.visibility = View.GONE
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 

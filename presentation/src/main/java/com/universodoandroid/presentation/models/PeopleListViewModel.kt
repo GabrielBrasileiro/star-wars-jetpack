@@ -10,7 +10,7 @@ import com.universodoandroid.remote.usecase.people.PeopleUseCase
 
 class PeopleListViewModel(private val application: Application) : ViewModel(), LifecycleObserver {
 
-    private val peopleUseCase: PeopleUseCase by lazy {
+    private val useCase: PeopleUseCase by lazy {
         InjectionUseCase.providePeopleUseCase(application)
     }
 
@@ -19,12 +19,17 @@ class PeopleListViewModel(private val application: Application) : ViewModel(), L
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadPeople() {
         state.postValue(ViewState(ViewState.Status.LOADING))
-        peopleUseCase.getPeople({ people ->
+        useCase.getPeople({ people ->
             val peopleDto = PeopleMapper.entityToDto(entities = people)
             state.postValue(ViewState(ViewState.Status.SUCCESS, data = peopleDto))
         }) { error ->
             state.postValue(ViewState(ViewState.Status.ERROR, error = error.localizedMessage))
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        useCase.dispose()
     }
 
 }
