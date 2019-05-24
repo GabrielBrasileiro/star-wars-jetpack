@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.universodoandroid.presentation.ViewState
+import com.universodoandroid.presentation.dto.PersonDetailsDto
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.factory.PersonDetailsViewModelFactory
 import com.universodoandroid.presentation.models.PeopleListViewModel
@@ -44,17 +48,22 @@ class PersonDetailsFragment : BaseFragment() {
         viewModel.state.observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
-                ViewState.Status.SUCCESS -> {
-                    binding?.progressBar?.visibility = View.GONE
-                    binding?.person = viewState.data
-                }
-                ViewState.Status.ERROR -> showError(viewState.error)
+                ViewState.Status.SUCCESS -> loadView(personDetails = viewState.data)
+                ViewState.Status.ERROR   -> showError(viewState.error)
             }
         })
 
         val personDto = arguments?.getSerializable(Constants.PERSON_DTO) as? PersonDto
         personDto?.let {
             viewModel.loadPerson(it.id)
+        }
+    }
+
+    private fun loadView(personDetails: PersonDetailsDto?) {
+        binding?.run {
+            progressBar.visibility = View.GONE
+            person = personDetails
+            imageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star_wars_yellow_logo))
         }
     }
 

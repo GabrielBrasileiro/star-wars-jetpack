@@ -1,5 +1,6 @@
 package com.universodoandroid.local.local
 
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -9,6 +10,20 @@ import io.reactivex.schedulers.Schedulers
 open class BaseFlowable {
 
     private val disposables = CompositeDisposable()
+    private val mainThread  = AndroidSchedulers.mainThread()
+    private val ioThread    = Schedulers.io()
+
+    open fun buildCompletable(
+        completable: Completable,
+        onComplete: (() -> Unit),
+        onError: (e: Throwable) -> Unit
+    ) {
+        val disposable = completable.subscribeOn(ioThread)
+            .observeOn(mainThread)
+            .subscribe(onComplete, onError)
+
+        addDisposable(disposable)
+    }
 
     open fun <T> buildFlowable(
         flowable: Flowable<T>,
@@ -16,8 +31,8 @@ open class BaseFlowable {
         onError: (e: Throwable) -> Unit,
         onComplete: (() -> Unit)? = null
     ) {
-        val disposable = flowable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        val disposable = flowable.subscribeOn(ioThread)
+            .observeOn(mainThread)
             .subscribe(onNext, onError, {
                 onComplete?.invoke()
             })
