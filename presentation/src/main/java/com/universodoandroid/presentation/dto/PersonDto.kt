@@ -5,5 +5,6 @@ import java.io.Serializable
 data class PersonDto(
     val id: String,
     val name: String,
-    val planet: String
+    val planet: String,
+    val imageUrl: String = ""
 ) : Serializable
