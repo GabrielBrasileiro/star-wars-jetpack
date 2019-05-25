@@ -5,6 +5,7 @@ import com.universodoandroid.domain.people.Person
 import com.universodoandroid.local.local.InjectionRepository
 import com.universodoandroid.local.local.person.PersonRepository
 import com.universodoandroid.remote.policy.PeoplePolicy
+import com.universodoandroid.remote.preferences.PeopleDataSourcePreferences
 import com.universodoandroid.remote.remote.InjectionRemoteDataSource
 import com.universodoandroid.remote.remote.people.PeopleRemoteDataSource
 
@@ -14,10 +15,14 @@ class PeopleUseCase(private val application: Application) {
         InjectionRepository.providePeopleRepository(application)
     }
 
+    private val policy: PeoplePolicy by lazy {
+        PeoplePolicy(application.applicationContext)
+    }
+
     fun getPeople(onSuccess: (List<Person>) -> Unit, onError: (error: Throwable) -> Unit) {
         repository.loadPeople({ people ->
             if (people.isEmpty()) {
-                PeoplePolicy().firstSync(repository, onComplete = {
+                policy.firstSync(repository, onComplete = {
                     getPeople(onSuccess, onError)
                 }, onError = onError)
             } else {

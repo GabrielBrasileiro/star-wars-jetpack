@@ -21,8 +21,8 @@ class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : Peopl
         }
     }
 
-    override fun loadPeople(onSuccess: (result: PeopleResponse) -> Unit, onError: (Throwable) -> Unit) {
-        apiDataSource.people()
+    override fun loadPeople(page: Int, onSuccess: (result: PeopleResponse) -> Unit, onError: (Throwable) -> Unit) {
+        apiDataSource.people(page = page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(onSuccess, onError)
