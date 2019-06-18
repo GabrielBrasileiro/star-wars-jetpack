@@ -1,13 +1,10 @@
 package com.universodoandroid.remote.remote.people
 
-import android.annotation.SuppressLint
 import com.universodoandroid.domain.people.PeopleResponse
 import com.universodoandroid.remote.api.PeopleApiDataSource
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.universodoandroid.remote.remote.BaseObserver
 
-@SuppressLint("CheckResult")
-class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : PeopleRemoteDataSource {
+class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : BaseObserver(), PeopleRemoteDataSource {
 
     companion object {
         private var apiDataSource: PeopleRemoteDataSourceImpl? = null
@@ -22,11 +19,7 @@ class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : Peopl
     }
 
     override fun loadPeople(page: Int, onSuccess: (result: PeopleResponse) -> Unit, onError: (Throwable) -> Unit) {
-        apiDataSource.people(page = page)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(onSuccess, onError)
+        buildObserver(apiDataSource.people(page = page), onSuccess, onError)
     }
-
 
 }

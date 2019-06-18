@@ -5,9 +5,6 @@ import com.universodoandroid.domain.people.Person
 import com.universodoandroid.local.local.InjectionRepository
 import com.universodoandroid.local.local.person.PersonRepository
 import com.universodoandroid.remote.policy.PeoplePolicy
-import com.universodoandroid.remote.preferences.PeopleDataSourcePreferences
-import com.universodoandroid.remote.remote.InjectionRemoteDataSource
-import com.universodoandroid.remote.remote.people.PeopleRemoteDataSource
 
 class PeopleUseCase(private val application: Application) {
 

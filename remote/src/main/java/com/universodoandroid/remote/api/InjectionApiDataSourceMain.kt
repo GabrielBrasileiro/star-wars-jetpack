@@ -13,4 +13,8 @@ object InjectionApiDataSourceMain {
         return provideApiDataSource().createService(PeopleApiDataSource::class.java)
     }
 
+    fun providePlanetApiDataSource(): PlanetApiDataSource {
+        return provideApiDataSource().createService(PlanetApiDataSource::class.java)
+    }
+
 }
