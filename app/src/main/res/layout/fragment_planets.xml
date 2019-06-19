@@ -7,7 +7,7 @@
 
         <variable
             name="handler"
-            type="com.universodoandroid.starwarsjetpack.modules.home.PeopleFragment" />
+            type="com.universodoandroid.starwarsjetpack.modules.planets.PlanetsFragment" />
 
     </data>
 

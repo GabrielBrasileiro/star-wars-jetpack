@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Presentation</string>
+
+    <string name="people_error_message">Error to recover people of server</string>
+
+    <!-- Title -->
+    <string name="title_people">People</string>
+    <string name="title_planets">Planets</string>
+
+</resources>

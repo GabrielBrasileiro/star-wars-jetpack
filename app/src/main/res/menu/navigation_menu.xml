@@ -3,9 +3,9 @@
     <item
         android:id="@+id/navigation_people"
         android:icon="@drawable/ic_baseline_people"
-        android:title="People" />
+        android:title="@string/title_people" />
     <item
         android:id="@+id/navigation_planets"
         android:icon="@drawable/ic_baseline_ship"
-        android:title="PLanets" />
+        android:title="@string/title_planets" />
 </menu>
