@@ -38,6 +38,10 @@ class PeopleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initPeopleObserver()
+    }
+
+    private fun initPeopleObserver() {
         viewModel.state.observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
@@ -50,25 +54,37 @@ class PeopleFragment : BaseFragment() {
     }
 
     private fun showList(people: List<PersonDto>?) {
-        binding?.progressBar?.visibility = View.GONE
+        progressVisibility(View.GONE)
 
         people?.let {
-            val columns =
-                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 1
-                else 2
+            setupRecyclerView(people = it)
+        }
+    }
 
-            binding?.peopleRecyclerView?.run {
-                layoutManager = GridLayoutManager(requireContext(), columns)
-                adapter = PeopleAdapter(it) { personDto ->
-                    personDetails(personDto)
-                }
+    private fun setupRecyclerView(people: List<PersonDto>) {
+        binding?.peopleRecyclerView?.run {
+            layoutManager = GridLayoutManager(requireContext(), numberOfColumns())
+            adapter = PeopleAdapter(people) { personDto ->
+                personDetails(personDto)
             }
         }
     }
 
+    private fun numberOfColumns(): Int {
+        return if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            1
+        } else {
+            2
+        }
+    }
+
+    private fun progressVisibility(visibility: Int) {
+        binding?.progressBar?.visibility = visibility
+    }
+
     private fun showError(message: String?) {
         binding?.errorMessage?.visibility = View.VISIBLE
-        binding?.progressBar?.visibility  = View.GONE
+        progressVisibility(View.GONE)
 
         println("Error: $message")
     }
@@ -77,6 +93,7 @@ class PeopleFragment : BaseFragment() {
         val args = Bundle().apply {
             putSerializable(Constants.PERSON_DTO, personDto)
         }
+
         navController.navigate(R.id.people_navigation_to_person_details, args)
     }
 
