@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -45,6 +46,10 @@ dependencies {
 
     //LifeCycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
+
+    //Binding
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_view_model_version"
+    kapt "com.android.databinding:compiler:$databinding_compiler_version"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

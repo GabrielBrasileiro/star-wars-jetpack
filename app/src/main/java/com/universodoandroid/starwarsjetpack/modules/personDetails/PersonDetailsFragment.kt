@@ -39,19 +39,16 @@ class PersonDetailsFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person_details, container, false)
+        binding?.lifecycleOwner = this
+        binding?.viewModel = viewModel
+
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.state.observe(this, Observer { viewState ->
-            when (viewState.status) {
-                ViewState.Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
-                ViewState.Status.SUCCESS -> loadView(personDetails = viewState.data)
-                ViewState.Status.ERROR   -> showError(viewState.error)
-            }
-        })
+        initPersonObserver()
 
         val personDto = arguments?.getSerializable(Constants.PERSON_DTO) as? PersonDto
         personDto?.let {
@@ -59,16 +56,23 @@ class PersonDetailsFragment : BaseFragment() {
         }
     }
 
+    private fun initPersonObserver() {
+        viewModel.state.observe(this, Observer { viewState ->
+            when (viewState.status) {
+                ViewState.Status.SUCCESS -> loadView(personDetails = viewState.data)
+                ViewState.Status.ERROR   -> showError(viewState.error)
+            }
+        })
+    }
+
     private fun loadView(personDetails: PersonDetailsDto?) {
         binding?.run {
-            progressBar.visibility = View.GONE
             person = personDetails
             imageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star_wars_yellow_logo))
         }
     }
 
     private fun showError(error: String?) {
-        binding?.progressBar?.visibility = View.GONE
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 

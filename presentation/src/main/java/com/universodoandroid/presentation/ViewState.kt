@@ -6,6 +6,6 @@ class ViewState<D, E>(
     val error: E? = null
 ) {
     enum class Status {
-        LOADING, SUCCESS, ERROR
+        SUCCESS, ERROR
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="handler"
-            type="com.universodoandroid.starwarsjetpack.modules.people.PeopleFragment" />
+            name="viewModel"
+            type="com.universodoandroid.presentation.models.PeopleListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:visibleOrGone="@{safeUnbox(viewModel.isLoadingObserver)}"
             tools:visibility="visible" />
 
         <TextView

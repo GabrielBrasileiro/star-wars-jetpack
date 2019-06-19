@@ -22,4 +22,8 @@ class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : BaseO
         buildObserver(apiDataSource.people(page = page), onSuccess, onError)
     }
 
+    override fun dispose() {
+        clear()
+    }
+
 }

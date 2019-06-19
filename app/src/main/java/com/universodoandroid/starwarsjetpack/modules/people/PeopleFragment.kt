@@ -30,7 +30,8 @@ class PeopleFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_people, container, false)
-        binding?.handler = this
+        binding?.lifecycleOwner = this
+        binding?.viewModel      = viewModel
 
         return binding?.root
     }
@@ -44,7 +45,6 @@ class PeopleFragment : BaseFragment() {
     private fun initPeopleObserver() {
         viewModel.state.observe(this, Observer { viewState ->
             when (viewState.status) {
-                ViewState.Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
                 ViewState.Status.SUCCESS -> showList(people = viewState.data)
                 ViewState.Status.ERROR   -> showError(message = viewState.error)
             }
@@ -54,8 +54,6 @@ class PeopleFragment : BaseFragment() {
     }
 
     private fun showList(people: List<PersonDto>?) {
-        progressVisibility(View.GONE)
-
         people?.let {
             setupRecyclerView(people = it)
         }
@@ -78,13 +76,8 @@ class PeopleFragment : BaseFragment() {
         }
     }
 
-    private fun progressVisibility(visibility: Int) {
-        binding?.progressBar?.visibility = visibility
-    }
-
     private fun showError(message: String?) {
         binding?.errorMessage?.visibility = View.VISIBLE
-        progressVisibility(View.GONE)
 
         println("Error: $message")
     }

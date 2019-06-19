@@ -37,6 +37,8 @@ class PeoplePolicy(private val context: Context) : Policy<PersonRepository> {
                 if (it.next != null) {
                     loadPeoplePerPage(page + 1, local, onComplete, onError)
                 } else {
+                    remote.dispose()
+
                     updateErrorRegister()
                     onComplete()
                 }

@@ -22,4 +22,8 @@ class PlanetRemoteDataSourceImpl(val apiDataSource: PlanetApiDataSource) : BaseO
         buildObserver(apiDataSource.planets(page = page), onSuccess, onError)
     }
 
+    override fun dispose() {
+        clear()
+    }
+
 }
