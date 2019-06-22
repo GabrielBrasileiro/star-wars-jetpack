@@ -8,34 +8,34 @@ object PersonMapper {
 
     fun toData(person: Person) = PersonEntity(
         id        = UUID.randomUUID().toString(),
-        birthYear = person.birth_year,
+        birthYear = person.birthYear,
         created   = person.created,
         edited    = person.edited,
-        eyeColor  = person.eye_color,
+        eyeColor  = person.eyeColor,
         gender    = person.gender,
-        hairColor = person.hair_color,
+        hairColor = person.hairColor,
         height    = person.height,
         homeworld = person.homeworld,
         mass      = person.mass,
         name      = person.name,
-        skinColor = person.skin_color,
+        skinColor = person.skinColor,
         url       = person.url
     )
 
     fun fromData(personEntity: PersonEntity) = Person(
-        id         = personEntity.id,
-        birth_year = personEntity.birthYear,
-        created    = personEntity.created,
-        edited     = personEntity.edited,
-        eye_color  = personEntity.eyeColor,
-        gender     = personEntity.gender,
-        hair_color = personEntity.hairColor,
-        height     = personEntity.height,
-        homeworld  = personEntity.homeworld,
-        mass       = personEntity.mass,
-        name       = personEntity.name,
-        skin_color = personEntity.skinColor,
-        url        = personEntity.url
+        id        = personEntity.id,
+        birthYear = personEntity.birthYear,
+        created   = personEntity.created,
+        edited    = personEntity.edited,
+        eyeColor  = personEntity.eyeColor,
+        gender    = personEntity.gender,
+        hairColor = personEntity.hairColor,
+        height    = personEntity.height,
+        homeworld = personEntity.homeworld,
+        mass      = personEntity.mass,
+        name      = personEntity.name,
+        skinColor = personEntity.skinColor,
+        url       = personEntity.url
     )
 
 }

@@ -1,6 +1,8 @@
 package com.universodoandroid.remote.api
 
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.Timeout
@@ -34,9 +36,14 @@ class ApiDataSource(val url: String) {
         httpClient.connectTimeout(timeOut, TimeUnit.SECONDS)
         httpClient.readTimeout(timeOut, TimeUnit.SECONDS)
 
+        val gson = GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            .create()
+
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(httpClient.build())
             .build()
