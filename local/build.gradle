@@ -43,10 +43,14 @@ dependencies {
     //Core
     implementation "androidx.core:core-ktx:$kotlin_tx_version"
     kapt "androidx.room:room-compiler:$room_version"
-    
-    testImplementation 'junit:junit:4.12'
+
+    //Tests
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    androidTestImplementation "androidx.test:runner:$android_test_runner"
+    androidTestImplementation "androidx.arch.core:core-testing:$core_testing_version"
+
     testImplementation "androidx.room:room-testing:$room_version"
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation 'junit:junit:4.12'
 }

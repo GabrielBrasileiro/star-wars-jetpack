@@ -10,9 +10,13 @@ buildscript {
         circle_image_view_version    = '3.0.0'
         lifecycle_view_model_version = '2.0.0'
         databinding_compiler_version = '3.3.1'
+        android_test_runner          = '1.2.0'
+        core_testing_version         = '2.0.0'
 
         //Presentation
-        kotlin_tx_version = '1.0.2'
+        kotlin_tx_version      = '1.0.2'
+        mockito_core_version   = '3.0.0'
+        mockito_kotlin_version = '2.1.0'
 
         //RemoteDataSource
         rx_android_version           = '2.1.1'

@@ -4,7 +4,7 @@ import com.universodoandroid.domain.people.PeopleResponse
 import com.universodoandroid.remote.api.PeopleApiDataSource
 import com.universodoandroid.remote.remote.BaseObserver
 
-class PeopleRemoteDataSourceImpl(val apiDataSource: PeopleApiDataSource) : BaseObserver(), PeopleRemoteDataSource {
+class PeopleRemoteDataSourceImpl(private val apiDataSource: PeopleApiDataSource) : BaseObserver(), PeopleRemoteDataSource {
 
     companion object {
         private var apiDataSource: PeopleRemoteDataSourceImpl? = null
