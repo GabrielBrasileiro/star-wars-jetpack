@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.modules
+package com.universodoandroid.starwarsjetpack.ui
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController

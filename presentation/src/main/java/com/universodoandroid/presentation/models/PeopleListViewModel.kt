@@ -1,20 +1,20 @@
 package com.universodoandroid.presentation.models
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.universodoandroid.presentation.BaseViewModel
 import com.universodoandroid.presentation.ViewState
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.mapper.PeopleMapper
-import com.universodoandroid.remote.remote.BaseObserver
 import com.universodoandroid.remote.usecase.InjectionUseCase
 import com.universodoandroid.remote.usecase.people.PeopleUseCase
 
 class PeopleListViewModel(private val application: Application) : BaseViewModel(), LifecycleObserver {
 
-    private val useCase: PeopleUseCase by lazy {
-        InjectionUseCase.providePeopleUseCase(application)
-    }
+    private val useCase: PeopleUseCase by lazy { InjectionUseCase.providePeopleUseCase(application) }
 
     val state: MutableLiveData<ViewState<List<PersonDto>, String>> = MutableLiveData()
 

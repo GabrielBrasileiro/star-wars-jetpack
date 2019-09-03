@@ -42,10 +42,14 @@ dependencies {
     implementation project(":local")
     api project(':domain')
 
-    //Remote
+    // Remote
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // Koin
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-ext:$koin_version"
 
     //Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interception_version"

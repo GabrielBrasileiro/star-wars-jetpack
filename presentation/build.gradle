@@ -34,6 +34,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "androidx.core:core-ktx:$kotlin_tx_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
     testImplementation 'junit:junit:4.12'
