@@ -1,4 +1,4 @@
-package com.universodoandroid.injection
+package com.universodoandroid.injection.usecase
 
 import com.universodoandroid.remote.usecase.people.PeopleUseCase
 import com.universodoandroid.remote.usecase.people.PeopleUseCaseImpl

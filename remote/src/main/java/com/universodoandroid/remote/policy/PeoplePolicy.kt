@@ -1,41 +1,33 @@
 package com.universodoandroid.remote.policy
 
-import android.content.Context
+import com.universodoandroid.domain.people.Person
 import com.universodoandroid.local.local.person.PersonRepository
-import com.universodoandroid.remote.preferences.PeopleDataSourcePreferences
-import com.universodoandroid.remote.remote.InjectionRemoteDataSource
 import com.universodoandroid.remote.remote.people.PeopleRemoteDataSource
 
-class PeoplePolicy(private val context: Context) : Policy<PersonRepository> {
-
-    private val remote: PeopleRemoteDataSource by lazy {
-        InjectionRemoteDataSource.providePeopleRemoteDataSource()
-    }
-
-    private val preferences: PeopleDataSourcePreferences by lazy {
-        PeopleDataSourcePreferences(context)
-    }
+class PeoplePolicy(private val remote: PeopleRemoteDataSource, private val local: PersonRepository) {
 
     private val errors: ArrayList<Int> by lazy { ArrayList<Int>() }
 
-    override fun firstSync(local: PersonRepository, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
-        loadPeoplePerPage(1, local, onComplete, onError)
+    fun firstSyncComplete(complete: (List<Person>) -> Unit, notComplete: () -> Unit, onError: (Throwable) -> Unit) {
+        local.loadPeople({
+            if (it.isNotEmpty()) { complete(it) }
+            else { notComplete() }
+        }, onError)
     }
 
-    override fun update(local: PersonRepository) {
-        return
+    fun loadPerson(uuid: String, onSuccess: (Person) -> Unit, onError: (error: Throwable) -> Unit) {
+        local.loadPerson(uuid, onSuccess, onError)
     }
 
-    private fun loadPeoplePerPage(
-        page: Int,
-        local: PersonRepository,
-        onComplete: () -> Unit,
-        onError: (Throwable) -> Unit
-    ) {
+    fun firstSync(onComplete: () -> Unit, onError: (Throwable) -> Unit) {
+        loadPeoplePerPage(1, onComplete, onError)
+    }
+
+    private fun loadPeoplePerPage(page: Int, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
         remote.loadPeople(page, {
             local.savePeople(it, onComplete = {
                 if (it.next != null) {
-                    loadPeoplePerPage(page + 1, local, onComplete, onError)
+                    loadPeoplePerPage(page + 1, onComplete, onError)
                 } else {
                     remote.dispose()
 
@@ -43,7 +35,7 @@ class PeoplePolicy(private val context: Context) : Policy<PersonRepository> {
                     onComplete()
                 }
             }) { error ->
-                loadPeoplePerPage(page + 1, local, onComplete, onError)
+                loadPeoplePerPage(page + 1, onComplete, onError)
                 registerError(page, error, onError)
             }
         }) { error ->
@@ -56,8 +48,13 @@ class PeoplePolicy(private val context: Context) : Policy<PersonRepository> {
         onError(error)
     }
 
+    fun dispose() {
+        remote.dispose()
+        local.dispose()
+    }
+
     private fun updateErrorRegister() {
-        preferences.errors = errors
+//        preferences.errors = errors
     }
 
 }

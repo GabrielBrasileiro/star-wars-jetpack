@@ -1,4 +1,4 @@
-package com.universodoandroid.injection
+package com.universodoandroid.injection.viewmodel
 
 import com.universodoandroid.presentation.models.PeopleListViewModel
 import com.universodoandroid.presentation.models.PersonDetailsViewModel

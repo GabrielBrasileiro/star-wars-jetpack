@@ -11,21 +11,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiDataSource(val url: String) {
+class ApiDataSource(private val url: String) {
 
     private val timeOut: Long = 30
-
-    companion object {
-        private var instance: ApiDataSource? = null
-
-        fun getInstance(url: String): ApiDataSource {
-            if (instance == null) {
-                instance = ApiDataSource(url = url)
-            }
-
-            return instance!!
-        }
-    }
 
     fun <S> createService(serviceClass: Class<S>): S {
         val logging = HttpLoggingInterceptor()
