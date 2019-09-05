@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.modules
+package com.universodoandroid.injection
 
 import com.universodoandroid.presentation.models.PeopleListViewModel
 import com.universodoandroid.presentation.models.PersonDetailsViewModel

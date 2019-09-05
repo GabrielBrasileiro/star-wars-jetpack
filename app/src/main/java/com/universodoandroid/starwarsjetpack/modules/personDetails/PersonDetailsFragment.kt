@@ -1,21 +1,17 @@
 package com.universodoandroid.starwarsjetpack.modules.personDetails
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.universodoandroid.presentation.ViewState
+import com.universodoandroid.presentation.utils.ViewState
 import com.universodoandroid.presentation.dto.PersonDetailsDto
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.models.PersonDetailsViewModel
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBinding
-import com.universodoandroid.starwarsjetpack.ui.BaseFragment
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

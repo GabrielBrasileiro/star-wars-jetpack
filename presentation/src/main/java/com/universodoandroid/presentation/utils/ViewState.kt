@@ -1,4 +1,4 @@
-package com.universodoandroid.presentation
+package com.universodoandroid.presentation.utils
 
 class ViewState<D, E>(
     val status: Status,

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.universodoandroid.presentation.ViewState
+import com.universodoandroid.presentation.utils.ViewState
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.models.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.R
@@ -18,7 +18,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
 
     override fun getLayoutResId(): Int = R.layout.fragment_people
 
-    private val peopleViewModel by viewModel<PeopleListViewModel>()
+    private val viewModel by viewModel<PeopleListViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,14 +27,14 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
     }
 
     private fun initPeopleObserver() {
-        peopleViewModel.state.observe(this, Observer { viewState ->
+        viewModel.state.observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.SUCCESS -> showList(people = viewState.data)
                 ViewState.Status.ERROR   -> showError(message = viewState.error)
             }
         })
 
-        lifecycle.addObserver(peopleViewModel)
+        lifecycle.addObserver(viewModel)
     }
 
     private fun showList(people: List<PersonDto>?) {
@@ -54,7 +54,6 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
 
     private fun showError(message: String?) {
         binding.errorMessage.visibility = View.VISIBLE
-
         println("Error: $message")
     }
 

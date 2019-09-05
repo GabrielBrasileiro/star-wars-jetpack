@@ -1,4 +1,4 @@
-package com.universodoandroid.presentation
+package com.universodoandroid.presentation.utils
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
