@@ -1,8 +1,7 @@
-package com.universodoandroid.local.local
+package com.universodoandroid.domain.common
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -10,8 +9,8 @@ import io.reactivex.schedulers.Schedulers
 open class BaseFlowable {
 
     private val disposables = CompositeDisposable()
-    private val mainThread  = AndroidSchedulers.mainThread()
-    private val ioThread    = Schedulers.io()
+    private val mainThread = AndroidSchedulers.mainThread()
+    private val ioThread = Schedulers.io()
 
     open fun buildCompletable(
         completable: Completable,
@@ -40,12 +39,8 @@ open class BaseFlowable {
         addDisposable(disposable)
     }
 
-    fun clear() {
-        disposables.clear()
-    }
+    open fun clear() = disposables.clear()
 
-    private fun addDisposable(disposable: Disposable) {
-        disposables.add(disposable)
-    }
+    private fun addDisposable(disposable: Disposable) = disposables.add(disposable)
 
 }

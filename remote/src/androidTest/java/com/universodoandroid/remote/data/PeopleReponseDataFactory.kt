@@ -1,7 +1,7 @@
 package com.universodoandroid.remote.data
 
-import com.universodoandroid.domain.people.PeopleResponse
-import com.universodoandroid.domain.people.Person
+import com.universodoandroid.domain.entities.people.PeopleResponse
+import com.universodoandroid.domain.entities.people.Person
 import java.util.*
 import kotlin.collections.ArrayList
 

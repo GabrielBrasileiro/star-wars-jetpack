@@ -1,6 +1,6 @@
 package com.universodoandroid.local.mapper
 
-import com.universodoandroid.domain.people.Person
+import com.universodoandroid.domain.entities.people.Person
 import com.universodoandroid.local.entity.PersonEntity
 import java.util.*
 
@@ -23,19 +23,19 @@ object PersonMapper {
     )
 
     fun fromData(personEntity: PersonEntity) = Person(
-        id        = personEntity.id,
+        id = personEntity.id,
         birthYear = personEntity.birthYear,
-        created   = personEntity.created,
-        edited    = personEntity.edited,
-        eyeColor  = personEntity.eyeColor,
-        gender    = personEntity.gender,
+        created = personEntity.created,
+        edited = personEntity.edited,
+        eyeColor = personEntity.eyeColor,
+        gender = personEntity.gender,
         hairColor = personEntity.hairColor,
-        height    = personEntity.height,
+        height = personEntity.height,
         homeworld = personEntity.homeworld,
-        mass      = personEntity.mass,
-        name      = personEntity.name,
+        mass = personEntity.mass,
+        name = personEntity.name,
         skinColor = personEntity.skinColor,
-        url       = personEntity.url
+        url = personEntity.url
     )
 
 }

@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.universodoandroid.domain.people.Person
 import com.universodoandroid.local.entity.PersonEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable

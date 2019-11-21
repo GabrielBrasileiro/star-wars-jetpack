@@ -1,6 +1,6 @@
 package com.universodoandroid.local.people
 
-import com.universodoandroid.domain.people.Person
+import com.universodoandroid.domain.entities.people.Person
 import com.universodoandroid.local.entity.PersonEntity
 
 object PeopleDataFactory {

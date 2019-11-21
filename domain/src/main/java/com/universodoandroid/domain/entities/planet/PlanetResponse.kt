@@ -1,4 +1,4 @@
-package com.universodoandroid.domain.planet
+package com.universodoandroid.domain.entities.planet
 
 data class PlanetResponse(
     val count: Int,

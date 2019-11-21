@@ -1,18 +1,17 @@
 package com.universodoandroid.presentation.models
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import com.universodoandroid.presentation.dto.PersonDto
 import com.universodoandroid.presentation.mapper.PeopleMapper
 import com.universodoandroid.presentation.utils.BaseViewModel
 import com.universodoandroid.presentation.utils.ViewState
-import com.universodoandroid.remote.usecase.people.PeopleUseCase
+import com.universodoandroid.domain.usecase.people.PeopleUseCase
 
 class PeopleListViewModel(private val useCase: PeopleUseCase) : BaseViewModel(), LifecycleObserver {
 
-    val state: MutableLiveData<ViewState<List<PersonDto>, String>> = MutableLiveData()
+    private val state: MutableLiveData<ViewState<List<PersonDto>, String>> = MutableLiveData()
+
+    fun getState(): LiveData<ViewState<List<PersonDto>, String>> = state
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadPeople() {

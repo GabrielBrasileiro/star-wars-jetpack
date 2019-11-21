@@ -27,7 +27,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
     }
 
     private fun initPeopleObserver() {
-        viewModel.state.observe(this, Observer { viewState ->
+        viewModel.getState().observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.SUCCESS -> showList(people = viewState.data)
                 ViewState.Status.ERROR   -> showError(message = viewState.error)
@@ -63,3 +63,4 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
     }
 
 }
+

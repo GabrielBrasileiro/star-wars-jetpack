@@ -1,6 +1,6 @@
 package com.universodoandroid.remote.api
 
-import com.universodoandroid.domain.people.PeopleResponse
+import com.universodoandroid.domain.entities.people.PeopleResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

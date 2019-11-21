@@ -5,7 +5,7 @@ import com.universodoandroid.presentation.dto.PersonDetailsDto
 import com.universodoandroid.presentation.mapper.PeopleMapper
 import com.universodoandroid.presentation.utils.BaseViewModel
 import com.universodoandroid.presentation.utils.ViewState
-import com.universodoandroid.remote.usecase.people.PeopleUseCase
+import com.universodoandroid.domain.usecase.people.PeopleUseCase
 
 class PersonDetailsViewModel(private val useCase: PeopleUseCase) : BaseViewModel() {
 

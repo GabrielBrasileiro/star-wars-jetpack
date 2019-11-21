@@ -1,6 +1,6 @@
 package com.universodoandroid.remote.observers
 
-import com.universodoandroid.domain.people.PeopleResponse
+import com.universodoandroid.domain.entities.people.PeopleResponse
 import com.universodoandroid.remote.api.PeopleApiDataSource
 import com.universodoandroid.remote.data.PeopleReponseDataFactory
 import io.reactivex.Observable

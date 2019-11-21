@@ -1,17 +1,22 @@
 package com.universodoandroid.local.local.person
 
-import com.universodoandroid.domain.people.PeopleResponse
-import com.universodoandroid.domain.people.Person
-import com.universodoandroid.local.dao.PersonDao
-import com.universodoandroid.local.local.BaseFlowable
+import com.universodoandroid.domain.common.BaseFlowable
+import com.universodoandroid.domain.entities.people.PeopleResponse
+import com.universodoandroid.domain.entities.people.Person
+import com.universodoandroid.domain.repository.PersonRepository
+import com.universodoandroid.local.AppDatabase
 import com.universodoandroid.local.mapper.PersonMapper
 
-open class PersonRepositoryImpl(private val personDao: PersonDao) : BaseFlowable(), PersonRepository {
+open class PersonDatabaseImpl(database: AppDatabase) : BaseFlowable(), PersonRepository {
 
-    override fun savePeople(people: PeopleResponse, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
-        val peopleEntity = people.results.map { personResponse ->
-            PersonMapper.toData(person = personResponse)
-        }
+    private val personDao = database.personDao()
+
+    override fun savePeople(
+        people: PeopleResponse,
+        onComplete: () -> Unit,
+        onError: (Throwable) -> Unit
+    ) {
+        val peopleEntity = people.results.map { PersonMapper.toData(it) }
 
         buildCompletable(personDao.insertPeople(people = peopleEntity), onComplete, onError)
     }
@@ -30,8 +35,6 @@ open class PersonRepositoryImpl(private val personDao: PersonDao) : BaseFlowable
         }, onError)
     }
 
-    override fun dispose() {
-        clear()
-    }
+    override fun dispose() = clear()
 
 }

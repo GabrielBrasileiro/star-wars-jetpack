@@ -1,6 +1,6 @@
 package com.universodoandroid.remote.remote.planet
 
-import com.universodoandroid.domain.planet.PlanetResponse
+import com.universodoandroid.domain.entities.planet.PlanetResponse
 import com.universodoandroid.remote.api.PlanetApiDataSource
 import com.universodoandroid.remote.remote.BaseObserver
 

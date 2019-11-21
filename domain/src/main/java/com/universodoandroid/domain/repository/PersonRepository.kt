@@ -1,10 +1,8 @@
-package com.universodoandroid.local.local.person
+package com.universodoandroid.domain.repository
 
-import com.universodoandroid.domain.people.PeopleResponse
-import com.universodoandroid.domain.people.Person
-import com.universodoandroid.local.local.BaseRepository
-import com.universodoandroid.local.mapper.PersonMapper
-import io.reactivex.Flowable
+import com.universodoandroid.domain.common.BaseRepository
+import com.universodoandroid.domain.entities.people.PeopleResponse
+import com.universodoandroid.domain.entities.people.Person
 
 interface PersonRepository : BaseRepository {
     fun loadPeople(onSuccess: (List<Person>) -> Unit, onError: (Throwable) -> Unit)

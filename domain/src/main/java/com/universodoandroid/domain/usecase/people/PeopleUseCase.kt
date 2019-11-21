@@ -1,6 +1,6 @@
-package com.universodoandroid.remote.usecase.people
+package com.universodoandroid.domain.usecase.people
 
-import com.universodoandroid.domain.people.Person
+import com.universodoandroid.domain.entities.people.Person
 
 interface PeopleUseCase {
     fun getPeople(onSuccess: (List<Person>) -> Unit, onError: (error: Throwable) -> Unit)

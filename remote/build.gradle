@@ -39,17 +39,16 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
+    // Dependencies
+    implementation project(':domain')
+
+    // Database
     implementation project(":local")
-    api project(':domain')
 
     // Remote
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-
-    // Koin
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-ext:$koin_version"
 
     //Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interception_version"
@@ -58,12 +57,9 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$mockito_core_version"
     androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
 
-    //Reactive
-    api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
-    api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
-
     //Tests
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     androidTestImplementation "androidx.test:runner:$android_test_runner"
+
 }

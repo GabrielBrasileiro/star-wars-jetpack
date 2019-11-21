@@ -1,17 +1,22 @@
 package com.universodoandroid.remote.policy
 
-import com.universodoandroid.domain.people.Person
-import com.universodoandroid.local.local.person.PersonRepository
+import com.universodoandroid.domain.entities.people.Person
+import com.universodoandroid.domain.repository.PersonRepository
 import com.universodoandroid.remote.remote.people.PeopleRemoteDataSource
 
-class PeoplePolicy(private val remote: PeopleRemoteDataSource, private val local: PersonRepository) {
+class PeoplePolicy(private val remote: PeopleRemoteDataSource,
+                   private val local: PersonRepository
+) {
 
     private val errors: ArrayList<Int> by lazy { ArrayList<Int>() }
 
     fun firstSyncComplete(complete: (List<Person>) -> Unit, notComplete: () -> Unit, onError: (Throwable) -> Unit) {
         local.loadPeople({
-            if (it.isNotEmpty()) { complete(it) }
-            else { notComplete() }
+            if (it.isNotEmpty()) {
+                complete(it)
+            } else {
+                notComplete()
+            }
         }, onError)
     }
 

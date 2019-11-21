@@ -1,4 +1,4 @@
-package com.universodoandroid.domain.people
+package com.universodoandroid.domain.entities.people
 
 data class PeopleResponse(
     val count: Int,

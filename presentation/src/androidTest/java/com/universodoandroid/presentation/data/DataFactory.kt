@@ -1,6 +1,6 @@
 package com.universodoandroid.presentation.data
 
-import com.universodoandroid.domain.people.Person
+import com.universodoandroid.domain.entities.people.Person
 import java.util.*
 import kotlin.collections.ArrayList
 

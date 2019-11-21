@@ -48,7 +48,6 @@ dependencies {
     // Core
     implementation "androidx.core:core-ktx:$kotlin_tx_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "androidx.core:core-ktx:$kotlin_tx_version"
 }
 
 
