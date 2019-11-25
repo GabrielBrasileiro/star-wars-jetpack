@@ -2,6 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -14,6 +15,9 @@ dependencies {
     api "org.koin:koin-androidx-scope:$koin_version"
     api "org.koin:koin-androidx-ext:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Tests
+    testImplementation 'junit:junit:4.12'
 
     //Core
     api "androidx.core:core-ktx:$kotlin_tx_version"

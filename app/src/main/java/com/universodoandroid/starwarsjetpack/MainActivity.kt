@@ -21,8 +21,10 @@ class MainActivity : AppCompatActivity() {
         navigation.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isDefaultView = defaultDestinationSelected(destination.id,
-                R.id.navigation_people, R.id.navigation_planets
+            val isDefaultView = defaultDestinationSelected(
+                destination.id,
+                R.id.navigation_people,
+                R.id.navigation_planets
             )
 
             if (isDefaultView) {
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun defaultDestinationSelected(id: Int, vararg views: Int): Boolean {
         views.forEach {
-            if (id == it) { return true }
+            if (id == it) return true
         }
 
         return false

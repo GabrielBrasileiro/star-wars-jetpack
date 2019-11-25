@@ -29,6 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':domain')
+    implementation project(':remote')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.universodoandroid.presentation.models.PeopleListViewModel" />
+            type="com.universodoandroid.starwarsjetpack.presentation.models.PeopleListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

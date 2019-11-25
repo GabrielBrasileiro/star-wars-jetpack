@@ -29,7 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     
     // Dependencies
-    implementation project(":remote")
+    implementation project(":local")
     implementation project(':domain')
 
     implementation "androidx.appcompat:appcompat:$app_compat_version"
@@ -38,7 +38,6 @@ dependencies {
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
-    testImplementation 'junit:junit:4.12'
 }
 
 repositories {

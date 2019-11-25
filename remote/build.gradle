@@ -42,9 +42,6 @@ dependencies {
     // Dependencies
     implementation project(':domain')
 
-    // Database
-    implementation project(":local")
-
     // Remote
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
@@ -58,7 +55,6 @@ dependencies {
     androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
 
     //Tests
-    androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     androidTestImplementation "androidx.test:runner:$android_test_runner"
 
