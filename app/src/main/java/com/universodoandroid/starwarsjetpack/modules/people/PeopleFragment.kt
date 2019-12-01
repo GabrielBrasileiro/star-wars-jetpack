@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.universodoandroid.presentation.utils.ViewState
-import com.universodoandroid.presentation.dto.PersonDto
-import com.universodoandroid.presentation.models.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
+import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.models.PeopleListViewModel
+import com.universodoandroid.starwarsjetpack.presentation.utils.ViewState
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import com.universodoandroid.starwarsjetpack.ui.resourses.defaultNumberOfColumns
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,7 +30,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
         viewModel.getState().observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.SUCCESS -> showList(people = viewState.data)
-                ViewState.Status.ERROR   -> showError(message = viewState.error)
+                ViewState.Status.ERROR -> showError(message = viewState.error)
             }
         })
 
@@ -46,7 +46,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
     private fun setupRecyclerView(people: List<PersonDto>) {
         binding.peopleRecyclerView.run {
             layoutManager = GridLayoutManager(requireContext(), resources.defaultNumberOfColumns())
-            adapter       = PeopleAdapter(people) { personDto ->
+            adapter = PeopleAdapter(people) { personDto ->
                 personDetails(personDto)
             }
         }

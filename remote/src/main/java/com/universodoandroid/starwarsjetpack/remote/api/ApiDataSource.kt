@@ -9,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiDataSource(private val url: String) {
+internal class ApiDataSource(private val url: String) {
 
     private val timeOut: Long = 30
 

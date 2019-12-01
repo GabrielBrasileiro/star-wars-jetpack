@@ -29,9 +29,6 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    // Presentation
-    implementation project(":presentation")
-
     // Design
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "com.google.android.material:material:$material_design_version"
@@ -48,6 +45,12 @@ dependencies {
     // Binding
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_view_model_version"
     kapt "com.android.databinding:compiler:$databinding_compiler_version"
+
+    // Injection
+    implementation project(":remote")
+    implementation project(":data")
+    implementation project(":presentation")
+    implementation project(":domain")
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

@@ -5,13 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.universodoandroid.presentation.utils.ViewState
-import com.universodoandroid.presentation.dto.PersonDetailsDto
-import com.universodoandroid.presentation.dto.PersonDto
-import com.universodoandroid.presentation.models.PersonDetailsViewModel
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBinding
+import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDetailsDto
+import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.models.PersonDetailsViewModel
+import com.universodoandroid.starwarsjetpack.presentation.utils.ViewState
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,14 +36,14 @@ class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
 
     private fun setupLifecycleObserver() {
         binding.lifecycleOwner = this
-        binding.viewModel      = viewModel
+        binding.viewModel = viewModel
     }
 
     private fun initPersonObserver() {
-        viewModel.state.observe(this, Observer { viewState ->
+        viewModel.getState().observe(this, Observer { viewState ->
             when (viewState.status) {
                 ViewState.Status.SUCCESS -> loadView(personDetails = viewState.data)
-                ViewState.Status.ERROR   -> showError(viewState.error)
+                ViewState.Status.ERROR -> showError(viewState.error)
             }
         })
     }
@@ -51,7 +51,12 @@ class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
     private fun loadView(personDetails: PersonDetailsDto?) {
         binding.run {
             person = personDetails
-            imageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_star_wars_yellow_logo))
+            imageView.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_star_wars_yellow_logo
+                )
+            )
         }
     }
 

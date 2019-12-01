@@ -1,9 +1,9 @@
 package com.universodoandroid.starwarsjetpack.remote.remote.people
 
 import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PeopleResponse
+import io.reactivex.Flowable
 
 
 interface PeopleRemoteDataSource {
-    fun loadPeople(page: Int, onSuccess: (PeopleResponse) -> Unit, onError: (Throwable) -> Unit)
-    fun dispose()
+    fun loadPeoplePerPage(page: Int): Flowable<PeopleResponse>
 }
