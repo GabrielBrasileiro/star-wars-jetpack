@@ -27,4 +27,8 @@ internal class PeopleRepositoryImpl(
         return local.getPerson(id)
     }
 
+    override fun eraseData(): Completable {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

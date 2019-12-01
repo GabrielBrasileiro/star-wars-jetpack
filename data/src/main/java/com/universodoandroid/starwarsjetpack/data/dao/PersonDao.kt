@@ -20,4 +20,7 @@ internal interface PersonDao {
     @Query("SELECT * FROM PersonEntity WHERE id = :id")
     fun getPerson(id: String): Flowable<PersonEntity>
 
+    @Query("SELECT COUNT(*) FROM PersonEntity LIMIT 1")
+    fun isEmpty(): Flowable<Int>
+
 }

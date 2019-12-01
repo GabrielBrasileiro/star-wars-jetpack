@@ -22,5 +22,4 @@ internal class PeopleRemoteImpl(
 
     override fun getPerson(id: String) = throw UnsupportedOperationException()
 
-
 }

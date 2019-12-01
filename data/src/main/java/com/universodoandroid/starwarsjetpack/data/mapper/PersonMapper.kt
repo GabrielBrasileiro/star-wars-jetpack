@@ -45,7 +45,7 @@ internal object PersonMapper {
 
     private fun fromResponse(personItem: PersonItem) =
         Person(
-            id = personItem.id,
+            id = "",
             birthYear = personItem.birthYear,
             created = personItem.created,
             edited = personItem.edited,
@@ -61,7 +61,7 @@ internal object PersonMapper {
         )
 
     fun responseToPeoplePage(peopleResponse: PeopleResponse): PeoplePage {
-        val hasNext = peopleResponse.next.isNullOrEmpty()
+        val hasNext = !peopleResponse.next.isNullOrBlank()
 
         return PeoplePage(
             hasNextPage = hasNext,

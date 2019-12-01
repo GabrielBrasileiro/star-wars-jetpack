@@ -10,8 +10,8 @@ import org.koin.dsl.module
 
 
 private val repositories = module {
-    single(named(DIContext.REMOTE)) { PeopleCacheImpl(get()) }
-    single(named(DIContext.LOCAL)) { PeopleRemoteImpl(get()) }
+    single(named(DIContext.REMOTE)) { PeopleRemoteImpl(get()) }
+    single(named(DIContext.LOCAL)) { PeopleCacheImpl(get()) }
     single<PeopleRepository> {
         PeopleRepositoryImpl(
             remote = get(named(DIContext.REMOTE)),

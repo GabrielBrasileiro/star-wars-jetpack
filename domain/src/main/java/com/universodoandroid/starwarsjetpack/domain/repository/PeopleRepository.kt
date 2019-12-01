@@ -11,4 +11,5 @@ interface PeopleRepository {
     fun getRemotePeoplePerPage(page: Int): Flowable<PeoplePage>
     fun saveLocalPeople(people: List<Person>): Completable
     fun getPerson(id: String): Flowable<Person>
+    fun eraseData(): Completable
 }

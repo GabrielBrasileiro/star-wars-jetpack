@@ -3,8 +3,7 @@ package com.universodoandroid.starwarsjetpack.data.database.people
 import com.universodoandroid.starwarsjetpack.data.AppDatabase
 import com.universodoandroid.starwarsjetpack.data.entity.PersonEntity
 
-internal class PeopleDatabaseImpl(database: AppDatabase) :
-    PeopleDatabase {
+internal class PeopleDatabaseImpl(database: AppDatabase) : PeopleDatabase {
 
     private val personDao = database.personDao()
 

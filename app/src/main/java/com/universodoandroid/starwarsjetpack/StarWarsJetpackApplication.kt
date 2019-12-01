@@ -3,6 +3,7 @@ package com.universodoandroid.starwarsjetpack
 import android.app.Application
 import com.universodoandroid.starwarsjetpack.data.database.di.getDatabaseModules
 import com.universodoandroid.starwarsjetpack.data.repositories.di.getRepositoriesModules
+import com.universodoandroid.starwarsjetpack.di.getGlobalDependencies
 import com.universodoandroid.starwarsjetpack.domain.getUseCaseModules
 import com.universodoandroid.starwarsjetpack.presentation.getViewModelsModules
 import com.universodoandroid.starwarsjetpack.remote.di.getRemoteModules
@@ -22,6 +23,7 @@ class StarWarsJetpackApplication : Application() {
             androidContext(this@StarWarsJetpackApplication)
             modules(
                 listOfModules(
+                    getGlobalDependencies(),
                     getRemoteModules(),
                     getDatabaseModules(),
                     getRepositoriesModules(),
@@ -31,6 +33,7 @@ class StarWarsJetpackApplication : Application() {
             )
         }
     }
+
 
     private fun listOfModules(vararg modules: List<Module>): List<Module> {
         val mappedModules = ArrayList<Module>()
