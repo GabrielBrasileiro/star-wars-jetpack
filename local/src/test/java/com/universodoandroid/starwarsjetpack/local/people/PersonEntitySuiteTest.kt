@@ -1,4 +1,4 @@
-package com.universodoandroid.local.people
+package com.universodoandroid.starwarsjetpack.local.people
 
 import org.junit.runner.RunWith
 import org.junit.runners.Suite

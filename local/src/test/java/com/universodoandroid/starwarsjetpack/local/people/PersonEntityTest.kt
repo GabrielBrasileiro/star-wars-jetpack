@@ -1,4 +1,4 @@
-package com.universodoandroid.local.people
+package com.universodoandroid.starwarsjetpack.local.people
 
 import com.universodoandroid.starwarsjetpack.local.mapper.PersonMapper
 import org.junit.Assert

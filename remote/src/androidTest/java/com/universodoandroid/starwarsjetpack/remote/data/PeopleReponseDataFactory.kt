@@ -2,8 +2,6 @@ package com.universodoandroid.starwarsjetpack.remote.data
 
 import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PeopleResponse
 import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PersonItem
-import java.util.*
-import kotlin.collections.ArrayList
 
 object PeopleReponseDataFactory {
 
@@ -13,7 +11,6 @@ object PeopleReponseDataFactory {
         previous = 0,
         results = listOf(
             PersonItem(
-                id = UUID.randomUUID().toString(),
                 birthYear = "",
                 created = "",
                 edited = "",
@@ -32,7 +29,6 @@ object PeopleReponseDataFactory {
                 vehicles = ArrayList()
             ),
             PersonItem(
-                id = UUID.randomUUID().toString(),
                 birthYear = "",
                 created = "",
                 edited = "",

@@ -12,7 +12,4 @@ dependencies {
     // Tests
     testImplementation 'junit:junit:4.12'
 
-    //Core
-    api "androidx.core:core-ktx:$kotlin_tx_version"
-
 }

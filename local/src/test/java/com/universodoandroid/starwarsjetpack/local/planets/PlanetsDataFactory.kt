@@ -1,4 +1,4 @@
-package com.universodoandroid.local.planets
+package com.universodoandroid.starwarsjetpack.local.planets
 
 object PlanetsDataFactory {
 }

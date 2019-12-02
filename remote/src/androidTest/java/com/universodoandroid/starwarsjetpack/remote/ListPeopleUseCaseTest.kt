@@ -6,7 +6,7 @@ import org.junit.Before
 import org.junit.Test
 
 
-class ListPeopleUseCaseTest {
+internal class ListPeopleUseCaseTest {
 
     var peopleApiDataSource: PeopleApiDataSource = mock()
 

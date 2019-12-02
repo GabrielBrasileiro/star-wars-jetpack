@@ -12,6 +12,9 @@ dependencies {
     api "org.koin:koin-androidx-scope:$koin_version"
     api "org.koin:koin-androidx-ext:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
+    
+    //Core
+    api "androidx.core:core-ktx:$kotlin_tx_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

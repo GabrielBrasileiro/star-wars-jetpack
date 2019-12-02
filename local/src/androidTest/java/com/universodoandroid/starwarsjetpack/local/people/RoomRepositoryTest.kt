@@ -1,4 +1,4 @@
-package com.universodoandroid.local.people
+package com.universodoandroid.starwarsjetpack.local.people
 
 import androidx.test.runner.AndroidJUnit4
 import com.universodoandroid.local.BaseDatabaseTest

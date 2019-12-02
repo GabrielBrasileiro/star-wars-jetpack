@@ -40,7 +40,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Dependencies
-    implementation project(':domain')
     implementation project(':data')
 
     // Remote

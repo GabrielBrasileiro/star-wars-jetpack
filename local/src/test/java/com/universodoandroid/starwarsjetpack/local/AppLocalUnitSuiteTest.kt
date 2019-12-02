@@ -1,6 +1,6 @@
-package com.universodoandroid.local
+package com.universodoandroid.starwarsjetpack.local
 
-import com.universodoandroid.local.people.PersonEntitySuiteTest
+import com.universodoandroid.starwarsjetpack.local.people.PersonEntitySuiteTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 

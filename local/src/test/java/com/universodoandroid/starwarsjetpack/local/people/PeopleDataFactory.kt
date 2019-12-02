@@ -1,9 +1,9 @@
-package com.universodoandroid.local.people
+package com.universodoandroid.starwarsjetpack.local.people
 
 import com.universodoandroid.starwarsjetpack.data.entities.Person
 import com.universodoandroid.starwarsjetpack.local.entity.PersonEntity
 
-object PeopleDataFactory {
+internal object PeopleDataFactory {
 
     fun dummyPersonEntity() =
         PersonEntity(
