@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.data
 
-import com.universodoandroid.starwarsjetpack.domain.entities.Person
+import com.universodoandroid.starwarsjetpack.data.entities.Person
 import java.util.*
 import kotlin.collections.ArrayList
 

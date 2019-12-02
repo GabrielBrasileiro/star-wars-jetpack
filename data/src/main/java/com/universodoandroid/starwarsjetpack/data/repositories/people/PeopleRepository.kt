@@ -5,9 +5,11 @@ import com.universodoandroid.starwarsjetpack.data.entities.Person
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-interface PeopleDataStore {
-    fun getPeople(): Flowable<List<Person>>
-    fun savePeople(people: List<Person>): Completable
-    fun getPeoplePerPage(page: Int): Flowable<PeoplePage>
+
+interface PeopleRepository {
+    fun getLocalPeople(): Flowable<List<Person>>
+    fun getRemotePeoplePerPage(page: Int): Flowable<PeoplePage>
+    fun saveLocalPeople(people: List<Person>): Completable
     fun getPerson(id: String): Flowable<Person>
+    fun eraseData(): Completable
 }

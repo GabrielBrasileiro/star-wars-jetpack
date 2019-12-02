@@ -41,6 +41,7 @@ dependencies {
 
     // Dependencies
     implementation project(':domain')
+    implementation project(':data')
 
     // Remote
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

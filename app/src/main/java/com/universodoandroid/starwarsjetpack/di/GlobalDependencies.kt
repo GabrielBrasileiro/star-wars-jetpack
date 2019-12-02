@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.di
 
-import com.universodoandroid.starwarsjetpack.domain.common.executors.PostExecutorThread
+import com.universodoandroid.starwarsjetpack.domain.executors.PostExecutorThread
 import com.universodoandroid.starwarsjetpack.domain.session.CacheManager
 import com.universodoandroid.starwarsjetpack.presentation.executor.UIThread
 import com.universodoandroid.starwarsjetpack.session.CacheManagerImpl
