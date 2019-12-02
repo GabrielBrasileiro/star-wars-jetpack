@@ -2,6 +2,14 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api project(':data')
+
+    // Tests
+    testImplementation 'junit:junit:4.12'
+
 }

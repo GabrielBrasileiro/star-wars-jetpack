@@ -8,16 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPlanetsBinding
+import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 
-class PlanetsFragment : Fragment() {
+class PlanetsFragment : BindingFragment<FragmentPlanetsBinding>() {
 
-    var binding: FragmentPlanetsBinding? = null
+    override fun getLayoutResId() = R.layout.fragment_planets
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_planets, container, false)
-        binding?.handler = this
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        return binding?.root
+        binding.handler = this
     }
 
 }

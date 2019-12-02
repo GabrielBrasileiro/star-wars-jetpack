@@ -7,11 +7,11 @@
 
         <variable
             name="person"
-            type="com.universodoandroid.presentation.dto.PersonDetailsDto" />
+            type="com.universodoandroid.starwarsjetpack.presentation.dto.PersonDetailsDto" />
 
         <variable
             name="viewModel"
-            type="com.universodoandroid.presentation.models.PersonDetailsViewModel" />
+            type="com.universodoandroid.starwarsjetpack.presentation.models.PersonDetailsViewModel" />
 
     </data>
 

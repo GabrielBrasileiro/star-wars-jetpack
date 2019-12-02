@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "name": "Luck Skywalker",
+      "planet": "Jupiter",
+      "imageUrl": ""
+    },
+    {
+      "id": 1,
+      "name": "Darth Vader",
+      "planet": "Unknown",
+      "imageUrl": ""
+    }
+  ]
+}
+

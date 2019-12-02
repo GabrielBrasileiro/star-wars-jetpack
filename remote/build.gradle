@@ -37,21 +37,25 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":local")
-    api project(':domain')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // Dependencies
+    implementation project(':data')
+
+    // Remote
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
-
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    //Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interception_version"
 
-    api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
-    api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    //Mockito
+    androidTestImplementation "org.mockito:mockito-core:$mockito_core_version"
+    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
+    //Tests
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    androidTestImplementation "androidx.test:runner:$android_test_runner"
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }

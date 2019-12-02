@@ -29,31 +29,34 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Injection
+    implementation project(":data")
+    implementation project(":remote")
+    implementation project(':local')
     implementation project(":presentation")
+    implementation project(":domain")
 
-    //Design
+    // Design
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "com.google.android.material:material:$material_design_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
-    //Core
-    implementation "androidx.core:core-ktx:$kotlin_tx_version"
-
-    //Navigation
+    // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_fragment_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_ui_version"
 
-    //LifeCycle
+    // LifeCycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
-    //Binding
+    // Binding
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_view_model_version"
     kapt "com.android.databinding:compiler:$databinding_compiler_version"
-
+    
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.12'
+
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
