@@ -28,12 +28,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':domain')
+    implementation project(':data')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
-
-    // Data Runtime
-    api "androidx.room:room-runtime:$room_version"
 
     // Database
     implementation "androidx.room:room-rxjava2:$room_version"
@@ -52,3 +49,4 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 }
+

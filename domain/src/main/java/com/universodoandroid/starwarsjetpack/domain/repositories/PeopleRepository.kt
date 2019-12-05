@@ -1,7 +1,7 @@
-package com.universodoandroid.starwarsjetpack.data.repositories.people
+package com.universodoandroid.starwarsjetpack.domain.repositories
 
-import com.universodoandroid.starwarsjetpack.data.entities.PeoplePage
-import com.universodoandroid.starwarsjetpack.data.entities.Person
+import com.universodoandroid.starwarsjetpack.domain.entities.PeoplePage
+import com.universodoandroid.starwarsjetpack.domain.entities.Person
 import io.reactivex.Completable
 import io.reactivex.Flowable
 

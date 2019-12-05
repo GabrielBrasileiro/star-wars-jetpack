@@ -1,9 +1,9 @@
 package com.universodoandroid.starwarsjetpack.domain.usecase.people
 
-import com.universodoandroid.starwarsjetpack.data.entities.Person
-import com.universodoandroid.starwarsjetpack.data.repositories.people.PeopleRepository
+import com.universodoandroid.starwarsjetpack.domain.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.executors.BaseUseCaseExecutor
 import com.universodoandroid.starwarsjetpack.domain.executors.PostExecutorThread
+import com.universodoandroid.starwarsjetpack.domain.repositories.PeopleRepository
 
 class GetPersonUseCase(
     postExecutionThread: PostExecutorThread,

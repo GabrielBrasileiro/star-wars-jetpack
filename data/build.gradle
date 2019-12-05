@@ -1,8 +1,11 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":domain")
 
     // Reactive
     api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
@@ -12,10 +15,6 @@ dependencies {
     api "org.koin:koin-androidx-scope:$koin_version"
     api "org.koin:koin-androidx-ext:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
-    
-    //Core
-    api "androidx.core:core-ktx:$kotlin_tx_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-

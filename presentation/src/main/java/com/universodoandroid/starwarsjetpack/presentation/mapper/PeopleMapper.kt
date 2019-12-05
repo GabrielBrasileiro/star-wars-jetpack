@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.mapper
 
-import com.universodoandroid.starwarsjetpack.data.entities.Person
+import com.universodoandroid.starwarsjetpack.domain.entities.Person
 import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDetailsDto
 import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
 

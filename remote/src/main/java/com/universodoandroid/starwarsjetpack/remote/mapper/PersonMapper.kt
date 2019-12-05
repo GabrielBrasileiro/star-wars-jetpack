@@ -1,14 +1,14 @@
 package com.universodoandroid.starwarsjetpack.remote.mapper
 
-import com.universodoandroid.starwarsjetpack.data.entities.PeoplePage
-import com.universodoandroid.starwarsjetpack.data.entities.Person
+import com.universodoandroid.starwarsjetpack.data.entities.PeoplePageData
+import com.universodoandroid.starwarsjetpack.data.entities.PersonData
 import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PeopleResponse
 import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PersonItem
 
 object PersonMapper {
 
     private fun fromResponse(personItem: PersonItem) =
-        Person(
+        PersonData(
             id = "",
             birthYear = personItem.birthYear,
             created = personItem.created,
@@ -24,10 +24,10 @@ object PersonMapper {
             url = personItem.url
         )
 
-    fun responseToPeoplePage(peopleResponse: PeopleResponse): PeoplePage {
+    fun responseToPeoplePage(peopleResponse: PeopleResponse): PeoplePageData {
         val hasNext = !peopleResponse.next.isNullOrBlank()
 
-        return PeoplePage(
+        return PeoplePageData(
             hasNextPage = hasNext,
             people = responseToEntities(
                 peopleResponse.results

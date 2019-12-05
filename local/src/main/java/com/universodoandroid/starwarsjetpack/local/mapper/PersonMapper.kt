@@ -1,12 +1,12 @@
 package com.universodoandroid.starwarsjetpack.local.mapper
 
-import com.universodoandroid.starwarsjetpack.data.entities.Person
+import com.universodoandroid.starwarsjetpack.data.entities.PersonData
 import com.universodoandroid.starwarsjetpack.local.entity.PersonEntity
 import java.util.*
 
 internal object PersonMapper {
 
-    fun toData(person: Person) =
+    fun toData(person: PersonData) =
         PersonEntity(
             id = UUID.randomUUID().toString(),
             birthYear = person.birthYear,
@@ -24,7 +24,7 @@ internal object PersonMapper {
         )
 
     fun fromData(personEntity: PersonEntity) =
-        Person(
+        PersonData(
             id = personEntity.id,
             birthYear = personEntity.birthYear,
             created = personEntity.created,
@@ -40,11 +40,9 @@ internal object PersonMapper {
             url = personEntity.url
         )
 
-    fun dataEntitiesToEntities(dataEntities: List<PersonEntity>) = dataEntities.map(
-        PersonMapper::fromData
-    )
+    fun dataEntitiesToEntities(dataEntities: List<PersonEntity>) = dataEntities.map(::fromData)
 
-    fun entitiesToDataEntities(entities: List<Person>) = entities.map(PersonMapper::toData)
+    fun entitiesToDataEntities(entities: List<PersonData>) = entities.map(::toData)
 
 
 }

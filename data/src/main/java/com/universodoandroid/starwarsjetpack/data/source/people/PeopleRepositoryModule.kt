@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.data.source.people
 
 import com.universodoandroid.starwarsjetpack.data.common.di.DIContext
-import com.universodoandroid.starwarsjetpack.data.repositories.people.PeopleRepository
+import com.universodoandroid.starwarsjetpack.domain.repositories.PeopleRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 

@@ -33,6 +33,15 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Reactive
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+
+    // Koin
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 

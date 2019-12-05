@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.data.entities
+package com.universodoandroid.starwarsjetpack.domain.entities
 
 data class Person(
     val id: String,
