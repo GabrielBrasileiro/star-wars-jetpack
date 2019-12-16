@@ -1,10 +1,10 @@
 package com.universodoandroid.starwarsjetpack.session
 
 import android.content.Context
-import com.universodoandroid.starwarsjetpack.domain.session.CacheManager
+import com.universodoandroid.starwarsjetpack.domain.session.CacheData
 import com.universodoandroid.starwarsjetpack.domain.session.cache.CacheType
 
-class CacheManagerImpl(context: Context) : CacheManager {
+class CacheDataImpl(context: Context) : CacheData {
 
     private val managerName = "data_manager"
     private val preferences = context.getSharedPreferences(managerName, Context.MODE_PRIVATE)

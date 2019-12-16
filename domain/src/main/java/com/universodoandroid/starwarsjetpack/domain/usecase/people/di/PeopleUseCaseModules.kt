@@ -5,7 +5,7 @@ import com.universodoandroid.starwarsjetpack.domain.usecase.people.GetPersonUseC
 import org.koin.dsl.module
 
 internal val useCaseModules = module {
-    factory { GetPeopleUseCase(get(), get(), get()) }
+    factory { GetPeopleUseCase(get(), get()) }
     factory { GetPersonUseCase(get(), get()) }
 }
 

@@ -4,22 +4,18 @@ import com.universodoandroid.starwarsjetpack.domain.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.executors.BaseUseCaseExecutor
 import com.universodoandroid.starwarsjetpack.domain.executors.PostExecutorThread
 import com.universodoandroid.starwarsjetpack.domain.repositories.PeopleRepository
-import com.universodoandroid.starwarsjetpack.domain.session.CacheManager
-import com.universodoandroid.starwarsjetpack.domain.session.cache.CacheType
 
 class GetPeopleUseCase(
     postExecutorThread: PostExecutorThread,
-    private val repository: PeopleRepository,
-    private val cacheManager: CacheManager
+    private val repository: PeopleRepository
 ) : BaseUseCaseExecutor(postExecutorThread) {
 
     fun getPeople(onSuccess: (List<Person>) -> Unit, onError: (Throwable) -> Unit) {
-        val isNotDownloaded = !cacheManager.isDownloaded(CacheType.PEOPLE_CACHE)
-
-        if (isNotDownloaded)
-            nextPage(1, onSuccess, { eraseData() })
-        else
-            getLocalPeople(onSuccess, onError)
+        execute(repository.getPeople(), {
+            onSuccess(it)
+        }, {
+            onError(it)
+        })
     }
 
     private fun nextPage(
@@ -27,12 +23,11 @@ class GetPeopleUseCase(
         onSuccess: (List<Person>) -> Unit,
         onError: (Throwable) -> Unit
     ) {
-        execute(repository.getRemotePeoplePerPage(page), {
+        execute(repository.getPeoplePerPage(page), {
             savePeople(it.people, {
                 if (it.hasNextPage) {
                     nextPage(page + 1, onSuccess, onError)
                 } else {
-                    cacheManager.registerCache(CacheType.PEOPLE_CACHE, true)
                     getLocalPeople(onSuccess, onError)
                 }
             }, onError)
@@ -48,7 +43,7 @@ class GetPeopleUseCase(
     }
 
     private fun getLocalPeople(onSuccess: (List<Person>) -> Unit, onError: (Throwable) -> Unit) {
-        execute(repository.getLocalPeople(), onSuccess, onError)
+        execute(repository.getPeople(), onSuccess, onError)
     }
 
     private fun eraseData() {

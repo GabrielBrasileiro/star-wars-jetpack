@@ -7,8 +7,8 @@ import io.reactivex.Flowable
 
 
 interface PeopleRepository {
-    fun getLocalPeople(): Flowable<List<Person>>
-    fun getRemotePeoplePerPage(page: Int): Flowable<PeoplePage>
+    fun getPeople(): Flowable<List<Person>>
+    fun getPeoplePerPage(page: Int): Flowable<PeoplePage>
     fun saveLocalPeople(people: List<Person>): Completable
     fun getPerson(id: String): Flowable<Person>
     fun eraseData(): Completable

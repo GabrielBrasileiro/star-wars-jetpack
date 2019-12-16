@@ -21,15 +21,16 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
     override fun getLayoutResId(): Int = R.layout.fragment_people
 
     private val viewModel by viewModel<PeopleListViewModel>()
+
     private val progressBar: ProgressBar by lazy { binding.progressBar }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initPeopleObserver()
+        setupPeopleState()
     }
 
-    private fun initPeopleObserver() {
+    private fun setupPeopleState() {
         viewModel.getState().observe(this, Observer { state ->
             when (state) {
                 is PeopleState.ShowData -> showPeople(state.data)
@@ -42,18 +43,12 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
         lifecycle.addObserver(viewModel)
     }
 
-    private fun showPeople(people: List<PersonDto>?) {
-        people?.let {
-            setupRecyclerView(people = it)
-        }
-    }
+    private fun showPeople(people: List<PersonDto>) = setupRecyclerView(people)
 
     private fun setupRecyclerView(people: List<PersonDto>) {
         binding.peopleRecyclerView.run {
             layoutManager = GridLayoutManager(requireContext(), resources.defaultNumberOfColumns())
-            adapter = PeopleAdapter(people) { personDto ->
-                personDetails(personDto)
-            }
+            adapter = PeopleAdapter(people, ::personDetails)
         }
     }
 
