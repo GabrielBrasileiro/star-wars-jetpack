@@ -2,6 +2,7 @@ package com.universodoandroid.starwarsjetpack.data.source.people
 
 import com.universodoandroid.starwarsjetpack.data.datastore.people.PeopleLocalData
 import com.universodoandroid.starwarsjetpack.data.datastore.people.PeopleRemoteData
+import com.universodoandroid.starwarsjetpack.data.entities.PersonData
 import com.universodoandroid.starwarsjetpack.data.mappers.PeopleDataMapper
 import com.universodoandroid.starwarsjetpack.domain.entities.PeoplePage
 import com.universodoandroid.starwarsjetpack.domain.entities.Person
@@ -19,19 +20,19 @@ internal class PeopleRepositoryImpl(
 
     override fun getPeople(): Flowable<List<Person>> {
         return if (session.isDownloaded(CacheType.PEOPLE_CACHE)) {
-            local.getPeople().map { PeopleDataMapper.dataToEntities(it) }
+            local.getPeople().map(::dataToEntity)
         } else {
-            session.registerCache(CacheType.PEOPLE_CACHE, true)
-
             remote.getAllPeopleData().flatMapCompletable {
                 saveLocalPeople(it.people.map { person -> PeopleDataMapper.dataToEntity(person) })
-            }.andThen(local.getPeople().map { PeopleDataMapper.dataToEntities(it) })
+            }.doOnComplete {
+                session.registerCache(CacheType.PEOPLE_CACHE, true)
+            }.andThen(
+                local.getPeople().map(::dataToEntity)
+            )
         }
     }
 
-    private fun mapPeoplePage() {
-
-    }
+    private fun dataToEntity(people: List<PersonData>) = PeopleDataMapper.dataToEntities(people)
 
     override fun getPeoplePerPage(page: Int): Flowable<PeoplePage> {
         return remote.getPeoplePerPage(page).map { PeopleDataMapper.entityPageToDataPage(it) }
@@ -39,7 +40,6 @@ internal class PeopleRepositoryImpl(
 
     override fun saveLocalPeople(people: List<Person>): Completable {
         val peopleData = people.map { PeopleDataMapper.entityToData(it) }
-
         return local.savePeople(peopleData)
     }
 

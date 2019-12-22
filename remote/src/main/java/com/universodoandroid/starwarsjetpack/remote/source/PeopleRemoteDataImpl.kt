@@ -14,10 +14,10 @@ internal class PeopleRemoteDataImpl(
 
     private fun sync(page: Int): Flowable<PeoplePageData> {
         return getPeoplePerPage(page).concatMap {
-            if (it.hasNextPage) {
-                return@concatMap Flowable.just(it).concatWith(sync(page + 1))
+            return@concatMap if (it.hasNextPage) {
+                Flowable.just(it).concatWith(sync(page + 1))
             } else {
-                return@concatMap Flowable.just(it)
+                Flowable.just(it)
             }
         }
     }
