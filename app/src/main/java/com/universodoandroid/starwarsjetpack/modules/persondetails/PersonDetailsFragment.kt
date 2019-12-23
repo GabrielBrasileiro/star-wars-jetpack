@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.modules.personDetails
+package com.universodoandroid.starwarsjetpack.modules.persondetails
 
 import android.os.Bundle
 import android.view.View
@@ -36,7 +36,6 @@ class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
 
     private fun setupLifecycleObserver() {
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
     }
 
     private fun initPersonObserver() {

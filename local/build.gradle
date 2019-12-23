@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -30,8 +30,6 @@ dependencies {
 
     implementation project(':data')
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-
     // Database
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "androidx.room:room-guava:$room_version"
@@ -40,13 +38,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Tests
-    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "junit:junit:$junit_version"
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     androidTestImplementation "androidx.test:runner:$android_test_runner"
     androidTestImplementation "androidx.arch.core:core-testing:$core_testing_version"
 
     testImplementation "androidx.room:room-testing:$room_version"
-
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junit_version"
 }
 

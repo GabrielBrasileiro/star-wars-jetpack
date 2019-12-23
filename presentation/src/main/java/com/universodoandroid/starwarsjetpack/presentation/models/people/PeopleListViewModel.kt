@@ -4,6 +4,8 @@ import androidx.lifecycle.*
 import com.universodoandroid.starwarsjetpack.domain.usecase.people.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.mapper.PeopleMapper
 import com.universodoandroid.starwarsjetpack.presentation.utils.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class PeopleListViewModel(
     private val getPeopleUseCase: GetPeopleUseCase
@@ -17,19 +19,19 @@ class PeopleListViewModel(
     fun loadPeople() {
         state.value = PeopleState.ShowLoading
 
-        getPeopleUseCase.getPeople({ people ->
-            val peopleDto = PeopleMapper.entityToDto(entities = people)
-            state.postValue(PeopleState.ShowData(peopleDto))
-            state.value = PeopleState.HideLoading
-        }) { error ->
-            state.postValue(PeopleState.ShowError(error.localizedMessage))
-            state.value = PeopleState.HideLoading
-        }
-    }
+        getPeopleUseCase.getPeople()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                val peopleDto = PeopleMapper.entityToDto(entities = it)
 
-    override fun onCleared() {
-        super.onCleared()
-        getPeopleUseCase.dispose()
+                state.value = PeopleState.HideLoading
+                state.postValue(PeopleState.ShowData(peopleDto))
+            }, {
+                state.value = PeopleState.HideLoading
+                state.postValue(PeopleState.ShowError(it.localizedMessage))
+            })
+            .pool()
     }
 
 }

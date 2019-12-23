@@ -9,10 +9,6 @@
             name="person"
             type="com.universodoandroid.starwarsjetpack.presentation.dto.PersonDetailsDto" />
 
-        <variable
-            name="viewModel"
-            type="com.universodoandroid.starwarsjetpack.presentation.models.PersonDetailsViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +61,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibleOrGone="@{safeUnbox(viewModel.isLoadingObserver)}"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

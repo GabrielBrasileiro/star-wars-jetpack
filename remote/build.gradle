@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -49,13 +50,5 @@ dependencies {
 
     //Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interception_version"
-
-    //Mockito
-    androidTestImplementation "org.mockito:mockito-core:$mockito_core_version"
-    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
-
-    //Tests
-    androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    androidTestImplementation "androidx.test:runner:$android_test_runner"
 
 }

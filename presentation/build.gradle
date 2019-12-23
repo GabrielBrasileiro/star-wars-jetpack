@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -30,7 +30,6 @@ dependencies {
 
     implementation project(':domain')
 
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Reactive
@@ -44,7 +43,6 @@ dependencies {
 
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
-
 }
 
 repositories {

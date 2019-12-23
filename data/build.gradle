@@ -7,6 +7,8 @@ dependencies {
 
     implementation project(":domain")
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     // Reactive
     api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
     api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
@@ -15,6 +17,4 @@ dependencies {
     api "org.koin:koin-androidx-scope:$koin_version"
     api "org.koin:koin-androidx-ext:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
