@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.remote.remote.people.di
 
-import com.universodoandroid.starwarsjetpack.data.datastore.people.PeopleRemoteData
+import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.remote.api.ApiDataSource
 import com.universodoandroid.starwarsjetpack.remote.api.PeopleApiDataSource
 import com.universodoandroid.starwarsjetpack.remote.remote.people.PeopleRemoteDataSource

@@ -9,9 +9,9 @@ import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
 import com.universodoandroid.starwarsjetpack.exetensions.show
-import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
-import com.universodoandroid.starwarsjetpack.presentation.models.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.models.people.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleState
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import com.universodoandroid.starwarsjetpack.ui.resourses.defaultNumberOfColumns
 import org.koin.androidx.viewmodel.ext.android.viewModel

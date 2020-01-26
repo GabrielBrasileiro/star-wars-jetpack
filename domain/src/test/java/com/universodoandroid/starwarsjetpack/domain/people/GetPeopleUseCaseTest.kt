@@ -3,8 +3,8 @@ package com.universodoandroid.starwarsjetpack.domain.people
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.data.PeopleData
-import com.universodoandroid.starwarsjetpack.domain.repositories.PeopleRepository
-import com.universodoandroid.starwarsjetpack.domain.usecase.people.GetPeopleUseCase
+import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
+import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Rule
@@ -24,9 +24,10 @@ class GetPeopleUseCaseTest {
 
     @Before
     fun setup() {
-        getPeopleUseCase = GetPeopleUseCase(
-            peopleRepository
-        )
+        getPeopleUseCase =
+            GetPeopleUseCase(
+                peopleRepository
+            )
     }
 
     @Test

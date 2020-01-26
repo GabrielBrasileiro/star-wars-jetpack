@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.local.people
 
-import com.universodoandroid.starwarsjetpack.local.mapper.PersonMapper
+import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonMapper
 import org.junit.Assert
 import org.junit.Test
 

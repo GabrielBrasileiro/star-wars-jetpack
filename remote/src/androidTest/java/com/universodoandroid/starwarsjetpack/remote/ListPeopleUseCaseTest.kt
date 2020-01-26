@@ -5,7 +5,6 @@ import com.universodoandroid.starwarsjetpack.remote.api.PeopleApiDataSource
 import org.junit.Before
 import org.junit.Test
 
-
 internal class ListPeopleUseCaseTest {
 
     var peopleApiDataSource: PeopleApiDataSource = mock()

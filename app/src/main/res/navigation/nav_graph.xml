@@ -31,6 +31,6 @@
         tools:layout="@layout/fragment_person_details">
         <argument
             android:name="person"
-            app:argType="com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto" />
+            app:argType="com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto" />
     </fragment>
 </navigation>

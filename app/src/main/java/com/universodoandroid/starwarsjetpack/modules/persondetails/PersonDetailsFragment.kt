@@ -8,9 +8,9 @@ import androidx.lifecycle.Observer
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBinding
-import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDetailsDto
-import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
-import com.universodoandroid.starwarsjetpack.presentation.models.PersonDetailsViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsDto
+import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonDetailsViewModel
 import com.universodoandroid.starwarsjetpack.presentation.utils.ViewState
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel

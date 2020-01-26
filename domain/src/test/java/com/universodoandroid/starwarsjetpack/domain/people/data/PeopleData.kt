@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.domain.people.data
 
-import com.universodoandroid.starwarsjetpack.domain.entities.Person
+import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 
 object PeopleData {
 
