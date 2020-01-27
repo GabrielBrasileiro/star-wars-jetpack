@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.data.people.datastore.people
+package com.universodoandroid.starwarsjetpack.data.people.datastore
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import io.reactivex.Completable

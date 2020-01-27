@@ -1,8 +1,8 @@
 package com.universodoandroid.starwarsjetpack.data.people.source
 
-import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeopleLocalData
-import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeoplePreferences
-import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeopleRemoteData
+import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
+import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
+import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleDataMapper
 import com.universodoandroid.starwarsjetpack.domain.people.entities.PeoplePage

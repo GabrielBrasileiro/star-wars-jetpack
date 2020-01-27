@@ -43,6 +43,20 @@ dependencies {
 
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
+
+    // Mockito
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "org.mockito:mockito-core:$mockito_core_version"
+    testImplementation 'org.mockito:mockito-inline:2.21.0'
+
+    // Tests
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "androidx.test:rules:$android_test_rules"
+    testImplementation "androidx.test:core-ktx:$android_test_core"
+    testImplementation "androidx.test:runner:$android_test_runner"
+
+    testImplementation 'android.arch.core:core-testing:1.1.1'
+
 }
 
 repositories {

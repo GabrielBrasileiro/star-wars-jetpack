@@ -2,7 +2,7 @@ package com.universodoandroid.starwarsjetpack.local.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeoplePreferences
+import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.local.AppDatabase
 import com.universodoandroid.starwarsjetpack.local.people.di.getPeopleDatabaseModules
 import com.universodoandroid.starwarsjetpack.local.prefs.PeoplePreferencesImpl

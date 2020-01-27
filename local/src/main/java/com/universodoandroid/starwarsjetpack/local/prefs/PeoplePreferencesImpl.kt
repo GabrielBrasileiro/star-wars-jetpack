@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.local.prefs
 
 import android.content.SharedPreferences
-import com.universodoandroid.starwarsjetpack.data.people.datastore.people.PeoplePreferences
+import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.data.global.CacheType
 
 class PeoplePreferencesImpl(

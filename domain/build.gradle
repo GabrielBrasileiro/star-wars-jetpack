@@ -23,8 +23,6 @@ dependencies {
     // Mockito
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
 
-
-
     // Tests
     testImplementation "junit:junit:$junit_version"
 

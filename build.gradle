@@ -46,6 +46,8 @@ buildscript {
         // Tests
         core_testing_version = '2.0.0'
         android_test_runner = '1.2.0'
+        android_test_core = '1.2.0'
+        android_test_rules = '1.2.0'
         junit_version = '4.12'
 
         // CI

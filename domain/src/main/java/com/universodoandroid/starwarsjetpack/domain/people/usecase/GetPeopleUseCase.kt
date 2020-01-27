@@ -8,7 +8,7 @@ class GetPeopleUseCase(
     private val repository: PeopleRepository
 ) {
 
-    fun getPeople() : Flowable<List<Person>> {
+    fun getPeople(): Flowable<List<Person>> {
         return repository.getPeople()
     }
 

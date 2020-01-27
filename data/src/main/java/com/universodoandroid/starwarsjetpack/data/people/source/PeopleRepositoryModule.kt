@@ -5,14 +5,7 @@ import org.koin.dsl.module
 
 
 private val repository = module {
-    single<PeopleRepository> {
-        PeopleRepositoryImpl(
-            get(),
-            get(),
-            get()
-        )
-    }
+    single<PeopleRepository> { PeopleRepositoryImpl(get(), get(), get()) }
 }
 
-internal fun getPeopleRepositoryModule() =
-    repository
+internal fun getPeopleRepositoryModule() = repository
