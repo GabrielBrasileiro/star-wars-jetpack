@@ -13,6 +13,7 @@ class RxSchedulerRule : TestRule {
 
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
+            @Throws(Throwable::class)
             override fun evaluate() {
                 RxAndroidPlugins.setInitMainThreadSchedulerHandler { immediate }
 

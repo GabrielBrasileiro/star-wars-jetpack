@@ -17,4 +17,10 @@ dependencies {
     api "org.koin:koin-androidx-scope:$koin_version"
     api "org.koin:koin-androidx-ext:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Mockito
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+
+    // Tests
+    testImplementation "junit:junit:$junit_version"
 }

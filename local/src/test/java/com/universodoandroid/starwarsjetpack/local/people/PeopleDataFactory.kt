@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.local.people
 
-import com.universodoandroid.starwarsjetpack.data.people.entities.Person
+import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
 
 internal object PeopleDataFactory {

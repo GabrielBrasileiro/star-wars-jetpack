@@ -1,6 +1,8 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.models.people
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeopleMapper
 import com.universodoandroid.starwarsjetpack.presentation.utils.BaseViewModel
@@ -9,11 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 class PeopleListViewModel(
     private val getPeopleUseCase: GetPeopleUseCase
-) : BaseViewModel(), LifecycleObserver {
-
-    private val state: MutableLiveData<PeopleState> = MutableLiveData()
-
-    fun getState(): LiveData<PeopleState> = state
+) : BaseViewModel<PeopleState>(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadPeople() {
