@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.remote.remote.people.response
+package com.universodoandroid.starwarsjetpack.remote.people.data.response
 
 
 data class PeopleResponse(

@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.remote.remote.planet.response
+package com.universodoandroid.starwarsjetpack.remote.planet.data.response
 
 data class Planet(
     val climate: String,

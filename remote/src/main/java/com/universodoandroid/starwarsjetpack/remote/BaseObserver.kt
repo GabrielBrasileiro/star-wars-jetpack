@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.remote.remote
+package com.universodoandroid.starwarsjetpack.remote
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

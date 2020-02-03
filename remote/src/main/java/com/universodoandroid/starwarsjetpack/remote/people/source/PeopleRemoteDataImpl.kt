@@ -1,9 +1,9 @@
-package com.universodoandroid.starwarsjetpack.remote.source
+package com.universodoandroid.starwarsjetpack.remote.people.source
 
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
-import com.universodoandroid.starwarsjetpack.remote.mapper.PersonMapper
-import com.universodoandroid.starwarsjetpack.remote.remote.people.PeopleRemoteDataSource
+import com.universodoandroid.starwarsjetpack.remote.people.mapper.PersonMapper
+import com.universodoandroid.starwarsjetpack.remote.people.data.PeopleRemoteDataSource
 import io.reactivex.Flowable
 
 internal class PeopleRemoteDataImpl(

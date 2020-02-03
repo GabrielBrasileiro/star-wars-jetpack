@@ -1,8 +1,8 @@
-package com.universodoandroid.starwarsjetpack.remote.remote.planet
+package com.universodoandroid.starwarsjetpack.remote.planet.data
 
-import com.universodoandroid.starwarsjetpack.remote.remote.planet.response.PlanetResponse
-import com.universodoandroid.starwarsjetpack.remote.api.PlanetApiDataSource
-import com.universodoandroid.starwarsjetpack.remote.remote.BaseObserver
+import com.universodoandroid.starwarsjetpack.remote.planet.data.response.PlanetResponse
+import com.universodoandroid.starwarsjetpack.remote.planet.api.PlanetApiDataSource
+import com.universodoandroid.starwarsjetpack.remote.BaseObserver
 
 class PlanetRemoteDataSourceImpl(val apiDataSource: PlanetApiDataSource) : BaseObserver(),
     PlanetRemoteDataSource {
@@ -12,7 +12,10 @@ class PlanetRemoteDataSourceImpl(val apiDataSource: PlanetApiDataSource) : BaseO
 
         fun getInstance(planetApiDataSource: PlanetApiDataSource): PlanetRemoteDataSource {
             if (apiDataSource == null) {
-                apiDataSource = PlanetRemoteDataSourceImpl(apiDataSource = planetApiDataSource)
+                apiDataSource =
+                    PlanetRemoteDataSourceImpl(
+                        apiDataSource = planetApiDataSource
+                    )
             }
 
             return apiDataSource!!

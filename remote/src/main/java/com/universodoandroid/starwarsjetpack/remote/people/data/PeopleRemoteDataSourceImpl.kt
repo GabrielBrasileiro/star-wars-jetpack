@@ -1,6 +1,6 @@
-package com.universodoandroid.starwarsjetpack.remote.remote.people
+package com.universodoandroid.starwarsjetpack.remote.people.data
 
-import com.universodoandroid.starwarsjetpack.remote.api.PeopleApiDataSource
+import com.universodoandroid.starwarsjetpack.remote.people.api.PeopleApiDataSource
 
 internal class PeopleRemoteDataSourceImpl(
     private val apiDataSource: PeopleApiDataSource

@@ -1,9 +1,9 @@
-package com.universodoandroid.starwarsjetpack.remote.mapper
+package com.universodoandroid.starwarsjetpack.remote.people.mapper
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
-import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PeopleResponse
-import com.universodoandroid.starwarsjetpack.remote.remote.people.response.PersonItem
+import com.universodoandroid.starwarsjetpack.remote.people.data.response.PeopleResponse
+import com.universodoandroid.starwarsjetpack.remote.people.data.response.PersonItem
 
 object PersonMapper {
 

@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.remote.api
+package com.universodoandroid.starwarsjetpack.remote
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
