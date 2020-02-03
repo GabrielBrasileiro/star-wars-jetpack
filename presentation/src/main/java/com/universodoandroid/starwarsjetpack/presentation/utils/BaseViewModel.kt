@@ -8,11 +8,13 @@ import io.reactivex.disposables.Disposable
 
 open class BaseViewModel<State> : ViewModel() {
 
-    protected val state: MutableLiveData<State> = MutableLiveData()
+    private val state: MutableLiveData<State> = MutableLiveData()
 
     fun getState(): LiveData<State> = state
 
     private val compositeDisposable by lazy { CompositeDisposable() }
+
+    protected fun setState(_state: State) { state.value = _state }
 
     protected fun Disposable.pool() = apply { compositeDisposable.add(this) }
 

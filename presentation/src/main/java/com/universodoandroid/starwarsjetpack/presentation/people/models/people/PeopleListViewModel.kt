@@ -15,19 +15,16 @@ class PeopleListViewModel(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadPeople() {
-        state.value = PeopleState.ShowLoading
-
         getPeopleUseCase.getPeople()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { setState(PeopleState.ShowLoading) }
+            .doOnNext { setState(PeopleState.HideLoading) }
             .subscribe({
                 val peopleDto = PeopleMapper.entityToDto(entities = it)
-
-                state.value = PeopleState.HideLoading
-                state.postValue(PeopleState.ShowData(peopleDto))
+                setState(PeopleState.ShowData(peopleDto))
             }, {
-                state.value = PeopleState.HideLoading
-                state.postValue(PeopleState.ShowError(it.localizedMessage))
+                setState(PeopleState.ShowError(it.localizedMessage))
             })
             .pool()
     }
