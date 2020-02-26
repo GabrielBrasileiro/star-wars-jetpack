@@ -1,11 +1,11 @@
-package com.universodoandroid.starwarsjetpack.domain.people
+package com.universodoandroid.starwarsjetpack.domain.people.usecase
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.data.PeopleData
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPersonUseCase
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,10 +24,7 @@ class GetPersonUseCaseTest {
 
     @Before
     fun setup() {
-        getPersonUseCase =
-            GetPersonUseCase(
-                peopleRepository
-            )
+        getPersonUseCase = GetPersonUseCase(peopleRepository)
     }
 
     @Test
@@ -35,11 +32,10 @@ class GetPersonUseCaseTest {
         val personId = "0"
 
         whenever(getPersonUseCase.loadPerson(personId))
-            .thenReturn(Flowable.just(PeopleData.getPerson(personId)))
+            .thenReturn(Single.just(PeopleData.getPerson(personId)))
 
         getPersonUseCase.loadPerson("0")
             .test()
             .onComplete()
     }
-
 }

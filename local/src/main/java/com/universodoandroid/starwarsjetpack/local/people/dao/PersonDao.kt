@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 internal interface PersonDao {
@@ -15,10 +16,10 @@ internal interface PersonDao {
     fun insertPeople(people: List<PersonEntity>): Completable
 
     @Query("SELECT * FROM PersonEntity ORDER BY name")
-    fun getPeople(): Flowable<List<PersonEntity>>
+    fun getPeople(): Single<List<PersonEntity>>
 
     @Query("SELECT * FROM PersonEntity WHERE id = :id")
-    fun getPerson(id: String): Flowable<PersonEntity>
+    fun getPerson(id: String): Single<PersonEntity>
 
     @Query("SELECT COUNT(*) FROM PersonEntity LIMIT 1")
     fun isEmpty(): Flowable<Int>

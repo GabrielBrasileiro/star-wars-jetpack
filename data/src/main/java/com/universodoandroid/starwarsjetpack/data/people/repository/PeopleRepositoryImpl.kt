@@ -1,5 +1,6 @@
-package com.universodoandroid.starwarsjetpack.data.people.source
+package com.universodoandroid.starwarsjetpack.data.people.repository
 
+import com.universodoandroid.starwarsjetpack.data.global.CacheType
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
@@ -8,9 +9,9 @@ import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleDataMappe
 import com.universodoandroid.starwarsjetpack.domain.people.entities.PeoplePage
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
-import com.universodoandroid.starwarsjetpack.data.global.CacheType
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 internal class PeopleRepositoryImpl(
     private val remote: PeopleRemoteData,
@@ -18,7 +19,7 @@ internal class PeopleRepositoryImpl(
     private val session: PeoplePreferences
 ) : PeopleRepository {
 
-    override fun getPeople(): Flowable<List<Person>> {
+    override fun getPeople(): Single<List<Person>> {
         return if (session.isDownloaded(CacheType.PEOPLE_CACHE)) {
             local.getPeople().map(::dataToEntity)
         } else {
@@ -44,7 +45,7 @@ internal class PeopleRepositoryImpl(
         return local.savePeople(peopleData)
     }
 
-    override fun getPerson(id: String): Flowable<Person> {
+    override fun getPerson(id: String): Single<Person> {
         return local.getPerson(id).map { PeopleDataMapper.dataToEntity(it) }
     }
 

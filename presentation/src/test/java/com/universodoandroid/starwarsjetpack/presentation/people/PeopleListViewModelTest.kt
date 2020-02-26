@@ -4,19 +4,24 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.reset
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeopleMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleState
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
+import org.mockito.quality.Strictness
 
 class PeopleListViewModelTest {
+
+    @get:Rule
+    val mockitoRule: MockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS)
 
     @get:Rule
     val rxRule = RxSchedulerRule()
@@ -41,14 +46,14 @@ class PeopleListViewModelTest {
         val people = PeopleMock.withTwoPeople()
         val peopleDto = PeopleMapper.entityToDto(people)
 
-        whenever(peopleUseCase.getPeople()).thenReturn(Flowable.just(people))
+        whenever(peopleUseCase.getPeople()).thenReturn(Single.just(people))
 
         peopleViewModel.loadPeople()
 
         inOrder(peopleState) {
             verify(peopleState).onChanged(PeopleState.ShowLoading)
-            verify(peopleState).onChanged(PeopleState.HideLoading)
             verify(peopleState).onChanged(PeopleState.ShowData(peopleDto))
+            verify(peopleState).onChanged(PeopleState.HideLoading)
         }
     }
 
@@ -57,14 +62,14 @@ class PeopleListViewModelTest {
         val expectedErrorMessage = "Server error"
         val throwableWithLocalizedMessage = Throwable(expectedErrorMessage)
 
-        whenever(peopleUseCase.getPeople()).thenReturn(Flowable.error(throwableWithLocalizedMessage))
+        whenever(peopleUseCase.getPeople()).thenReturn(Single.error(throwableWithLocalizedMessage))
 
         peopleViewModel.loadPeople()
 
         inOrder(peopleState) {
             verify(peopleState).onChanged(PeopleState.ShowLoading)
-            verify(peopleState).onChanged(PeopleState.HideLoading)
             verify(peopleState).onChanged(PeopleState.ShowError(expectedErrorMessage))
+            verify(peopleState).onChanged(PeopleState.HideLoading)
         }
     }
 

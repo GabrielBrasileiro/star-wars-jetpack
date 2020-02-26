@@ -40,10 +40,12 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
             }
         })
 
-        lifecycle.addObserver(viewModel)
+        viewModel.loadPeople()
     }
 
-    private fun showPeople(people: List<PersonDto>) = setupRecyclerView(people)
+    private fun showPeople(people: List<PersonDto>) {
+        setupRecyclerView(people)
+    }
 
     private fun setupRecyclerView(people: List<PersonDto>) {
         binding.peopleRecyclerView.run {

@@ -5,13 +5,13 @@ import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.local.people.database.PeopleDatabase
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonMapper
 import io.reactivex.Completable
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 internal class PeopleLocalDataImpl(
     private val localDataSource: PeopleDatabase
 ) : PeopleLocalData {
 
-    override fun getPeople(): Flowable<List<PersonData>> {
+    override fun getPeople(): Single<List<PersonData>> {
         return localDataSource.loadPeople().map { PersonMapper.dataEntitiesToEntities(it) }
     }
 
@@ -20,7 +20,7 @@ internal class PeopleLocalDataImpl(
         return localDataSource.savePeople(dataEntities)
     }
 
-    override fun getPerson(id: String): Flowable<PersonData> {
+    override fun getPerson(id: String): Single<PersonData> {
         return localDataSource.loadPerson(id).map { PersonMapper.fromData(it) }
     }
 

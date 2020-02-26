@@ -1,11 +1,11 @@
-package com.universodoandroid.starwarsjetpack.domain.people
+package com.universodoandroid.starwarsjetpack.domain.people.usecase
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.data.PeopleData
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,16 +24,13 @@ class GetPeopleUseCaseTest {
 
     @Before
     fun setup() {
-        getPeopleUseCase =
-            GetPeopleUseCase(
-                peopleRepository
-            )
+        getPeopleUseCase = GetPeopleUseCase(peopleRepository)
     }
 
     @Test
     fun `getPeople Should return people When called`() {
         whenever(peopleRepository.getPeople())
-            .thenReturn(Flowable.just(PeopleData.getPeople()))
+            .thenReturn(Single.just(PeopleData.getPeople()))
 
         getPeopleUseCase.getPeople()
             .test()

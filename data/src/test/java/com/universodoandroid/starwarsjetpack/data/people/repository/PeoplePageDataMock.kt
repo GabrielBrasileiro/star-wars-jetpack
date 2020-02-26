@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.data.people
+package com.universodoandroid.starwarsjetpack.data.people.repository
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
