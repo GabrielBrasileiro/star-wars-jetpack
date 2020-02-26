@@ -2,17 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply from: "$rootProject.projectDir/default-config.gradle"
 
 android {
-    compileSdkVersion 28
     defaultConfig {
         applicationId "com.universodoandroid.starwarsjetpack"
-        minSdkVersion 21
-        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -22,6 +20,7 @@ android {
             testCoverageEnabled true
         }
     }
+
     dataBinding {
         enabled true
     }
