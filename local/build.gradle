@@ -1,4 +1,5 @@
 apply from: "$rootProject.projectDir/android-build.gradle"
+apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -19,6 +20,5 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:$core_testing_version"
 
     testImplementation "androidx.room:room-testing:$room_version"
-    testImplementation "junit:junit:$junit_version"
 }
 

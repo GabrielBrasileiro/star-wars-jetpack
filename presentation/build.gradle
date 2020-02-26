@@ -1,31 +1,15 @@
 apply from: "$rootProject.projectDir/android-build.gradle"
+apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':domain')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    // Reactive
-    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
-
-    // Koin
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-ext:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
-    // Mockito
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
-    testImplementation "org.mockito:mockito-core:$mockito_core_version"
-    testImplementation 'org.mockito:mockito-inline:2.21.0'
-
     // Tests
-    testImplementation "junit:junit:$junit_version"
     testImplementation "androidx.test:rules:$android_test_rules"
     testImplementation "androidx.test:core-ktx:$android_test_core"
     testImplementation "androidx.test:runner:$android_test_runner"

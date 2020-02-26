@@ -72,5 +72,4 @@ class PeopleListViewModelTest {
             verify(peopleState).onChanged(PeopleState.HideLoading)
         }
     }
-
 }
