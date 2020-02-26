@@ -2,17 +2,16 @@ package com.universodoandroid.starwarsjetpack.local.people
 
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
+import com.universodoandroid.starwarsjetpack.local.BaseDatabaseTest
 import com.universodoandroid.starwarsjetpack.local.AppDatabase
-import com.universodoandroid.local.BaseDatabaseTest
 import com.universodoandroid.starwarsjetpack.local.people.data.PeopleEntityDataFactory
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-
-@RunWith(AndroidJUnit4::class)
+@RunWith(JUnit4::class)
 class AppDatabaseTest: BaseDatabaseTest() {
 
     private lateinit var appDatabase: AppDatabase

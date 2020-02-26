@@ -1,6 +1,7 @@
 package com.universodoandroid.starwarsjetpack.local
 
 import android.content.Context
+import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,7 +9,7 @@ import com.universodoandroid.starwarsjetpack.local.people.dao.PersonDao
 import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
 
 @Database(entities = [PersonEntity::class], version = 1, exportSchema = false)
-internal abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     internal abstract fun personDao(): PersonDao
 

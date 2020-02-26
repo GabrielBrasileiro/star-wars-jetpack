@@ -1,21 +1,19 @@
 package com.universodoandroid.starwarsjetpack.local.people.database
 
-import com.universodoandroid.starwarsjetpack.local.AppDatabase
+import com.universodoandroid.starwarsjetpack.local.people.dao.PersonDao
 import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
 import io.reactivex.Completable
 
 internal class PeopleDatabaseImpl(
-    database: AppDatabase
+    private val dao: PersonDao
 ) : PeopleDatabase {
 
-    private val personDao = database.personDao()
+    override fun loadPeople() = dao.getPeople()
 
-    override fun loadPeople() = personDao.getPeople()
+    override fun loadPerson(id: String) = dao.getPerson(id)
 
-    override fun loadPerson(id: String) = personDao.getPerson(id)
+    override fun savePeople(people: List<PersonEntity>) = dao.insertPeople(people)
 
-    override fun savePeople(people: List<PersonEntity>) = personDao.insertPeople(people)
-
-    override fun eraseData(): Completable = personDao.eraseData()
+    override fun eraseData(): Completable = dao.eraseData()
 
 }

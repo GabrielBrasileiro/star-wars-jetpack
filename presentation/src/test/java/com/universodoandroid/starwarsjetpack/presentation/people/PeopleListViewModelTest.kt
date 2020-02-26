@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.reset
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule

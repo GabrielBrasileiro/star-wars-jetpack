@@ -1,4 +1,4 @@
-package com.universodoandroid.local
+package com.universodoandroid.starwarsjetpack.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import org.junit.Rule

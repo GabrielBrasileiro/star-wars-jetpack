@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.local.people
 
 import androidx.test.runner.AndroidJUnit4
-import com.universodoandroid.local.BaseDatabaseTest
+import com.universodoandroid.starwarsjetpack.local.BaseDatabaseTest
 import org.junit.runner.RunWith
 
 

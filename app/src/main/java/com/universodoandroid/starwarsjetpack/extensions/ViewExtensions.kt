@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.exetensions
+package com.universodoandroid.starwarsjetpack.extensions
 
 import android.view.View
 

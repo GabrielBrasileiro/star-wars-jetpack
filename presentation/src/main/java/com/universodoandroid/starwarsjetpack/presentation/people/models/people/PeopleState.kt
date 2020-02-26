@@ -1,8 +1,9 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.models.people
 
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.utils.ViewState
 
-sealed class PeopleState {
+sealed class PeopleState : ViewState {
 
     data class ShowData(
         val data: List<PersonDto>

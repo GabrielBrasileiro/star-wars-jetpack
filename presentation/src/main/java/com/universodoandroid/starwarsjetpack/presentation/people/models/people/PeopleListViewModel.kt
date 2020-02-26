@@ -19,7 +19,7 @@ class PeopleListViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { setState(PeopleState.ShowLoading) }
-            .doOnNext { setState(PeopleState.HideLoading) }
+            .doOnComplete { setState(PeopleState.HideLoading) }
             .subscribe({
                 val peopleDto = PeopleMapper.entityToDto(entities = it)
                 setState(PeopleState.ShowData(peopleDto))

@@ -1,11 +1,12 @@
 package com.universodoandroid.starwarsjetpack.remote.planet.data
 
-import com.universodoandroid.starwarsjetpack.remote.planet.data.response.PlanetResponse
-import com.universodoandroid.starwarsjetpack.remote.planet.api.PlanetApiDataSource
 import com.universodoandroid.starwarsjetpack.remote.BaseObserver
+import com.universodoandroid.starwarsjetpack.remote.planet.api.PlanetApiDataSource
+import com.universodoandroid.starwarsjetpack.remote.planet.data.response.PlanetResponse
 
-class PlanetRemoteDataSourceImpl(val apiDataSource: PlanetApiDataSource) : BaseObserver(),
-    PlanetRemoteDataSource {
+class PlanetRemoteDataSourceImpl(
+    val apiDataSource: PlanetApiDataSource
+) : BaseObserver(), PlanetRemoteDataSource {
 
     companion object {
         private var apiDataSource: PlanetRemoteDataSourceImpl? = null

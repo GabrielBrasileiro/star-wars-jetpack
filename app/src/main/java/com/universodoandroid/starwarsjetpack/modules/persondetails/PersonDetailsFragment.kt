@@ -11,7 +11,7 @@ import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBi
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsDto
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonDetailsViewModel
-import com.universodoandroid.starwarsjetpack.presentation.utils.ViewState
+import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonState
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,15 +39,15 @@ class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
     }
 
     private fun initPersonObserver() {
-        viewModel.getState().observe(this, Observer { viewState ->
-            when (viewState.status) {
-                ViewState.Status.SUCCESS -> loadView(personDetails = viewState.data)
-                ViewState.Status.ERROR -> showError(viewState.error)
+        viewModel.getState().observe(this, Observer { state ->
+            when (state) {
+                is PersonState.ShowUser -> loadUser(state.user)
+                is PersonState.ShowError -> showError(state.error)
             }
         })
     }
 
-    private fun loadView(personDetails: PersonDetailsDto?) {
+    private fun loadUser(personDetails: PersonDetailsDto) {
         binding.run {
             person = personDetails
             imageView.setImageDrawable(
