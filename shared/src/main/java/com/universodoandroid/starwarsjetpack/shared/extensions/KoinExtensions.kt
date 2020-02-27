@@ -1,6 +1,6 @@
-package com.universodoandroid.starwarsjetpack.shared.mapper
+package com.universodoandroid.starwarsjetpack.shared.extensions
 
-import com.universodoandroid.starwarsjetpack.shared.extensions.Mapper
+import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import org.koin.core.definition.BeanDefinition
 import org.koin.core.definition.Definition
 import org.koin.core.module.Module
