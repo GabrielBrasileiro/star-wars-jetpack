@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.remote.people.api
 
-import com.universodoandroid.starwarsjetpack.remote.people.data.response.PeopleResponse
+import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PeopleResponse
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query

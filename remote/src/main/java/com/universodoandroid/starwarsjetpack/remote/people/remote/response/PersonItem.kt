@@ -1,6 +1,6 @@
-package com.universodoandroid.starwarsjetpack.remote.people.data.response
+package com.universodoandroid.starwarsjetpack.remote.people.remote.response
 
-data class PersonItem(
+internal data class PersonItem(
     val birthYear: String,
     val created: String,
     val edited: String,

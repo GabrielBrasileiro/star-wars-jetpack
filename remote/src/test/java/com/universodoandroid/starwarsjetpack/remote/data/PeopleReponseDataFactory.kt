@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.remote.data
 
-import com.universodoandroid.starwarsjetpack.remote.people.data.response.PeopleResponse
-import com.universodoandroid.starwarsjetpack.remote.people.data.response.PersonItem
+import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PeopleResponse
+import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PersonItem
 
 object PeopleReponseDataFactory {
 
