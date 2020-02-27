@@ -5,6 +5,9 @@ import com.universodoandroid.starwarsjetpack.data.global.CacheType
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
+import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleDataMapper
+import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleMapper
+import com.universodoandroid.starwarsjetpack.data.people.mappers.PeoplePageMapper
 import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPersonData
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
@@ -21,11 +24,22 @@ class PeopleRepositoryTest {
     private val remoteData = mock<PeopleRemoteData>()
     private val preferences = mock<PeoplePreferences>()
 
+    private val peopleMapper = PeopleMapper()
+    private val peopleDataMapper = PeopleDataMapper()
+    private val peoplePageMapper = PeoplePageMapper(peopleMapper)
+
     private lateinit var peopleRepository: PeopleRepository
 
     @Before
     fun setup() {
-        peopleRepository = PeopleRepositoryImpl(remoteData, localData, preferences)
+        peopleRepository = PeopleRepositoryImpl(
+            remoteData,
+            localData,
+            preferences,
+            peopleMapper,
+            peopleDataMapper,
+            peoplePageMapper
+        )
     }
 
     @After

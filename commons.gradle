@@ -1,6 +1,9 @@
 
 dependencies {
 
+    // Shared
+    implementation project(":shared")
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
