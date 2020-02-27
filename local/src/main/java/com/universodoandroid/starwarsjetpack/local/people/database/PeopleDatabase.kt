@@ -1,8 +1,7 @@
 package com.universodoandroid.starwarsjetpack.local.people.database
 
-import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 internal interface PeopleDatabase {

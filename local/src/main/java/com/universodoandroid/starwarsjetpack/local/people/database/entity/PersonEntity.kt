@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.local.people.entity
+package com.universodoandroid.starwarsjetpack.local.people.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

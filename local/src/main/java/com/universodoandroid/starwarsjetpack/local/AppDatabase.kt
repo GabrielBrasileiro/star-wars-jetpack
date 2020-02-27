@@ -1,12 +1,11 @@
 package com.universodoandroid.starwarsjetpack.local
 
 import android.content.Context
-import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.universodoandroid.starwarsjetpack.local.people.dao.PersonDao
-import com.universodoandroid.starwarsjetpack.local.people.entity.PersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 
 @Database(entities = [PersonEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -28,7 +27,5 @@ abstract class AppDatabase : RoomDatabase() {
 
             return instance as AppDatabase
         }
-
     }
-
 }
