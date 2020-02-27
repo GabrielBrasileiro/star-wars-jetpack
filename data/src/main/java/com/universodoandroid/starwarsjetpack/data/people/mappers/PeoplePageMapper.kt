@@ -4,7 +4,7 @@ import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.domain.people.entities.PeoplePage
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
-import com.universodoandroid.starwarsjetpack.shared.extensions.Mapper
+import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 
 internal class PeoplePageMapper(
     private val peopleMapper: Mapper<PersonData, Person>

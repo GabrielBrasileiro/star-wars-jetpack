@@ -4,8 +4,8 @@ import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePr
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PersonDetailsPresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonDetailsViewModel
-import com.universodoandroid.starwarsjetpack.shared.mapper.getMapper
-import com.universodoandroid.starwarsjetpack.shared.mapper.mapper
+import com.universodoandroid.starwarsjetpack.shared.extensions.getMapper
+import com.universodoandroid.starwarsjetpack.shared.extensions.mapper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

@@ -9,7 +9,7 @@ import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.domain.people.entities.PeoplePage
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
-import com.universodoandroid.starwarsjetpack.shared.extensions.Mapper
+import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single

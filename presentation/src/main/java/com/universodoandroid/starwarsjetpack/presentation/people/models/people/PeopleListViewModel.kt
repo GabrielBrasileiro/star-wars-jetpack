@@ -4,7 +4,7 @@ import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.presentation.utils.BaseViewModel
-import com.universodoandroid.starwarsjetpack.shared.extensions.Mapper
+import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
