@@ -4,8 +4,7 @@ import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 
-internal class PersonDataMapper :
-    Mapper<PersonEntity, PersonData> {
+internal class PersonDataMapper : Mapper<PersonEntity, PersonData> {
 
     override fun map(enter: PersonEntity): PersonData {
         return PersonData(

@@ -2,24 +2,31 @@ package com.universodoandroid.starwarsjetpack.local.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.local.AppDatabase
 import com.universodoandroid.starwarsjetpack.local.people.di.getPeopleDatabaseModules
 import com.universodoandroid.starwarsjetpack.local.prefs.PeoplePreferencesImpl
 import org.koin.dsl.module
 
+
+private const val DATABASE_NAME = "star_wars_database"
+internal const val PREFERENCES_NAME = "data_manager"
+
 internal val appDatabase = module {
-    single { AppDatabase.getDatabase(get()) }
+    single {
+        Room.databaseBuilder(
+            get<Context>().applicationContext, AppDatabase::class.java, DATABASE_NAME
+        ).build()
+    }
 }
 
 internal val preferences = module {
     factory<PeoplePreferences> { PeoplePreferencesImpl(get()) }
     factory<SharedPreferences> {
-        get<Context>().getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        get<Context>().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 }
-
-internal const val prefsName = "data_manager"
 
 fun getDatabaseModules() = listOf(
     appDatabase,

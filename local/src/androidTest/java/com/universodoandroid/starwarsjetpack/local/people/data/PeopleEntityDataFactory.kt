@@ -37,5 +37,4 @@ internal object PeopleEntityDataFactory {
             url = "..."
         )
     )
-
 }

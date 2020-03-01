@@ -1,11 +1,11 @@
-package com.universodoandroid.starwarsjetpack.local.people
+package com.universodoandroid.starwarsjetpack.local.people.mapper
 
-import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
+import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 
-internal object PeopleDataFactory {
+internal object PeopleDataMock {
 
-    fun dummyPersonEntity() =
+    fun getPersonEntity() =
         PersonEntity(
             id = "7960f27b-3b4a-4b7c-85cd-6ce7bd47fbfe",
             birthYear = "05/05/1999",
@@ -22,7 +22,7 @@ internal object PeopleDataFactory {
             url = "..."
         )
 
-    fun dummyPersonDomain() = Person(
+    fun getPersonDomain() = PersonData(
         id = "7960f27b-3b4a-4b7c-85cd-6ce7bd47fbfe",
         birthYear = "05/05/1998",
         created = "05/07/2019",
@@ -37,5 +37,4 @@ internal object PeopleDataFactory {
         skinColor = "Black",
         url = "..."
     )
-
 }
