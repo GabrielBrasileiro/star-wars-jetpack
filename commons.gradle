@@ -20,4 +20,5 @@ dependencies {
 
     // Tests
     testImplementation "junit:junit:$junit_version"
+    testImplementation "org.koin:koin-test:$koin_version"
 }
