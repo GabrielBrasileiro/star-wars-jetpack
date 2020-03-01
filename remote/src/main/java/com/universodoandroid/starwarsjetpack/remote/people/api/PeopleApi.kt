@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface PeopleApiDataSource {
+internal interface PeopleApi {
 
     @GET("people")
     fun loadPeople(@Query("page") page: Int): Flowable<PeopleResponse>

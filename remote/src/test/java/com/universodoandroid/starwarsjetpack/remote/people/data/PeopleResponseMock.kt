@@ -1,11 +1,11 @@
-package com.universodoandroid.starwarsjetpack.remote.data
+package com.universodoandroid.starwarsjetpack.remote.people.data
 
 import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PeopleResponse
 import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PersonItem
 
-object PeopleReponseDataFactory {
+internal object PeopleResponseMock {
 
-    fun dummyPeopleResponse() = PeopleResponse(
+    fun getResponse() = PeopleResponse(
         count = 1,
         next = null,
         previous = 0,
@@ -21,7 +21,7 @@ object PeopleReponseDataFactory {
                 height = "",
                 homeworld = "",
                 mass = "",
-                name = "",
+                name = "Darth Vader",
                 skinColor = "",
                 species = ArrayList(),
                 starships = ArrayList(),
@@ -39,7 +39,7 @@ object PeopleReponseDataFactory {
                 height = "",
                 homeworld = "",
                 mass = "",
-                name = "",
+                name = "Anakin Skywalker",
                 skinColor = "",
                 species = ArrayList(),
                 starships = ArrayList(),

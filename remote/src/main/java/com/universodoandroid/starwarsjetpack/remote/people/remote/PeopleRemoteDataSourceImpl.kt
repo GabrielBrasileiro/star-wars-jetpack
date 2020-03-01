@@ -1,11 +1,11 @@
 package com.universodoandroid.starwarsjetpack.remote.people.remote
 
-import com.universodoandroid.starwarsjetpack.remote.people.api.PeopleApiDataSource
+import com.universodoandroid.starwarsjetpack.remote.people.api.PeopleApi
 
 internal class PeopleRemoteDataSourceImpl(
-    private val apiDataSource: PeopleApiDataSource
+    private val api: PeopleApi
 ) : PeopleRemoteDataSource {
 
-    override fun loadPeoplePerPage(page: Int) = apiDataSource.loadPeople(page)
+    override fun loadPeoplePerPage(page: Int) = api.loadPeople(page)
 
 }
