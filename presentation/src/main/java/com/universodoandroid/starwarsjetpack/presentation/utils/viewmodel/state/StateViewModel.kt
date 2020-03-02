@@ -11,7 +11,7 @@ open class StateViewModel<S : State> : StateView<S>, ObservableViewModel() {
 
     override fun getState(): LiveData<S> = state
 
-    override fun setState(_state: S) {
+    protected fun setState(_state: S) {
         state.value = _state
     }
 }

@@ -2,13 +2,13 @@ package com.universodoandroid.starwarsjetpack.modules.people
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
 import com.universodoandroid.starwarsjetpack.extensions.show
+import com.universodoandroid.starwarsjetpack.presentation.extensions.onEvent
+import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChanged
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
@@ -29,19 +29,19 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_
     }
 
     private fun setupEvent() {
-        viewModel.getEvent().observe(this, Observer { state ->
-            when (state) {
-                is PeopleEvent.ShowError -> showError(state.error)
+        onEvent(viewModel) { event ->
+            when (event) {
+                is PeopleEvent.ShowError -> showError(event.error)
                 is PeopleEvent.ShowLoading -> showLoader(true)
                 is PeopleEvent.HideLoading -> showLoader(false)
             }
-        })
+        }
     }
 
     private fun setupState() {
-        viewModel.getState().observe(this, Observer {
+        onStateChanged(viewModel) {
             showPeople(it.people)
-        })
+        }
     }
 
     private fun setupObserver() {

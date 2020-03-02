@@ -11,7 +11,7 @@ open class EventViewModel<E : Event> : EventView<E>, ObservableViewModel() {
 
     override fun getEvent(): LiveData<E> = event
 
-    override fun setEvent(_event: E) {
-        event.value = _event
+    protected fun setEvent(data: E) {
+        event.value = data
     }
 }
