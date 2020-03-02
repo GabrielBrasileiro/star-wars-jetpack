@@ -1,3 +1,0 @@
-package com.universodoandroid.starwarsjetpack.presentation.utils
-
-interface ViewState
