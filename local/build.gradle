@@ -1,39 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-android {
-    compileSdkVersion 28
-
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
+apply from: "$rootProject.projectDir/android-build.gradle"
+apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':domain')
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-
-    // Data Runtime
-    api "androidx.room:room-runtime:$room_version"
+    implementation project(':data')
 
     // Database
     implementation "androidx.room:room-rxjava2:$room_version"
@@ -43,12 +14,11 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Tests
-    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "junit:junit:$junit_version"
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     androidTestImplementation "androidx.test:runner:$android_test_runner"
     androidTestImplementation "androidx.arch.core:core-testing:$core_testing_version"
 
     testImplementation "androidx.room:room-testing:$room_version"
-
-    testImplementation 'junit:junit:4.12'
 }
+

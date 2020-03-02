@@ -1,41 +1,20 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-android {
-    compileSdkVersion 28
-
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
+apply from: "$rootProject.projectDir/android-build.gradle"
+apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':domain')
 
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
+    // Tests
+    testImplementation "androidx.test:rules:$android_test_rules"
+    testImplementation "androidx.test:core-ktx:$android_test_core"
+    testImplementation "androidx.test:runner:$android_test_runner"
+
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 }
 
 repositories {

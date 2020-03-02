@@ -1,15 +1,13 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    api project(':data')
-
-    // Tests
-    testImplementation 'junit:junit:4.12'
-
+    // Core
+    implementation "androidx.core:core-ktx:$kotlin_tx_version"
 }
+
