@@ -49,5 +49,4 @@ class PersonMapperTest {
         assertEquals(personEntity.skinColor, personData.skinColor)
         assertEquals(personEntity.url, personData.url)
     }
-
 }

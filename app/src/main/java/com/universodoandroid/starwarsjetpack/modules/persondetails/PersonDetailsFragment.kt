@@ -11,13 +11,11 @@ import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBi
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsDto
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonDetailsViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonState
+import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonEvent
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
-
-    override fun getLayoutResId(): Int = R.layout.fragment_person_details
+class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>(R.layout.fragment_person_details) {
 
     private val viewModel by viewModel<PersonDetailsViewModel>()
 
@@ -39,10 +37,10 @@ class PersonDetailsFragment : BindingFragment<FragmentPersonDetailsBinding>() {
     }
 
     private fun initPersonObserver() {
-        viewModel.getState().observe(this, Observer { state ->
+        viewModel.getEvent().observe(this, Observer { state ->
             when (state) {
-                is PersonState.ShowUser -> loadUser(state.user)
-                is PersonState.ShowError -> showError(state.error)
+                is PersonEvent.ShowUser -> loadUser(state.user)
+                is PersonEvent.ShowError -> showError(state.error)
             }
         })
     }
