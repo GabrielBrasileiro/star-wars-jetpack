@@ -26,11 +26,11 @@
         tools:layout="@layout/fragment_planets" />
     <fragment
         android:id="@+id/person_details_fragment"
-        android:name="com.universodoandroid.starwarsjetpack.modules.personDetails.PersonDetailsFragment"
+        android:name="com.universodoandroid.starwarsjetpack.modules.persondetails.PersonDetailsFragment"
         android:label="PersonDetailsFragment"
         tools:layout="@layout/fragment_person_details">
         <argument
             android:name="person"
-            app:argType="com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto" />
+            app:argType="com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto" />
     </fragment>
 </navigation>

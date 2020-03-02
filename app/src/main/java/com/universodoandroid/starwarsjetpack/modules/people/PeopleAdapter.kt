@@ -3,7 +3,7 @@ package com.universodoandroid.starwarsjetpack.modules.people
 import androidx.annotation.LayoutRes
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.databinding.ItemPersonBinding
-import com.universodoandroid.starwarsjetpack.presentation.dto.PersonDto
+import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.ui.BindingAdapter
 
 class PeopleAdapter(private val people: List<PersonDto>, private val onClick: (PersonDto) -> Unit) : BindingAdapter<ItemPersonBinding>() {

@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.local.people.data
 
-import com.universodoandroid.starwarsjetpack.local.entity.PersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 import java.util.*
 
 internal object PeopleEntityDataFactory {
@@ -37,5 +37,4 @@ internal object PeopleEntityDataFactory {
             url = "..."
         )
     )
-
 }
