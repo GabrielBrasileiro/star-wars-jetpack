@@ -9,7 +9,8 @@ import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseC
 import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleState
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -31,6 +32,7 @@ class PeopleListViewModelTest {
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val peopleState = mock<Observer<PeopleState>>()
+    private val peopleEvent = mock<Observer<PeopleEvent>>()
     private val peoplePresentationMapper = PeoplePresentationMapper()
 
     private lateinit var peopleViewModel: PeopleListViewModel
@@ -40,6 +42,7 @@ class PeopleListViewModelTest {
         peopleViewModel = PeopleListViewModel(
             peopleUseCase, peoplePresentationMapper
         ).apply {
+            getEvent().observeForever(peopleEvent)
             getState().observeForever(peopleState)
         }
     }
@@ -53,10 +56,10 @@ class PeopleListViewModelTest {
 
         peopleViewModel.loadPeople()
 
-        inOrder(peopleState) {
-            verify(peopleState).onChanged(PeopleState.ShowLoading)
-            verify(peopleState).onChanged(PeopleState.ShowData(peopleDto))
-            verify(peopleState).onChanged(PeopleState.HideLoading)
+        inOrder(peopleState, peopleEvent) {
+            verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
+            verify(peopleState).onChanged(PeopleState(peopleDto))
+            verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
         }
     }
 
@@ -69,10 +72,10 @@ class PeopleListViewModelTest {
 
         peopleViewModel.loadPeople()
 
-        inOrder(peopleState) {
-            verify(peopleState).onChanged(PeopleState.ShowLoading)
-            verify(peopleState).onChanged(PeopleState.ShowError(expectedErrorMessage))
-            verify(peopleState).onChanged(PeopleState.HideLoading)
+        inOrder(peopleEvent) {
+            verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
+            verify(peopleEvent).onChanged(PeopleEvent.ShowError(expectedErrorMessage))
+            verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
         }
     }
 }

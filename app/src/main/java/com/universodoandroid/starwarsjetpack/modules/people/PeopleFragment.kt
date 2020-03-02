@@ -11,36 +11,41 @@ import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
 import com.universodoandroid.starwarsjetpack.extensions.show
 import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import com.universodoandroid.starwarsjetpack.ui.resourses.defaultNumberOfColumns
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
-
-    override fun getLayoutResId(): Int = R.layout.fragment_people
+class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_people) {
 
     private val viewModel by viewModel<PeopleListViewModel>()
-
-    private val progressBar: ProgressBar by lazy { binding.progressBar }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupPeopleState()
+        setupObserver()
+        setupEvent()
+        setupState()
     }
 
-    private fun setupPeopleState() {
-        viewModel.getState().observe(this, Observer { state ->
+    private fun setupEvent() {
+        viewModel.getEvent().observe(this, Observer { state ->
             when (state) {
-                is PeopleState.ShowData -> showPeople(state.data)
-                is PeopleState.ShowError -> showError(state.error)
-                is PeopleState.ShowLoading -> showLoader()
-                is PeopleState.HideLoading -> hideLoader()
+                is PeopleEvent.ShowError -> showError(state.error)
+                is PeopleEvent.ShowLoading -> showLoader(true)
+                is PeopleEvent.HideLoading -> showLoader(false)
             }
         })
+    }
 
-        viewModel.loadPeople()
+    private fun setupState() {
+        viewModel.getState().observe(this, Observer {
+            showPeople(it.people)
+        })
+    }
+
+    private fun setupObserver() {
+        lifecycle.addObserver(viewModel)
     }
 
     private fun showPeople(people: List<PersonDto>) {
@@ -64,9 +69,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>() {
         navController.navigate(R.id.people_navigation_to_person_details, args)
     }
 
-    private fun showLoader() = progressBar.show(true)
-
-    private fun hideLoader() = progressBar.show(false)
-
+    private fun showLoader(show: Boolean) {
+        binding.progressBar.show(show)
+    }
 }
-
