@@ -1,7 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply from: "$rootProject.projectDir/default-config.gradle"
 apply from: "$rootProject.projectDir/commons.gradle"
 
@@ -12,16 +9,6 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            testCoverageEnabled true
-        }
-    }
-
     dataBinding {
         enabled true
     }
@@ -29,8 +16,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Injection
     implementation project(":data")
