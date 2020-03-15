@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.reset
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
@@ -12,6 +13,7 @@ import com.universodoandroid.starwarsjetpack.presentation.people.models.people.P
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleState
 import io.reactivex.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,6 +47,11 @@ class PeopleListViewModelTest {
             getEvent().observeForever(peopleEvent)
             getState().observeForever(peopleState)
         }
+    }
+
+    @After
+    fun tearDown() {
+        reset(peopleEvent, peopleState)
     }
 
     @Test
