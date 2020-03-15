@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.ui.resourses
+package com.universodoandroid.starwarsjetpack.extensions
 
 import android.content.res.Configuration
 import android.content.res.Resources
