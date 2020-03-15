@@ -11,13 +11,11 @@ import com.universodoandroid.starwarsjetpack.shared.extensions.getMapper
 import com.universodoandroid.starwarsjetpack.shared.extensions.mapper
 import org.koin.dsl.module
 
-private val peopleDatabaseModules = module {
+internal fun getPeopleDatabaseModules() = module {
     mapper { PersonDataMapper() }
     mapper { PersonEntityMapper() }
 
     factory { get<AppDatabase>().personDao() }
     factory<PeopleDatabase> { PeopleDatabaseImpl(get()) }
-    factory<PeopleLocalData> { PeopleLocalDataImpl(get(), getMapper(), getMapper()) }
+    factory<PeopleLocalData> { PeopleLocalDataImpl(get(), get(), getMapper(), getMapper()) }
 }
-
-internal fun getPeopleDatabaseModules() = peopleDatabaseModules

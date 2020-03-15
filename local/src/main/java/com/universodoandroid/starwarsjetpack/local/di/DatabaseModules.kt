@@ -3,10 +3,10 @@ package com.universodoandroid.starwarsjetpack.local.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.local.AppDatabase
 import com.universodoandroid.starwarsjetpack.local.people.di.getPeopleDatabaseModules
-import com.universodoandroid.starwarsjetpack.local.prefs.PeoplePreferencesImpl
+import com.universodoandroid.starwarsjetpack.local.cache.CachePreferences
+import com.universodoandroid.starwarsjetpack.local.cache.CachePreferencesImpl
 import org.koin.dsl.module
 
 
@@ -22,7 +22,7 @@ internal val appDatabase = module {
 }
 
 internal val preferences = module {
-    factory<PeoplePreferences> { PeoplePreferencesImpl(get()) }
+    factory<CachePreferences> { CachePreferencesImpl(get()) }
     factory<SharedPreferences> {
         get<Context>().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
