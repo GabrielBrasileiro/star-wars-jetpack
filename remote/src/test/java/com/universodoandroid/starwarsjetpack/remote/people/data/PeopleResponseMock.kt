@@ -5,9 +5,9 @@ import com.universodoandroid.starwarsjetpack.remote.people.remote.response.Perso
 
 internal object PeopleResponseMock {
 
-    fun getResponse() = PeopleResponse(
+    fun getResponse(hasNext: String? = null) = PeopleResponse(
         count = 1,
-        next = null,
+        next = hasNext,
         previous = 0,
         results = listOf(
             PersonItem(

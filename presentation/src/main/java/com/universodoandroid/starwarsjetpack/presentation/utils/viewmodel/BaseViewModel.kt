@@ -17,11 +17,11 @@ open class BaseViewModel<E : Event, S: State>: EventView<E>, StateView<S>, Obser
 
     override fun getState(): LiveData<S> = state
 
-    override fun setEvent(_event: E) {
+    protected fun setEvent(_event: E) {
         event.value = _event
     }
 
-    override fun setState(_state: S) {
+    protected fun setState(_state: S) {
         state.value = _state
     }
 }

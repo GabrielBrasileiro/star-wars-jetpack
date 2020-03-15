@@ -31,11 +31,7 @@ class DatabaseModulesTest {
     fun `app database should return all local dependencies`() {
         koinApplication {
             modules(
-                listOf(
-                    modules,
-                    appDatabase,
-                    preferences
-                )
+                listOf(modules) + getDatabaseModules()
             )
         }.checkModules()
     }

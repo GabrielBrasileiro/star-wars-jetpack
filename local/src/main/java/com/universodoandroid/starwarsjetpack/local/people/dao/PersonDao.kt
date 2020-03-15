@@ -25,6 +25,6 @@ internal interface PersonDao {
     fun isEmpty(): Flowable<Int>
 
     @Query("DELETE FROM PersonEntity")
-    fun eraseData(): Completable
+    fun deleteData(): Completable
 
 }

@@ -15,6 +15,6 @@ internal fun getPeopleRepositoryModule() = module {
     mapper { PeoplePageMapper(getMapper()) }
 
     factory<PeopleRepository> {
-        PeopleRepositoryImpl(get(), get(), get(), getMapper(), getMapper(), getMapper())
+        PeopleRepositoryImpl(get(), get(), getMapper(), getMapper(), getMapper())
     }
 }

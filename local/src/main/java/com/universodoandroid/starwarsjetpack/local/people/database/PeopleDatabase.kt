@@ -8,5 +8,5 @@ internal interface PeopleDatabase {
     fun loadPeople(): Single<List<PersonEntity>>
     fun loadPerson(id: String): Single<PersonEntity>
     fun savePeople(people: List<PersonEntity>): Completable
-    fun eraseData(): Completable
+    fun deleteData(): Completable
 }

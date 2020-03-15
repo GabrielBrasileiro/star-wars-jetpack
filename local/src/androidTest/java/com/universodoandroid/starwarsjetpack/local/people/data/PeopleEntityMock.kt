@@ -3,7 +3,7 @@ package com.universodoandroid.starwarsjetpack.local.people.data
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 import java.util.*
 
-internal object PeopleEntityDataFactory {
+internal object PeopleEntityMock {
 
     fun dummyPeopleEntity() = listOf(
         PersonEntity(

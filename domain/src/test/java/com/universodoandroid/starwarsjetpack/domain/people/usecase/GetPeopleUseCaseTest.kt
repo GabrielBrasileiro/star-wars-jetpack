@@ -4,7 +4,6 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.data.PeopleData
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
-import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule

@@ -2,18 +2,18 @@ package com.universodoandroid.starwarsjetpack.local.people
 
 import com.universodoandroid.starwarsjetpack.local.BaseDatabaseTest
 import com.universodoandroid.starwarsjetpack.local.people.dao.PersonDao
-import com.universodoandroid.starwarsjetpack.local.people.data.PeopleEntityDataFactory
+import com.universodoandroid.starwarsjetpack.local.people.data.PeopleEntityMock
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class PeopleDatabaseTest : BaseDatabaseTest() {
+class PeopleDaoTest : BaseDatabaseTest() {
 
     private lateinit var personDao: PersonDao
 
-    private var dummyPeople = PeopleEntityDataFactory.dummyPeopleEntity()
+    private var dummyPeople = PeopleEntityMock.dummyPeopleEntity()
 
     @Before
     fun setup() {
@@ -67,7 +67,7 @@ class PeopleDatabaseTest : BaseDatabaseTest() {
             .test()
             .assertComplete()
 
-        personDao.eraseData()
+        personDao.deleteData()
             .test()
             .assertComplete()
 
