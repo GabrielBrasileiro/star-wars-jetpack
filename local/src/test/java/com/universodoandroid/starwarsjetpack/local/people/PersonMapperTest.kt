@@ -1,21 +1,25 @@
-package com.universodoandroid.starwarsjetpack.local.people.mapper
+package com.universodoandroid.starwarsjetpack.local.people
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
-import com.universodoandroid.starwarsjetpack.local.people.mapper.PeopleDataMock.getPersonDomain
-import com.universodoandroid.starwarsjetpack.local.people.mapper.PeopleDataMock.getPersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.getPersonDomain
+import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.getPersonEntity
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonDataMapper
+import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonEntityMapper
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class PersonMapperTest {
 
-    private val mapperData: Mapper<PersonEntity, PersonData> = PersonDataMapper()
-    private val mapperEntity: Mapper<PersonData, PersonEntity> = PersonEntityMapper()
+    private val mapperData: Mapper<PersonEntity, PersonData> =
+        PersonDataMapper()
+    private val mapperEntity: Mapper<PersonData, PersonEntity> =
+        PersonEntityMapper()
 
     @Test
     fun mapperBuildingCorrectToData() {
-        val personEntity = getPersonEntity()
+        val personEntity = getPersonEntity("0")
         val personData = mapperData.map(personEntity)
 
         assertEquals(personData.id, personEntity.id)
@@ -34,7 +38,7 @@ class PersonMapperTest {
 
     @Test
     fun mapperBuildingCorrectToEntity() {
-        val personData = getPersonDomain()
+        val personData = getPersonDomain("0")
         val personEntity = mapperEntity.map(personData)
 
         assertEquals(personEntity.name, personData.name)
