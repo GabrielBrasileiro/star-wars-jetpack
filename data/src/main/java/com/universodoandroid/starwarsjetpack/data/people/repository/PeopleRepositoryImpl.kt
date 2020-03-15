@@ -1,8 +1,6 @@
 package com.universodoandroid.starwarsjetpack.data.people.repository
 
-import com.universodoandroid.starwarsjetpack.data.global.CacheType
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
-import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
@@ -17,14 +15,13 @@ import io.reactivex.Single
 internal class PeopleRepositoryImpl(
     private val remote: PeopleRemoteData,
     private val local: PeopleLocalData,
-    private val session: PeoplePreferences,
     private val peopleMapper: Mapper<PersonData, Person>,
     private val peopleDataMapper: Mapper<Person, PersonData>,
     private val peoplePageMapper: Mapper<PeoplePageData, PeoplePage>
 ) : PeopleRepository {
 
     override fun getPeople(): Single<List<Person>> {
-        return if (session.isDownloaded(CacheType.PEOPLE_CACHE)) {
+        return if (local.wasCached()) {
             local.getPeople().map(::dataToEntity)
         } else {
             remote.getAllPeopleData().flatMapCompletable {
@@ -54,11 +51,11 @@ internal class PeopleRepositoryImpl(
     }
 
     override fun eraseData(): Completable {
-        return local.eraseData()
+        return local.deleteData()
     }
 
     private fun isCached(cached: Boolean) {
-        session.registerCache(CacheType.PEOPLE_CACHE, cached)
+        local.registerCache(cached)
     }
 
     private fun dataToEntity(people: List<PersonData>): List<Person> {

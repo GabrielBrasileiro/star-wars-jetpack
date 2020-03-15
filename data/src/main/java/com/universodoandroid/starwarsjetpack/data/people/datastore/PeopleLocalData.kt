@@ -8,5 +8,7 @@ interface PeopleLocalData {
     fun getPeople(): Single<List<PersonData>>
     fun savePeople(people: List<PersonData>): Completable
     fun getPerson(id: String): Single<PersonData>
-    fun eraseData(): Completable
+    fun deleteData(): Completable
+    fun wasCached(): Boolean
+    fun registerCache(wasDownloaded: Boolean)
 }

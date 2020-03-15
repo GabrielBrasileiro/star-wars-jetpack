@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-open class ObservableViewModel: LifecycleObserver, ViewModel() {
+abstract class ObservableViewModel: LifecycleObserver, ViewModel() {
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 

@@ -1,14 +1,19 @@
 package com.universodoandroid.starwarsjetpack
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import com.universodoandroid.starwarsjetpack.extensions.show
+import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChanged
+import com.universodoandroid.starwarsjetpack.presentation.navigation.model.NavigationViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val navigation by viewModel<NavigationViewModel>()
 
     private val navController: NavController by lazy {
         Navigation.findNavController(this, R.id.navigation_host_fragment)
@@ -18,35 +23,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigation.setupWithNavController(navController)
+        setupNavigationController()
+        onNavigationChanged()
+    }
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isDefaultView = defaultDestinationSelected(
-                destination.id,
-                R.id.navigation_people,
-                R.id.navigation_planets
-            )
+    private fun setupNavigationController() {
+        navigationView.setupWithNavController(navController)
+    }
 
-            if (isDefaultView) {
-                navigation.visibility = View.VISIBLE
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            } else {
-                navigation.visibility = View.GONE
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            }
-        }
+    private fun onNavigationChanged() {
+        onStateChanged(navigation) { showNavigation(it.showNavBar) }
+    }
+
+    private fun showNavigation(show: Boolean) {
+        if (show) setupNavigation(visibility = true, actionBarEnabled = false)
+        else setupNavigation(visibility = false, actionBarEnabled = true)
+    }
+
+    private fun setupNavigation(visibility: Boolean, actionBarEnabled: Boolean) {
+        navigationView.show(visibility)
+        supportActionBar?.setDisplayHomeAsUpEnabled(actionBarEnabled)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
-
-    private fun defaultDestinationSelected(id: Int, vararg views: Int): Boolean {
-        views.forEach {
-            if (id == it) return true
-        }
-
-        return false
-    }
-
 }

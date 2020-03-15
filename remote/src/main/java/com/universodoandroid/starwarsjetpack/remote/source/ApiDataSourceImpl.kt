@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.remote
+package com.universodoandroid.starwarsjetpack.remote.source
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
@@ -9,11 +9,13 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-internal class ApiDataSource(private val url: String) {
+internal class ApiDataSourceImpl(
+    private val url: String
+) : ApiDataSource {
 
     private val timeOut: Long = 30
 
-    fun <S> createService(serviceClass: Class<S>): S {
+    override fun <S> createService(serviceClass: Class<S>): S {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -36,5 +38,4 @@ internal class ApiDataSource(private val url: String) {
 
         return retrofit.create(serviceClass)
     }
-
 }

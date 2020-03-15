@@ -13,7 +13,6 @@ dependencies {
 
     // Koin
     implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-ext:$koin_version"
 
     // Mockito
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"

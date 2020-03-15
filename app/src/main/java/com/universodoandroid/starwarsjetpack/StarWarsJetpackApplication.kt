@@ -32,11 +32,9 @@ class StarWarsJetpackApplication : Application() {
         }
     }
 
-
     private fun listOfModules(vararg modules: List<Module>): List<Module> {
         val mappedModules = ArrayList<Module>()
         modules.forEach { mappedModules.addAll(it) }
         return mappedModules
     }
-
 }

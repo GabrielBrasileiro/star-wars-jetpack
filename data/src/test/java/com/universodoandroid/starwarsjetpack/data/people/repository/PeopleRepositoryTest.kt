@@ -1,9 +1,7 @@
 package com.universodoandroid.starwarsjetpack.data.people.repository
 
 import com.nhaarman.mockitokotlin2.*
-import com.universodoandroid.starwarsjetpack.data.global.CacheType
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
-import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleDataMapper
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleMapper
@@ -22,7 +20,6 @@ class PeopleRepositoryTest {
 
     private val localData = mock<PeopleLocalData>()
     private val remoteData = mock<PeopleRemoteData>()
-    private val preferences = mock<PeoplePreferences>()
 
     private val peopleMapper = PeopleMapper()
     private val peopleDataMapper = PeopleDataMapper()
@@ -35,7 +32,6 @@ class PeopleRepositoryTest {
         peopleRepository = PeopleRepositoryImpl(
             remoteData,
             localData,
-            preferences,
             peopleMapper,
             peopleDataMapper,
             peoplePageMapper
@@ -44,16 +40,15 @@ class PeopleRepositoryTest {
 
     @After
     fun tearDown() {
-        reset(localData, remoteData, preferences)
+        reset(localData, remoteData)
     }
 
     @Test
     fun `getPeople Should call remote & local data source When preferences return false`() {
         val peoplePageData = getPeoplePageData()
         val peopleData = peoplePageData.people
-        val cacheType = CacheType.PEOPLE_CACHE
 
-        whenever(preferences.isDownloaded(cacheType)).thenReturn(false)
+        whenever(localData.wasCached()).thenReturn(false)
         whenever(remoteData.getAllPeopleData()).thenReturn(Flowable.just(peoplePageData))
         whenever(localData.savePeople(any())).thenReturn(Completable.complete())
         whenever(localData.getPeople()).thenReturn(Single.just(peopleData))
@@ -65,13 +60,11 @@ class PeopleRepositoryTest {
                 it.size == peopleData.size && it[0].name == peopleData[0].name
             }
 
-        verify(preferences).registerCache(cacheType, true)
+        verify(localData).registerCache(true)
     }
 
     @Test
     fun `getPeople Should call error When not complete first sync`() {
-        val cacheType = CacheType.PEOPLE_CACHE
-
         whenever(remoteData.getAllPeopleData()).thenReturn(Flowable.error(Throwable()))
         whenever(localData.getPeople()).thenReturn(Single.error(Throwable()))
 
@@ -79,11 +72,11 @@ class PeopleRepositoryTest {
             .test()
             .assertNotComplete()
 
-        verify(localData).eraseData()
+        verify(localData).deleteData()
 
-        inOrder(localData, preferences) {
-            verify(preferences).registerCache(cacheType, false)
-            verify(localData).eraseData()
+        inOrder(localData) {
+            verify(localData).registerCache(false)
+            verify(localData).deleteData()
         }
     }
 
@@ -92,7 +85,7 @@ class PeopleRepositoryTest {
         val peopleData =
             PeoplePageDataMock.getPeopleData()
 
-        whenever(preferences.isDownloaded(CacheType.PEOPLE_CACHE)).thenReturn(true)
+        whenever(localData.wasCached()).thenReturn(true)
         whenever(localData.getPeople()).thenReturn(Single.just(peopleData))
 
         peopleRepository.getPeople()
@@ -142,7 +135,7 @@ class PeopleRepositoryTest {
 
     @Test
     fun `eraseData Should erase all people data from persistence When called`() {
-        whenever(localData.eraseData()).thenReturn(Completable.complete())
+        whenever(localData.deleteData()).thenReturn(Completable.complete())
 
         peopleRepository.eraseData()
             .test()

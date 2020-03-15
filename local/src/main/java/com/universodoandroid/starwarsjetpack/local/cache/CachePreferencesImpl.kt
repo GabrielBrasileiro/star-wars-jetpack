@@ -1,16 +1,14 @@
-package com.universodoandroid.starwarsjetpack.local.prefs
+package com.universodoandroid.starwarsjetpack.local.cache
 
 import android.content.SharedPreferences
-import com.universodoandroid.starwarsjetpack.data.people.datastore.PeoplePreferences
-import com.universodoandroid.starwarsjetpack.data.global.CacheType
 
-class PeoplePreferencesImpl(
+internal class CachePreferencesImpl(
     private val sharedPreferences: SharedPreferences
-) : PeoplePreferences {
+) : CachePreferences {
 
     private val editor by lazy { sharedPreferences.edit() }
 
-    override fun isDownloaded(reference: CacheType): Boolean {
+    override fun wasCached(reference: CacheType): Boolean {
         return sharedPreferences.getBoolean(reference.id, false)
     }
 
@@ -18,5 +16,4 @@ class PeoplePreferencesImpl(
         editor.putBoolean(reference.id, isCached)
         editor.apply()
     }
-
 }

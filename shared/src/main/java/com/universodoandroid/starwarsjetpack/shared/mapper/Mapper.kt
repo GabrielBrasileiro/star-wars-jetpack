@@ -1,5 +1,5 @@
 package com.universodoandroid.starwarsjetpack.shared.mapper
 
-interface Mapper<in E, out O> {
-    fun map(enter: E): O
+interface Mapper<in I, out O> {
+    fun map(enter: I): O
 }

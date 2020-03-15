@@ -9,7 +9,7 @@ class RemoteModulesTest {
     @Test
     fun `app database should return all local dependencies`() {
         koinApplication {
-            modules(apiDataSource)
+            modules(getRemoteModules())
         }.checkModules()
     }
 }
