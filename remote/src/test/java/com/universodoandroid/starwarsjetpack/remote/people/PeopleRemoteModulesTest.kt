@@ -1,9 +1,10 @@
-package com.universodoandroid.starwarsjetpack.remote.people.di
+package com.universodoandroid.starwarsjetpack.remote.people
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import com.universodoandroid.starwarsjetpack.remote.ApiDataSource
 import com.universodoandroid.starwarsjetpack.remote.people.api.PeopleApi
+import com.universodoandroid.starwarsjetpack.remote.people.di.getPeopleRemoteModules
+import com.universodoandroid.starwarsjetpack.remote.source.ApiDataSource
 import org.junit.Before
 import org.junit.Test
 import org.koin.dsl.koinApplication
@@ -27,10 +28,12 @@ class PeopleRemoteModulesTest {
     @Test
     fun `people database should Provide People Database Dependencies`() {
         koinApplication {
-            modules(listOf(
-                modules,
-                getPeopleRemoteModules()
-            ))
+            modules(
+                listOf(
+                    modules,
+                    getPeopleRemoteModules()
+                )
+            )
         }.checkModules()
     }
 }
