@@ -6,7 +6,7 @@ The project tries demonstrate how implement a project uncoupled trying to follow
 
 In ocasion the project was implemeted with [SOLID](https://en.wikipedia.org/wiki/SOLID) concepts to have a better code organization. '-'
 
-## Achitecture:
+## Architecture:
 <img src="./docs/images/architecture.png">
 
 * __Local__
