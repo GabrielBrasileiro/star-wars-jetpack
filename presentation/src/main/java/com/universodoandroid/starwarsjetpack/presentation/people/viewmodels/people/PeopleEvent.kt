@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people
 
 import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.Event
 

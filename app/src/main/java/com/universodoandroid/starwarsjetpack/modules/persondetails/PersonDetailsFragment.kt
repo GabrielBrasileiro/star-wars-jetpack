@@ -2,7 +2,6 @@ package com.universodoandroid.starwarsjetpack.modules.persondetails
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
@@ -10,10 +9,10 @@ import com.universodoandroid.starwarsjetpack.databinding.FragmentPersonDetailsBi
 import com.universodoandroid.starwarsjetpack.extensions.showToast
 import com.universodoandroid.starwarsjetpack.presentation.extensions.onEvent
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.NavigationViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsPresentation
-import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
-import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonDetailsViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.person.PersonEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonDetailsViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonEvent
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,7 +73,7 @@ class PersonDetailsFragment :
     }
 
     private fun loadPerson() {
-        val personDto = arguments?.getSerializable(Constants.PERSON_DTO) as? PersonDto
+        val personDto = arguments?.getSerializable(Constants.PERSON_DTO) as? PersonPresentation
         personDto?.run { viewModel.loadPerson(id) }
     }
 

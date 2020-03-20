@@ -10,9 +10,9 @@ import com.universodoandroid.starwarsjetpack.extensions.addObserver
 import com.universodoandroid.starwarsjetpack.extensions.show
 import com.universodoandroid.starwarsjetpack.presentation.extensions.onEvent
 import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChanged
-import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleEvent
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
 import com.universodoandroid.starwarsjetpack.extensions.defaultNumberOfColumns
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,11 +49,11 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_
         }
     }
 
-    private fun showPeople(people: List<PersonDto>) {
+    private fun showPeople(people: List<PersonPresentation>) {
         setupRecyclerView(people)
     }
 
-    private fun setupRecyclerView(people: List<PersonDto>) {
+    private fun setupRecyclerView(people: List<PersonPresentation>) {
         binding.peopleRecyclerView.run {
             layoutManager = GridLayoutManager(requireContext(), resources.defaultNumberOfColumns())
             adapter = PeopleAdapter(people, ::personDetails)
@@ -65,8 +65,8 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_
         println("Error: $message")
     }
 
-    private fun personDetails(personDto: PersonDto) {
-        val args = Bundle().apply { putSerializable(Constants.PERSON_DTO, personDto) }
+    private fun personDetails(personPresentation: PersonPresentation) {
+        val args = Bundle().apply { putSerializable(Constants.PERSON_DTO, personPresentation) }
         navController.navigate(R.id.people_navigation_to_person_details, args)
     }
 
