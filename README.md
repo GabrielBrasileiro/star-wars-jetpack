@@ -1,31 +1,31 @@
 # Star Wars Jetpack
 
-A sample application to show how implements the Clean Architecture with the new features of Jetpack.
+A sample application to show how to implement the Clean Architecture with the new features of Jetpack.
 
-The project tries demonstrate how implement a project uncoupled trying to follow the all of concepts of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+The project tries demonstrate how to implement a project uncoupled, trying to follow all of the concepts of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
-In ocasion the project was implemeted with [SOLID](https://en.wikipedia.org/wiki/SOLID) concepts to have a better code organization. '-'
+On this occasion the project was implemented with [SOLID](https://en.wikipedia.org/wiki/SOLID) concepts to have a better code organization. '-'
 
 ## Architecture:
 <img src="./docs/images/architecture.png">
 
 * __Local__
   
-  Containts the implementation of LocalData interface, translating the libraries included in this layer. The room persistence and shared preferences (Until this moment) was implemented in this layer to segregate all local dependencies in project. 
+  Contains the implementation of LocalData interface, translating the libraries included in this layer. The room persistence and shared preferences (Until this moment) was implemented in this layer to segregate all local dependencies in project. 
 
 * __Remote__
   
-  Containts the implementation of RemoteData. This layer includes all external requests, retrofit was inserted here. 
+  Contains the implementation of RemoteData. This layer includes all external requests, retrofit was inserted here. 
   
 * __Data__
 
-  Contains the implementation of repository. This layer translate all data received by remote and local sources, your respectives interfaces are injected in repository implementation.
+  Contains the implementation of repository. This layer translate all data received by remote and local sources, your respectives interfaces are injected in the repository implementation.
 
 * __Domain__
 
-  In this layer we can do our business rules consuming the interfarce of repositories or other use cases. 
+  In this layer we can do our business rules consuming the interface of repositories or other use cases. 
   
-  ** Coming soon I try to grow the project to use this [functional use case composition](https://medium.com/@june.pravin/clean-architecture-functional-style-use-case-composition-with-rxjava-kotlin-898726c97dfe).
+  ** Coming soon, I'll try to grow the project to use this [functional use case composition](https://medium.com/@june.pravin/clean-architecture-functional-style-use-case-composition-with-rxjava-kotlin-898726c97dfe).
 
 * __Presention__
 
@@ -37,13 +37,13 @@ In ocasion the project was implemeted with [SOLID](https://en.wikipedia.org/wiki
 
 * __Shared__
 
-  This module contains all shared methods and common classes in project, in my case the mapper are used in bounders of modules.
+  This module contains all shared methods and common classes in the project, in my case the mapper is used in bounders of modules.
 
 
 ** Extension methods are applied to their respective layer using internal modifier, making them invisible to others layers.
 
 ## Gradle
-In project we have some gradle scripts representing a default setup for respective layer, there was created to decrease the boiler plate in scripts.
+In project we have some gradle scripts representing a default setup for respective layer, it was created to decrease the boiler plate in scripts.
 
 * __default-config__
 
@@ -51,7 +51,7 @@ In project we have some gradle scripts representing a default setup for respecti
 
 * __android-build__
 
-  Represents android setup, all layers needing android specifies include this script in your local gradle.
+  Represents android setup, all layers needing android specifications, including this script in your local gradle.
 
 * __commons__
 
@@ -71,6 +71,6 @@ In project we have some gradle scripts representing a default setup for respecti
 * [MockitoKotlin](https://github.com/nhaarman/mockito-kotlin)
 
 
-For more specifies consult the wiki... The complete project wiki coming soon
+For more specifications, consult the wiki... The complete project wiki coming soon
 
 Inspired by: [Nelson Glauber - Books Jetpack](https://github.com/nglauber/books_jetpack)
