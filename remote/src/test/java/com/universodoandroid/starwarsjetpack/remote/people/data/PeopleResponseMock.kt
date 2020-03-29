@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.remote.people.data
 
 import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PeopleResponse
-import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PersonItem
+import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PersonItemResponse
 
 internal object PeopleResponseMock {
 
@@ -10,7 +10,7 @@ internal object PeopleResponseMock {
         next = hasNext,
         previous = 0,
         results = listOf(
-            PersonItem(
+            PersonItemResponse(
                 birthYear = "",
                 created = "",
                 edited = "",
@@ -28,7 +28,7 @@ internal object PeopleResponseMock {
                 url = "",
                 vehicles = ArrayList()
             ),
-            PersonItem(
+            PersonItemResponse(
                 birthYear = "",
                 created = "",
                 edited = "",

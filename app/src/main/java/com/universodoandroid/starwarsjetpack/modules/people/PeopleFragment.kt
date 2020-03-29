@@ -7,14 +7,14 @@ import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPeopleBinding
 import com.universodoandroid.starwarsjetpack.extensions.addObserver
+import com.universodoandroid.starwarsjetpack.extensions.defaultNumberOfColumns
 import com.universodoandroid.starwarsjetpack.extensions.show
 import com.universodoandroid.starwarsjetpack.presentation.extensions.onEvent
 import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChanged
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
 import com.universodoandroid.starwarsjetpack.ui.BindingFragment
-import com.universodoandroid.starwarsjetpack.extensions.defaultNumberOfColumns
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_people) {
