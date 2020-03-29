@@ -13,7 +13,7 @@ import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.pers
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonDetailsViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonEvent
-import com.universodoandroid.starwarsjetpack.ui.BindingFragment
+import com.universodoandroid.starwarsjetpack.ui.fragment.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

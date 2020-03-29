@@ -5,8 +5,8 @@ import android.content.res.Resources
 
 fun Resources.defaultNumberOfColumns(): Int {
     return if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-        1
-    } else {
         2
+    } else {
+        3
     }
 }

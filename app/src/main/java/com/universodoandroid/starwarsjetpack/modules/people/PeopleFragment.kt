@@ -14,7 +14,7 @@ import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChan
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
-import com.universodoandroid.starwarsjetpack.ui.BindingFragment
+import com.universodoandroid.starwarsjetpack.ui.fragment.BindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_people) {
@@ -36,9 +36,9 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_
     private fun setupEvent() {
         onEvent(viewModel) { event ->
             when (event) {
-                is PeopleEvent.ShowError -> showError(event.error)
                 is PeopleEvent.ShowLoading -> showLoader(true)
                 is PeopleEvent.HideLoading -> showLoader(false)
+                is PeopleEvent.ShowError -> showError(event.error)
             }
         }
     }

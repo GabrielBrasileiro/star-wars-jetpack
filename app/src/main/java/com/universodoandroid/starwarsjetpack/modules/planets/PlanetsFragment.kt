@@ -1,14 +1,10 @@
 package com.universodoandroid.starwarsjetpack.modules.planets
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.databinding.FragmentPlanetsBinding
-import com.universodoandroid.starwarsjetpack.ui.BindingFragment
+import com.universodoandroid.starwarsjetpack.ui.fragment.BindingFragment
 
 class PlanetsFragment : BindingFragment<FragmentPlanetsBinding>(R.layout.fragment_planets) {
 

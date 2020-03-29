@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.ui
+package com.universodoandroid.starwarsjetpack.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
