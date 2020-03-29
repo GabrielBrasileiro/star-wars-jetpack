@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDto" />
+            type="com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

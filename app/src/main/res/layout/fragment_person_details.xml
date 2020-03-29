@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsPresentation" />
+            type="com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation" />
 
     </data>
 

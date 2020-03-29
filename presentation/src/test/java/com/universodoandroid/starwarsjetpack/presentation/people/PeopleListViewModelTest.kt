@@ -9,9 +9,9 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
 import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleEvent
-import com.universodoandroid.starwarsjetpack.presentation.people.models.people.lifecycle.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleState
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -65,7 +65,11 @@ class PeopleListViewModelTest {
 
         inOrder(peopleState, peopleEvent) {
             verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
-            verify(peopleState).onChanged(PeopleState(peopleDto))
+            verify(peopleState).onChanged(
+                PeopleState(
+                    peopleDto
+                )
+            )
             verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
         }
     }

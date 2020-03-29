@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.universodoandroid.starwarsjetpack.R
 
-open class BaseFragment(
+open class NavigationFragment(
     @LayoutRes protected val layoutResId: Int
 ) : Fragment(layoutResId) {
 

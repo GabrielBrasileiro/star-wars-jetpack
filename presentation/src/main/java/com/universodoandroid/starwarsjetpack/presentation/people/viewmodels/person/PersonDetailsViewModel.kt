@@ -1,10 +1,10 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.models.person
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPersonUseCase
-import com.universodoandroid.starwarsjetpack.presentation.people.dto.PersonDetailsPresentation
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.EventViewModel
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import io.reactivex.android.schedulers.AndroidSchedulers

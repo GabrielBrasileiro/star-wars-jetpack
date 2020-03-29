@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 
 abstract class BindingFragment<T : ViewDataBinding>(
     @LayoutRes layoutResId: Int
-) : BaseFragment(layoutResId) {
+) : NavigationFragment(layoutResId) {
 
     protected lateinit var binding: T
         private set
