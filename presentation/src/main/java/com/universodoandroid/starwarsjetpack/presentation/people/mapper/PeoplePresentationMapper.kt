@@ -9,9 +9,10 @@ internal class PeoplePresentationMapper :
 
     override fun map(enter: Person): PersonPresentation {
         return PersonPresentation(
-            enter.id,
-            enter.name,
-            ""
+            id = enter.id,
+            name = enter.name,
+            planet = "",
+            imageUrl = enter.imgUrl
         )
     }
 }

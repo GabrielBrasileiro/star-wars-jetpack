@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 internal data class PersonEntity(
     @PrimaryKey
     var id: String,
+    var imgUrl: String?,
     var birthYear: String,
     var created: String,
     var edited: String,

@@ -6,5 +6,5 @@ data class PersonPresentation(
     val id: String,
     val name: String,
     val planet: String,
-    val imageUrl: String = ""
+    val imageUrl: String? = null
 ) : Serializable
