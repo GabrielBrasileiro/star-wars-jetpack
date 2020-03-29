@@ -1,4 +1,4 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.dto
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model
 
 data class PersonDetailsPresentation(
     val id: String,

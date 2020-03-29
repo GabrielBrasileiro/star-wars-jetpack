@@ -1,8 +1,8 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.dto
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model
 
 import java.io.Serializable
 
-data class PersonDto(
+data class PersonPresentation(
     val id: String,
     val name: String,
     val planet: String,
