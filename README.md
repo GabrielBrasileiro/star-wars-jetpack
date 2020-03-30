@@ -1,5 +1,7 @@
 # Star Wars Jetpack
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/577ad857d0ae46b68286a85cc4a50ad0)](https://app.codacy.com/manual/gabriel.brasileiro/star-wars-jetpack?utm_source=github.com&utm_medium=referral&utm_content=GabrielBrasileiro/star-wars-jetpack&utm_campaign=Badge_Grade_Dashboard)
+
 A sample application to show how to implement the Clean Architecture with the new features of Jetpack.
 
 The project tries demonstrate how to implement a project uncoupled, trying to follow all of the concepts of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
