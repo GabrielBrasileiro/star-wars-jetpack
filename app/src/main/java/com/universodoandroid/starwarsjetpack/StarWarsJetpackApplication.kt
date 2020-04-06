@@ -2,6 +2,7 @@ package com.universodoandroid.starwarsjetpack
 
 import android.app.Application
 import com.universodoandroid.starwarsjetpack.data.di.getRepositoryModules
+import com.universodoandroid.starwarsjetpack.di.getAppModules
 import com.universodoandroid.starwarsjetpack.domain.di.getUseCaseModules
 import com.universodoandroid.starwarsjetpack.local.di.getDatabaseModules
 import com.universodoandroid.starwarsjetpack.presentation.di.getViewModelsModules
@@ -22,6 +23,7 @@ class StarWarsJetpackApplication : Application() {
             androidContext(this@StarWarsJetpackApplication)
             modules(
                 listOfModules(
+                    getAppModules(),
                     getRemoteModules(),
                     getDatabaseModules(),
                     getRepositoryModules(),
