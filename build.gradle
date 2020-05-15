@@ -17,6 +17,8 @@ buildscript {
         // Design
         material_design_version = '1.0.0'
         constraint_layout_version = '1.1.3'
+        circle_image_view_version = '3.0.0'
+        recycler_view_design_version = '1.2.0-alpha03'
         coil_version = '0.9.5'
         shimmer_version = '0.5.0'
 
