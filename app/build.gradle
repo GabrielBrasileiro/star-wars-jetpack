@@ -29,6 +29,7 @@ dependencies {
     implementation "com.google.android.material:material:$material_design_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
+    implementation "androidx.recyclerview:recyclerview:$recycler_view_design_version"
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_fragment_version"
