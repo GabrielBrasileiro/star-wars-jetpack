@@ -1,0 +1,3 @@
+package com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reducer
+
+interface StateEvent

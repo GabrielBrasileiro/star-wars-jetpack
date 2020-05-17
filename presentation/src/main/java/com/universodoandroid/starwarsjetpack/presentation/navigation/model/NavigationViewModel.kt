@@ -1,14 +1,18 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model
 
+import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationReducer
+import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationStateEvent
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.StateViewModel
 
-class NavigationViewModel: StateViewModel<NavigationState>() {
+class NavigationViewModel(
+    private val reducer: NavigationReducer
+): StateViewModel<NavigationState>(reducer) {
 
     fun showNavigationBar() {
-        setState(NavigationState(true))
+        reducer.updateTo(NavigationStateEvent.ShowBar)
     }
 
     fun hideNavigationBar() {
-        setState(NavigationState(false))
+        reducer.updateTo(NavigationStateEvent.HideBar)
     }
 }

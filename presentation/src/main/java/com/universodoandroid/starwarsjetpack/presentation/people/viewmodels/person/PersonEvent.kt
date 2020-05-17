@@ -1,9 +1,10 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person
 
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
-import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.Event
+import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.Event
 
-sealed class PersonEvent : Event {
+sealed class PersonEvent :
+    Event {
 
     data class ShowUser(
         val user: PersonDetailsPresentation

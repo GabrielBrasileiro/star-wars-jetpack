@@ -3,9 +3,9 @@ package com.universodoandroid.starwarsjetpack.presentation.extensions
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.Event
-import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.State
+import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.Event
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.EventView
+import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.State
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.StateView
 
 inline fun <E : Event> LifecycleOwner.onEvent(viewModel: EventView<E>, crossinline onEvent: (E) -> Unit) {
