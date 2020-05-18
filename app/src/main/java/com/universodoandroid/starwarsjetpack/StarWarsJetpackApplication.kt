@@ -2,9 +2,9 @@ package com.universodoandroid.starwarsjetpack
 
 import android.app.Application
 import com.universodoandroid.starwarsjetpack.data.di.getRepositoryModules
-import com.universodoandroid.starwarsjetpack.di.getAppModules
 import com.universodoandroid.starwarsjetpack.domain.di.getUseCaseModules
 import com.universodoandroid.starwarsjetpack.local.di.getDatabaseModules
+import com.universodoandroid.starwarsjetpack.main.router.di.getBottomNavigationModules
 import com.universodoandroid.starwarsjetpack.presentation.di.getViewModelsModules
 import com.universodoandroid.starwarsjetpack.remote.di.getRemoteModules
 import org.koin.android.ext.koin.androidContext
@@ -23,7 +23,7 @@ class StarWarsJetpackApplication : Application() {
             androidContext(this@StarWarsJetpackApplication)
             modules(
                 listOfModules(
-                    getAppModules(),
+                    getBottomNavigationModules(),
                     getRemoteModules(),
                     getDatabaseModules(),
                     getRepositoryModules(),
