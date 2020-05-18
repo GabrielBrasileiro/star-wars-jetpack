@@ -16,7 +16,6 @@ class PeopleViewModelModulesTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val personUseCase = mock<GetPersonUseCase>()
 

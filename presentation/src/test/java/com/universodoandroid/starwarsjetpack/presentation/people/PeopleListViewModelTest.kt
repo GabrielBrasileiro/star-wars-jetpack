@@ -1,6 +1,7 @@
 package com.universodoandroid.starwarsjetpack.presentation.people
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
@@ -26,24 +27,20 @@ class PeopleListViewModelTest {
     val rxRule = RxSchedulerRule()
 
     @get:Rule
-    val rule = InstantTaskExecutorRule()
+    val instantTaskExecutor = InstantTaskExecutorRule()
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val peopleReducer = mock<PeopleReducer>()
     private val peopleEvent = mock<Observer<PeopleEvent>>()
+
     private val peoplePresentationMapper = PeoplePresentationMapper()
 
+    private lateinit var mutableAction: MutableLiveData<PeopleEvent>
     private lateinit var peopleViewModel: PeopleListViewModel
 
     @Before
     fun setup() {
-        reset(peopleUseCase, peopleEvent)
-
-        peopleViewModel = PeopleListViewModel(
-            peopleUseCase, peopleReducer, peoplePresentationMapper
-        ).apply {
-            getEvent().observeForever(peopleEvent)
-        }
+        reset(peopleUseCase)
     }
 
     @After
@@ -58,7 +55,7 @@ class PeopleListViewModelTest {
 
         whenever(peopleUseCase.getPeople()).thenReturn(Single.just(people))
 
-        peopleViewModel.loadPeople()
+        createPeopleViewModel()
 
         inOrder(peopleReducer, peopleEvent) {
             verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
@@ -74,12 +71,20 @@ class PeopleListViewModelTest {
 
         whenever(peopleUseCase.getPeople()).thenReturn(Single.error(throwableWithLocalizedMessage))
 
-        peopleViewModel.loadPeople()
+        createPeopleViewModel()
 
         inOrder(peopleEvent) {
             verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
             verify(peopleEvent).onChanged(PeopleEvent.ShowError(expectedErrorMessage))
             verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
         }
+    }
+
+    private fun createPeopleViewModel() {
+        mutableAction = MutableLiveData<PeopleEvent>().apply { observeForever(peopleEvent) }
+
+        peopleViewModel = PeopleListViewModel(
+            mutableAction, peopleReducer, peopleUseCase, peoplePresentationMapper
+        )
     }
 }

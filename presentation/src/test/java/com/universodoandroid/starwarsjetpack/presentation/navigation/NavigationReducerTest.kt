@@ -26,25 +26,18 @@ class NavigationReducerTest {
     }
 
     @Test
-    fun `init Should start with true`() {
-        verify(state).onChanged(NavigationState(true))
+    fun `init Should start null screen`() {
+        verify(state).onChanged(NavigationState(null))
     }
 
     @Test
-    fun `update Should set state to true`() {
+    fun `update should select current screen`() {
+        val expectedValue = 1
+
         reset(state)
 
-        reducer.updateTo(NavigationStateEvent.ShowBar)
+        reducer.updateTo(NavigationStateEvent.SelectScreen(expectedValue))
 
-        verify(state).onChanged(NavigationState(true))
-    }
-
-    @Test
-    fun `update Should set state to false`() {
-        reset(state)
-
-        reducer.updateTo(NavigationStateEvent.HideBar)
-
-        verify(state).onChanged(NavigationState(false))
+        verify(state).onChanged(NavigationState(expectedValue))
     }
 }
