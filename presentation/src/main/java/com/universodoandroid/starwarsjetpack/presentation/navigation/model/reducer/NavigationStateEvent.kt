@@ -4,6 +4,7 @@ import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reduce
 
 sealed class NavigationStateEvent : StateEvent {
 
-    object ShowBar : NavigationStateEvent()
-    object HideBar : NavigationStateEvent()
+    data class SelectScreen(
+        val screenId: Int?
+    ) : NavigationStateEvent()
 }

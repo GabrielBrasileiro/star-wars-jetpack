@@ -8,11 +8,17 @@ import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.State
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.StateView
 
-inline fun <E : Event> LifecycleOwner.onEvent(viewModel: EventView<E>, crossinline onEvent: (E) -> Unit) {
+inline fun <E : Event> LifecycleOwner.onEventChanged(
+    viewModel: EventView<E>,
+    crossinline onEvent: (E) -> Unit
+) {
     viewModel.getEvent().observe(this, onEvent)
 }
 
-inline fun <S : State> LifecycleOwner.onStateChanged(viewModel: StateView<S>, crossinline onChange: (S) -> Unit) {
+inline fun <S : State> LifecycleOwner.onStateChanged(
+    viewModel: StateView<S>,
+    crossinline onChange: (S) -> Unit
+) {
     viewModel.getState().observe(this, onChange)
 }
 

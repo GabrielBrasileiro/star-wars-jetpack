@@ -1,10 +1,8 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.MutableLiveData
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
-import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationReducer
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control.PeopleEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control.PeopleStateEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
@@ -15,13 +13,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class PeopleListViewModel(
+    action: MutableLiveData<PeopleEvent>,
+    reducer: Reducer<PeopleState, PeopleStateEvent>,
     private val getPeopleUseCase: GetPeopleUseCase,
-    private val reducer: PeopleReducer,
     private val mapper: Mapper<Person, PersonPresentation>
-) : BaseViewModel<PeopleState, PeopleEvent>(reducer) {
+) : BaseViewModel<PeopleState, PeopleEvent, PeopleStateEvent>(action, reducer) {
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun loadPeople() {
+    init {
+        loadPeople()
+    }
+
+    private fun loadPeople() {
         getPeopleUseCase.getPeople()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -29,7 +31,7 @@ class PeopleListViewModel(
             .doFinally { setEvent(PeopleEvent.HideLoading) }
             .subscribe({
                 val peopleDto = it.map { person -> mapper.map(person) }
-                reducer.updateTo(PeopleStateEvent.ShowPeopleData(peopleDto))
+                updateTo(PeopleStateEvent.ShowPeopleData(peopleDto))
             }, {
                 setEvent(PeopleEvent.ShowError(it.localizedMessage))
             })

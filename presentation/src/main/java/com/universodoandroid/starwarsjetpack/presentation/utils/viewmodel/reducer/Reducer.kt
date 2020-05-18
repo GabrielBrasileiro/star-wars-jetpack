@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.State
 
-abstract class Reducer<S : State, SE : StateEvent>(
-    private val mutableLiveData: MutableLiveData<S> = MutableLiveData<S>(), initialState: S
-) {
+abstract class Reducer<S : State, SE : StateEvent>(initialState: S) {
 
     private val state = MutableLiveData<S>()
 
@@ -14,7 +12,7 @@ abstract class Reducer<S : State, SE : StateEvent>(
         state.value = initialState
     }
 
-    abstract fun updateTo(stateAction: SE)
+    abstract fun updateTo(stateEvent: SE)
 
     protected fun updateState(update: S.() -> S) {
         val currentState = requireNotNull(state.value)

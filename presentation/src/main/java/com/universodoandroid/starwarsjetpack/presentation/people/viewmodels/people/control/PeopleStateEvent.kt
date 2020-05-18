@@ -3,8 +3,7 @@ package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.peo
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reducer.StateEvent
 
-sealed class PeopleStateEvent :
-    StateEvent {
+sealed class PeopleStateEvent : StateEvent {
 
     data class ShowPeopleData(
         val people: List<PersonPresentation>

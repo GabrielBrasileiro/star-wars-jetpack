@@ -1,5 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.di
 
+import androidx.lifecycle.MutableLiveData
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PersonDetailsPresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
@@ -14,6 +15,6 @@ fun getPeopleViewModelModules() = module {
     mapper { PeoplePresentationMapper() }
     mapper { PersonDetailsPresentationMapper() }
 
-    viewModel { PeopleListViewModel(get(), PeopleReducer(), getMapper()) }
-    viewModel { PersonDetailsViewModel(get(), getMapper()) }
+    viewModel { PeopleListViewModel(MutableLiveData(), PeopleReducer(), get(), getMapper()) }
+    viewModel { PersonDetailsViewModel(MutableLiveData(), get(), getMapper()) }
 }

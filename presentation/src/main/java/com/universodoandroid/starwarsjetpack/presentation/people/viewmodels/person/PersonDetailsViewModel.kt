@@ -1,7 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.MutableLiveData
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPersonUseCase
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
@@ -11,11 +10,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class PersonDetailsViewModel(
+    event: MutableLiveData<PersonEvent>,
     private val getPersonUseCase: GetPersonUseCase,
     private val mapper: Mapper<Person, PersonDetailsPresentation>
-) : EventViewModel<PersonEvent>() {
+) : EventViewModel<PersonEvent>(event) {
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadPerson(id: String) {
         getPersonUseCase.loadPerson(id)
             .subscribeOn(Schedulers.io())

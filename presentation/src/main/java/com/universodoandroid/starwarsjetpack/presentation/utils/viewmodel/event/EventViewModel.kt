@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.ObservableViewModel
 
-open class EventViewModel<E : Event> : EventView<E>, ObservableViewModel() {
-
-    private val event: MutableLiveData<E> = MutableLiveData()
+open class EventViewModel<E : Event>(
+    private val event: MutableLiveData<E>
+) : EventView<E>, ObservableViewModel() {
 
     override fun getEvent(): LiveData<E> = event
 
