@@ -8,6 +8,7 @@ internal object PeopleDataMock {
     fun getPersonEntity(id: String) =
         PersonEntity(
             id = id,
+            imgUrl = "http://image",
             birthYear = "05/05/1999",
             created = "05/05/2018",
             edited = "05/05/2019",

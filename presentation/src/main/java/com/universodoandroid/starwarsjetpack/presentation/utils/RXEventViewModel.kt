@@ -1,11 +1,12 @@
-package com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel
+package com.universodoandroid.starwarsjetpack.presentation.utils
 
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.ViewModel
+import com.mvvmredux.core.event.Event
+import com.mvvmredux.core.event.EventViewModel
+import com.mvvmredux.core.livedata.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class ObservableViewModel: LifecycleObserver, ViewModel() {
+abstract class RXEventViewModel<E : Event>(event: SingleLiveEvent<E>) : EventViewModel<E>(event) {
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 

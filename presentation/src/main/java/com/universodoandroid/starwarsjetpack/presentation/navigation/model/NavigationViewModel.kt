@@ -1,14 +1,19 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model
 
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.StateViewModel
+import com.mvvmredux.core.ext.requireStateValue
+import com.mvvmredux.core.reducer.Reducer
+import com.mvvmredux.core.state.StateViewModel
+import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationStateEvent
 
-class NavigationViewModel: StateViewModel<NavigationState>() {
+class NavigationViewModel(
+    reducer: Reducer<NavigationState, NavigationStateEvent>
+) : StateViewModel<NavigationState, NavigationStateEvent>(reducer) {
 
-    fun showNavigationBar() {
-        setState(NavigationState(true))
+    fun selectCurrentScreen(screen: Int?) {
+        updateTo(NavigationStateEvent.SelectScreen(screen))
     }
 
-    fun hideNavigationBar() {
-        setState(NavigationState(false))
+    fun getCurrentScreen(): Int? {
+        return requireStateValue().screenSelected
     }
 }

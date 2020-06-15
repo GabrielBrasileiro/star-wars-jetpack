@@ -12,6 +12,7 @@ import com.universodoandroid.starwarsjetpack.local.people.data.PeopleLocalDataIm
 import com.universodoandroid.starwarsjetpack.local.people.database.PeopleDatabase
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonDataMapper
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonEntityMapper
+import com.universodoandroid.starwarsjetpack.local.people.mapper.imgs.DefaultPeopleImages
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
@@ -22,9 +23,13 @@ class PeopleLocalDataTest {
     private val peopleDatabase = mock<PeopleDatabase>()
     private val cachePreferences = mock<CachePreferences>()
 
+    private val defaultPeopleImages = DefaultPeopleImages()
+    private val entityMapper = PersonEntityMapper(defaultPeopleImages)
+    private val dataMapper = PersonDataMapper()
+
     private val peopleLocalData: PeopleLocalData =
         PeopleLocalDataImpl(
-            peopleDatabase, cachePreferences, PersonDataMapper(), PersonEntityMapper()
+            peopleDatabase, cachePreferences, dataMapper, entityMapper
         )
 
     @Test

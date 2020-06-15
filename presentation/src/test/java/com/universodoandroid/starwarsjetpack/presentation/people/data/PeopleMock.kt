@@ -1,12 +1,24 @@
-package com.universodoandroid.starwarsjetpack.presentation.people
+package com.universodoandroid.starwarsjetpack.presentation.people.data
 
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
 
 object PeopleMock {
 
     fun withTwoPeople() = listOf(
-        buildPerson("0", "Anakin"),
-        buildPerson("1", "Darth")
+        buildPerson(
+            "0",
+            "Anakin"
+        ),
+        buildPerson(
+            "1",
+            "Darth"
+        )
+    )
+
+    fun presentationWithTwoPeople() = listOf(
+        PersonPresentation("0", "Anakin", "", ""),
+        PersonPresentation("1", "Darth", "", "")
     )
 
     private fun buildPerson(id: String, name: String): Person {

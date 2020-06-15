@@ -1,6 +1,6 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer
 
-import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.Event
+import com.mvvmredux.core.event.Event
 
 sealed class PeopleEvent : Event {
 
@@ -10,5 +10,4 @@ sealed class PeopleEvent : Event {
 
     object HideLoading : PeopleEvent()
     object ShowLoading : PeopleEvent()
-
 }

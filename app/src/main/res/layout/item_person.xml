@@ -15,35 +15,49 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="5dp"
+        tools:layout_width="200dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/image_view"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:contentDescription="@null"
+                android:maxHeight="250dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_star_wars_yellow_logo"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/image_guide_line"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/image_guide_line"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
 
             <TextView
                 android:id="@+id/person_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="@{person.name}"
-                android:textSize="20sp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/person_planet"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_view"
-                app:layout_constraintTop_toTopOf="@+id/image_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view"
                 tools:text="@sample/people.json/data/name" />
 
             <TextView
@@ -51,11 +65,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="@{person.planet}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_view"
-                app:layout_constraintTop_toBottomOf="@+id/person_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/person_name"
                 tools:text="@sample/people.json/data/planet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

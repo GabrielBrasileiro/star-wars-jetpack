@@ -6,16 +6,18 @@ import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.ge
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonDataMapper
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonEntityMapper
+import com.universodoandroid.starwarsjetpack.local.people.mapper.imgs.DefaultPeopleImages
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class PersonMapperTest {
 
-    private val mapperData: Mapper<PersonEntity, PersonData> =
-        PersonDataMapper()
+    private val mapperData: Mapper<PersonEntity, PersonData> = PersonDataMapper()
+
+    private val defaultPeopleImages = DefaultPeopleImages()
     private val mapperEntity: Mapper<PersonData, PersonEntity> =
-        PersonEntityMapper()
+        PersonEntityMapper(defaultPeopleImages)
 
     @Test
     fun mapperBuildingCorrectToData() {

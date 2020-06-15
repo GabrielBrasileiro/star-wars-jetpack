@@ -2,6 +2,7 @@ package com.universodoandroid.starwarsjetpack.data.people.entities
 
 data class PersonData(
     val id: String,
+    val imgUrl: String? = null,
     val birthYear: String,
     val created: String,
     val edited: String,
