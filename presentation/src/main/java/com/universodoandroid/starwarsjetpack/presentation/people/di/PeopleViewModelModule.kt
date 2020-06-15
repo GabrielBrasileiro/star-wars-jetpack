@@ -15,7 +15,6 @@ fun getPeopleViewModelModules() = module {
     mapper { PeoplePresentationMapper() }
     mapper { PersonDetailsPresentationMapper() }
 
-    viewModel { PeopleListViewModel(SingleLiveEvent(),
-        PeopleReducer(), get(), getMapper()) }
+    viewModel { PeopleListViewModel(SingleLiveEvent(), PeopleReducer(), get(), getMapper()) }
     viewModel { PersonDetailsViewModel(SingleLiveEvent(), get(), getMapper()) }
 }
