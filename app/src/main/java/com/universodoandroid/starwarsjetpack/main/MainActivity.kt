@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.universodoandroid.starwarsjetpack.R
 import com.universodoandroid.starwarsjetpack.extensions.show
 import com.universodoandroid.starwarsjetpack.main.router.MainBottomNavRouter
-import com.universodoandroid.starwarsjetpack.presentation.extensions.onStateChanged
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.NavigationViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
@@ -45,13 +44,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun showNavigation(show: Boolean) {
-        if (show) setupNavigation(visibility = true, actionBarEnabled = false)
-        else setupNavigation(visibility = false, actionBarEnabled = true)
-    }
-
-    private fun setupNavigation(visibility: Boolean, actionBarEnabled: Boolean) {
-        navigationView.show(visibility)
-        supportActionBar?.setDisplayHomeAsUpEnabled(actionBarEnabled)
-    }
 }

@@ -1,20 +1,14 @@
 package com.universodoandroid.starwarsjetpack.modules.persondetails
 
 import android.os.Bundle
-import android.view.View
+import com.mvvmredux.ext.onEvent
 import com.universodoandroid.starwarsjetpack.R
-import com.universodoandroid.starwarsjetpack.constants.Constants
 import com.universodoandroid.starwarsjetpack.databinding.ActivityPersonDetailsBinding
 import com.universodoandroid.starwarsjetpack.extensions.showToast
-import com.universodoandroid.starwarsjetpack.presentation.extensions.onEventChanged
-import com.universodoandroid.starwarsjetpack.presentation.navigation.model.NavigationViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonDetailsViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
 import com.universodoandroid.starwarsjetpack.ui.activity.BindingActivity
-import com.universodoandroid.starwarsjetpack.ui.fragment.BindingFragment
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PersonDetailsActivity : BindingActivity<ActivityPersonDetailsBinding>(
@@ -39,7 +33,7 @@ class PersonDetailsActivity : BindingActivity<ActivityPersonDetailsBinding>(
     }
 
     private fun initPersonObserver() {
-        onEventChanged(viewModel) { event ->
+        onEvent(viewModel) { event ->
             when (event) {
                 is PersonEvent.ShowUser -> loadUser(event.user)
                 is PersonEvent.ShowError -> showError(event.error)
