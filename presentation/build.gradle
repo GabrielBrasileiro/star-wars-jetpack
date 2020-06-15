@@ -6,6 +6,8 @@ dependencies {
 
     implementation project(':domain')
 
+    implementation "com.mvvmredux:core:$mvvm_redux_version"
+
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 

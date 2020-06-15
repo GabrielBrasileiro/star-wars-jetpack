@@ -48,12 +48,16 @@ dependencies {
     // LifeCycle
     implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
+    // Reducer
+    implementation "com.mvvmredux:core:$mvvm_redux_version"
+    implementation "com.mvvmredux:ext:$mvvm_redux_version"
+
     // Binding
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_view_model_version"
     kapt "com.android.databinding:compiler:$databinding_compiler_version"
     
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
