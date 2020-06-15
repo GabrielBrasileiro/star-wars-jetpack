@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model
 
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.State
+import com.mvvmredux.core.state.State
 
 data class NavigationState(
     val screenSelected: Int? = null

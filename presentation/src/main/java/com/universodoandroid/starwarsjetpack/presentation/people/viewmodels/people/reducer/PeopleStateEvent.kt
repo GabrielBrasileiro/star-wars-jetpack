@@ -1,7 +1,7 @@
-package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control
+package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer
 
+import com.mvvmredux.core.stateevent.StateEvent
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reducer.StateEvent
 
 sealed class PeopleStateEvent : StateEvent {
 

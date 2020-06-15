@@ -1,19 +1,19 @@
 package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person
 
-import androidx.lifecycle.MutableLiveData
+import com.mvvmredux.core.livedata.SingleLiveEvent
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPersonUseCase
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.model.PersonDetailsPresentation
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.event.EventViewModel
+import com.universodoandroid.starwarsjetpack.presentation.utils.RXEventViewModel
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class PersonDetailsViewModel(
-    event: MutableLiveData<PersonEvent>,
+    event: SingleLiveEvent<PersonEvent>,
     private val getPersonUseCase: GetPersonUseCase,
     private val mapper: Mapper<Person, PersonDetailsPresentation>
-) : EventViewModel<PersonEvent>(event) {
+) : RXEventViewModel<PersonEvent>(event) {
 
     fun loadPerson(id: String) {
         getPersonUseCase.loadPerson(id)
@@ -21,9 +21,9 @@ class PersonDetailsViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 val personDto = mapper.map(it)
-                setEvent(PersonEvent.ShowUser(personDto))
+                sendEvent(PersonEvent.ShowUser(personDto))
             }, {
-                setEvent(PersonEvent.ShowError(it.localizedMessage))
+                sendEvent(PersonEvent.ShowError(it.localizedMessage))
             })
             .pool()
     }

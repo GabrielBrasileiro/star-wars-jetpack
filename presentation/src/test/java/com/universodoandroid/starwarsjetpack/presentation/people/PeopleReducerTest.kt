@@ -5,9 +5,9 @@ import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.universodoandroid.starwarsjetpack.presentation.people.data.PeopleMock
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleReducer
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleState
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control.PeopleStateEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleStateEvent
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,14 +22,19 @@ class PeopleReducerTest {
 
     @Before
     fun setup() {
-        reducer = PeopleReducer().apply {
+        reducer = PeopleReducer()
+            .apply {
             getState().observeForever(state)
         }
     }
 
     @Test
     fun `state should notify empty list`() {
-        verify(state).onChanged(PeopleState(listOf()))
+        verify(state).onChanged(
+            PeopleState(
+                listOf()
+            )
+        )
     }
 
     @Test
@@ -38,6 +43,10 @@ class PeopleReducerTest {
 
         reducer.updateTo(PeopleStateEvent.ShowPeopleData(expected))
 
-        verify(state).onChanged(PeopleState(expected))
+        verify(state).onChanged(
+            PeopleState(
+                expected
+            )
+        )
     }
 }

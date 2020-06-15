@@ -1,8 +1,8 @@
 package com.universodoandroid.starwarsjetpack.presentation.people
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.mvvmredux.core.livedata.SingleLiveEvent
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.reset
@@ -12,9 +12,9 @@ import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
 import com.universodoandroid.starwarsjetpack.presentation.people.data.PeopleMock
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleReducer
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control.PeopleEvent
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.control.PeopleStateEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleStateEvent
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -35,7 +35,6 @@ class PeopleListViewModelTest {
 
     private val peoplePresentationMapper = PeoplePresentationMapper()
 
-    private lateinit var mutableAction: MutableLiveData<PeopleEvent>
     private lateinit var peopleViewModel: PeopleListViewModel
 
     @Before
@@ -81,10 +80,10 @@ class PeopleListViewModelTest {
     }
 
     private fun createPeopleViewModel() {
-        mutableAction = MutableLiveData<PeopleEvent>().apply { observeForever(peopleEvent) }
+        val mutableEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
 
         peopleViewModel = PeopleListViewModel(
-            mutableAction, peopleReducer, peopleUseCase, peoplePresentationMapper
+            mutableEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
         )
     }
 }

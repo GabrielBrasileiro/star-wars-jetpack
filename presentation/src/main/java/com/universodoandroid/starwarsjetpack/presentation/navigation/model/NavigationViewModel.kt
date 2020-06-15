@@ -1,9 +1,9 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model
 
-import com.universodoandroid.starwarsjetpack.presentation.extensions.requireStateValue
+import com.mvvmredux.core.ext.requireStateValue
+import com.mvvmredux.core.reducer.Reducer
+import com.mvvmredux.core.state.StateViewModel
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationStateEvent
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reducer.Reducer
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.state.StateViewModel
 
 class NavigationViewModel(
     reducer: Reducer<NavigationState, NavigationStateEvent>

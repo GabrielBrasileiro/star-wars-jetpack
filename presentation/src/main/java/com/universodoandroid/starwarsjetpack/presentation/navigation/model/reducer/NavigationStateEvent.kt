@@ -1,6 +1,6 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer
 
-import com.universodoandroid.starwarsjetpack.presentation.utils.viewmodel.reducer.StateEvent
+import com.mvvmredux.core.stateevent.StateEvent
 
 sealed class NavigationStateEvent : StateEvent {
 
