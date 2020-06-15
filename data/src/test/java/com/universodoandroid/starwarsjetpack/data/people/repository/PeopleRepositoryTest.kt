@@ -6,7 +6,10 @@ import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteD
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleDataMapper
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeopleMapper
 import com.universodoandroid.starwarsjetpack.data.people.mappers.PeoplePageMapper
+import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPeople
+import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPeoplePage
 import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPeoplePageData
+import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPerson
 import com.universodoandroid.starwarsjetpack.data.people.repository.PeoplePageDataMock.getPersonData
 import com.universodoandroid.starwarsjetpack.domain.people.repository.PeopleRepository
 import io.reactivex.Completable
@@ -45,6 +48,7 @@ class PeopleRepositoryTest {
 
     @Test
     fun `getPeople Should call remote & local data source When preferences return false`() {
+        val expected = getPeople()
         val peoplePageData = getPeoplePageData()
         val peopleData = peoplePageData.people
 
@@ -56,9 +60,7 @@ class PeopleRepositoryTest {
         peopleRepository.getPeople()
             .test()
             .assertNoErrors()
-            .assertValue {
-                it.size == peopleData.size && it[0].name == peopleData[0].name
-            }
+            .assertValue(expected)
 
         verify(localData).registerCache(true)
     }
@@ -82,8 +84,8 @@ class PeopleRepositoryTest {
 
     @Test
     fun `getPeople Should call local data source When preferences return true`() {
-        val peopleData =
-            PeoplePageDataMock.getPeopleData()
+        val expected = PeoplePageDataMock.getPeople()
+        val peopleData = PeoplePageDataMock.getPeopleData()
 
         whenever(localData.wasCached()).thenReturn(true)
         whenever(localData.getPeople()).thenReturn(Single.just(peopleData))
@@ -91,13 +93,12 @@ class PeopleRepositoryTest {
         peopleRepository.getPeople()
             .test()
             .assertNoErrors()
-            .assertValue {
-                it.size == peopleData.size && it[0].name == peopleData[0].name
-            }
+            .assertValue(expected)
     }
 
     @Test
     fun `getPeoplePerPage Should return a page with people When called`() {
+        val expected = getPeoplePage()
         val peoplePage = getPeoplePageData()
 
         whenever(remoteData.getPeoplePerPage(any())).thenReturn(Flowable.just(peoplePage))
@@ -105,9 +106,7 @@ class PeopleRepositoryTest {
         peopleRepository.getPeoplePerPage(any())
             .test()
             .assertNoErrors()
-            .assertValue {
-                it.hasNextPage == peoplePage.hasNextPage && it.people[0].name == peoplePage.people[0].name
-            }
+            .assertValue(expected)
     }
 
     @Test
@@ -121,16 +120,15 @@ class PeopleRepositoryTest {
 
     @Test
     fun `getPeople Should return person When called`() {
-        val expectedId = "0"
+        val id = "0"
+        val expected = getPerson(id)
 
-        whenever(localData.getPerson(any())).thenReturn(Single.just(getPersonData(expectedId)))
+        whenever(localData.getPerson(id)).thenReturn(Single.just(getPersonData(id)))
 
-        peopleRepository.getPerson(expectedId)
+        peopleRepository.getPerson(id)
             .test()
             .assertNoErrors()
-            .assertValue {
-                it.id == expectedId
-            }
+            .assertValue(expected)
     }
 
     @Test

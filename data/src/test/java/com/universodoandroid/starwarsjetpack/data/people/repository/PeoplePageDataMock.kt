@@ -2,6 +2,8 @@ package com.universodoandroid.starwarsjetpack.data.people.repository
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PeoplePageData
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
+import com.universodoandroid.starwarsjetpack.domain.people.entities.PeoplePage
+import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 
 object PeoplePageDataMock {
 
@@ -16,12 +18,11 @@ object PeoplePageDataMock {
     )
 
     fun getPersonData(id: String) = PersonData(
-        id = id,
+        id = "",
         birthYear = "",
         created = "",
         edited = "",
         eyeColor = "",
-        films = ArrayList(),
         gender = "",
         hairColor = "",
         height = "",
@@ -29,10 +30,33 @@ object PeoplePageDataMock {
         mass = "",
         name = "",
         skinColor = "",
-        species = ArrayList(),
-        starships = ArrayList(),
-        url = "",
-        vehicles = ArrayList()
+        url = ""
     )
 
+    fun getPeoplePage() = PeoplePage(
+        hasNextPage = false,
+        people = getPeople()
+    )
+
+
+    fun getPeople() = listOf(
+        getPerson("0"),
+        getPerson("1")
+    )
+
+    fun getPerson(id: String) = Person(
+        id = "",
+        birthYear = "",
+        created = "",
+        edited = "",
+        eyeColor = "",
+        gender = "",
+        hairColor = "",
+        height = "",
+        homeworld = "",
+        mass = "",
+        name = "",
+        skinColor = "",
+        url = ""
+    )
 }
