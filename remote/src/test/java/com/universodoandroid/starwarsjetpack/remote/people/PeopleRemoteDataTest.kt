@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleRemoteData
 import com.universodoandroid.starwarsjetpack.remote.people.data.PeopleRemoteDataImpl
-import com.universodoandroid.starwarsjetpack.remote.people.data.PeopleResponseMock.getResponse
+import com.universodoandroid.starwarsjetpack.remote.people.data.PeopleResponseMock
 import com.universodoandroid.starwarsjetpack.remote.people.mapper.PersonPageDataMapper
 import com.universodoandroid.starwarsjetpack.remote.people.remote.PeopleRemoteDataSource
 import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PeopleResponse
@@ -29,7 +29,7 @@ class PeopleRemoteDataTest {
 
     @Test
     fun `getAllPeople should return pages when has next not null or blank`() {
-        val response = getResponse("##")
+        val response = PeopleResponseMock.getResponse("##")
         val expectedPeopleNumber = 4
 
         val peopleNumber = AtomicInteger(0)
@@ -58,15 +58,14 @@ class PeopleRemoteDataTest {
     @Test
     fun `getPeoplePerPage Should return a data page`() {
         val page = 0
+        val response = PeopleResponseMock.getResponse()
+        val expectedValue = PeopleResponseMock.getData()
 
-        whenever(remoteDataSource.loadPeoplePerPage(any())).thenReturn(Flowable.just(getResponse()))
+        whenever(remoteDataSource.loadPeoplePerPage(any())).thenReturn(Flowable.just(response))
 
         peopleRemoteData.getPeoplePerPage(page)
             .test()
             .assertComplete()
-            .assertValue {
-                val results = it.people
-                results[0].name == "Darth Vader" && results[1].name == "Anakin Skywalker"
-            }
+            .assertValue(expectedValue)
     }
 }

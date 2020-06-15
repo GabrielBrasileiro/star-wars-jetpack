@@ -24,15 +24,13 @@ class PeopleRemoteDataSourceTest {
     @Test
     fun `loadPeoplePerPage Should return a page When called`() {
         val page = 0
+        val expectedResponse = getResponse()
 
-        whenever(peopleApiDataSource.loadPeople(page)).thenReturn(Flowable.just(getResponse()))
+        whenever(peopleApiDataSource.loadPeople(page)).thenReturn(Flowable.just(expectedResponse))
 
         peopleRemoteDataSource.loadPeoplePerPage(page)
             .test()
             .assertComplete()
-            .assertValue {
-                val results = it.results
-                results[0].name == "Darth Vader" && results[1].name == "Anakin Skywalker"
-            }
+            .assertValue(expectedResponse)
     }
 }
