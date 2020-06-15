@@ -18,18 +18,16 @@ internal class PeopleLocalDataImpl(
 ) : PeopleLocalData {
 
     override fun getPeople(): Single<List<PersonData>> {
-        return database.loadPeople().map {
-            it.map { person -> personDataMapper.map(person) }
-        }
+        return database.loadPeople().map { it.map(personDataMapper::map) }
     }
 
     override fun savePeople(people: List<PersonData>): Completable {
-        val dataEntities = people.map { personEntityMapper.map(it) }
+        val dataEntities = people.map(personEntityMapper::map)
         return database.savePeople(dataEntities)
     }
 
     override fun getPerson(id: String): Single<PersonData> {
-        return database.loadPerson(id).map { personDataMapper.map(it) }
+        return database.loadPerson(id).map(personDataMapper::map)
     }
 
     override fun deleteData(): Completable {
