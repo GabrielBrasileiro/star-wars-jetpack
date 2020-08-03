@@ -9,18 +9,14 @@ import org.junit.runners.model.Statement
 
 class RxSchedulerRule : TestRule {
 
-    private val immediate = Schedulers.trampoline()
-
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
             @Throws(Throwable::class)
             override fun evaluate() {
-                RxAndroidPlugins.setInitMainThreadSchedulerHandler { immediate }
-
-                RxJavaPlugins.setInitIoSchedulerHandler { immediate }
-                RxJavaPlugins.setInitComputationSchedulerHandler { immediate }
-                RxJavaPlugins.setInitNewThreadSchedulerHandler { immediate }
-                RxJavaPlugins.setInitSingleSchedulerHandler { immediate }
+                RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+                RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
+                RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
 
                 try {
                     base.evaluate()
@@ -31,5 +27,4 @@ class RxSchedulerRule : TestRule {
             }
         }
     }
-
 }
