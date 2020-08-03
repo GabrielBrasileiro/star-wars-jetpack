@@ -15,29 +15,45 @@ class MainBottomNavRouterImpl(
     override fun navigateTo(@IdRes screen: Int): Boolean {
         if (screen == screenSelected) return false
 
-        val lastScreenSelected = navFragment[screenSelected]?.value
-        val currentScreeSelected = navFragment[screen]?.value
         val beginTransaction = fragmentManager.beginTransaction()
 
-        lastScreenSelected?.run { hideFragment(beginTransaction, this) }
-        currentScreeSelected?.run { showFragment(beginTransaction, this) }
-
-        screenSelected = screen
+        hideFragmentIfPresent(beginTransaction)
+        showFragment(screen, beginTransaction)
 
         beginTransaction.commit()
+
+        screenSelected = screen
 
         return true
     }
 
-    private fun showFragment(transaction: FragmentTransaction, fragment: Fragment) {
-        if (fragmentManager.fragments.contains(fragment).not()) {
-            transaction.add(container, fragment)
+    private fun showFragment(screen: Int, transaction: FragmentTransaction) {
+        if (isFragmentPresent(screen)) {
+            getFragmentByTag(screen)?.run(transaction::show)
         } else {
-            transaction.show(fragment)
+            navFragment[screen]?.value?.let { frag ->
+                transaction.add(container, frag, screen.toString())
+            }
         }
     }
 
-    private fun hideFragment(transaction: FragmentTransaction, fragment: Fragment) {
-        transaction.hide(fragment)
+    private fun hideFragmentIfPresent(transaction: FragmentTransaction) {
+        getFragmentByTag(screenSelected)?.run(transaction::hide)
+    }
+
+    private fun isFragmentPresent(screen: Int): Boolean {
+        return fragmentManager.fragments.map { it.tag }.contains(screen.toString())
+    }
+
+    private fun getFragmentByTag(screen: Int?): Fragment? {
+        return screen?.let { tag ->
+            fragmentManager.fragments.forEach {
+                if (it.tag == tag.toString()) {
+                    return it
+                }
+            }
+
+            return null
+        }
     }
 }
