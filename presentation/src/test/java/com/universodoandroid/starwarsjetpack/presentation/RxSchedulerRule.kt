@@ -11,20 +11,21 @@ class RxSchedulerRule : TestRule {
 
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
-            @Throws(Throwable::class)
             override fun evaluate() {
-                RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-                RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-                RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-                RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+                RxAndroidPlugins.reset()
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler { TRAMPOLINE }
 
-                try {
-                    base.evaluate()
-                } finally {
-                    RxJavaPlugins.reset()
-                    RxAndroidPlugins.reset()
-                }
+                RxJavaPlugins.reset()
+                RxJavaPlugins.setIoSchedulerHandler { TRAMPOLINE }
+                RxJavaPlugins.setComputationSchedulerHandler { TRAMPOLINE }
+                RxJavaPlugins.setNewThreadSchedulerHandler { TRAMPOLINE }
+
+                base.evaluate()
             }
         }
+    }
+
+    private companion object {
+        val TRAMPOLINE = Schedulers.trampoline()
     }
 }
