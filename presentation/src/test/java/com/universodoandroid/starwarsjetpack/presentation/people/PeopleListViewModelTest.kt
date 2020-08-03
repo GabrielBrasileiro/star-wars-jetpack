@@ -50,7 +50,7 @@ class PeopleListViewModelTest {
     @Test
     fun `getPeople Should return a people list When called`() {
         val people = PeopleMock.withTwoPeople()
-        val peopleDto = people.map { peoplePresentationMapper.map(it) }
+        val peopleDto = people.map(peoplePresentationMapper::map)
 
         whenever(peopleUseCase.getPeople()).thenReturn(Single.just(people))
 
