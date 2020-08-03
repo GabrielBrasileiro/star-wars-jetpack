@@ -37,11 +37,6 @@ class PeopleListViewModelTest {
 
     private lateinit var peopleViewModel: PeopleListViewModel
 
-    @Before
-    fun setup() {
-        reset(peopleUseCase)
-    }
-
     @After
     fun tearDown() {
         reset(peopleEvent, peopleReducer)
@@ -52,6 +47,7 @@ class PeopleListViewModelTest {
         val people = PeopleMock.withTwoPeople()
         val peopleDto = people.map(peoplePresentationMapper::map)
 
+        reset(peopleUseCase)
         whenever(peopleUseCase.getPeople()).thenReturn(Single.just(people))
 
         createPeopleViewModel()
@@ -68,6 +64,7 @@ class PeopleListViewModelTest {
         val expectedErrorMessage = "Server error"
         val throwableWithLocalizedMessage = Throwable(expectedErrorMessage)
 
+        reset(peopleUseCase)
         whenever(peopleUseCase.getPeople()).thenReturn(Single.error(throwableWithLocalizedMessage))
 
         createPeopleViewModel()
