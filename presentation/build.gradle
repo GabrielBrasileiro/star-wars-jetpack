@@ -18,8 +18,7 @@ dependencies {
     testImplementation "androidx.test:rules:$android_test_rules"
     testImplementation "androidx.test:core-ktx:$android_test_core"
     testImplementation "androidx.test:runner:$android_test_runner"
-
-    testImplementation 'android.arch.core:core-testing:1.1.1'
+    testImplementation "android.arch.core:core-testing:$core_testing_version"
 }
 
 repositories {

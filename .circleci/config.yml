@@ -7,7 +7,7 @@ jobs:
   build:
 
     docker:
-      - image: circleci/android:api-25
+      - image: circleci/android:api-30
 
     steps:
       - checkout
