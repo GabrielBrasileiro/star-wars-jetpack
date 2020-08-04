@@ -30,7 +30,6 @@ buildscript {
 
         // Presentation
         kotlin_tx_version = '1.0.2'
-        mockito_core_version = '3.0.0'
         mvvm_redux_version = '1.0.1'
 
         // Remote
@@ -46,7 +45,7 @@ buildscript {
 
         // Mockito
         mockito_kotlin_version = '2.2.0'
-        mockito_core_version = '3.0.0'
+        mockito_core_version = '3.4.6'
 
         // Tests
         core_testing_version = '2.0.0'
@@ -56,7 +55,7 @@ buildscript {
         junit_version = '4.13'
 
         // Dependencies
-        gradle_version = '3.5.3'
+        gradle_version = '4.0.1'
         jacoco_version = '0.8.5'
     }
 
