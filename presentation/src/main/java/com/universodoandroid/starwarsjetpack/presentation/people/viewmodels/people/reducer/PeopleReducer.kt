@@ -2,9 +2,7 @@ package com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.peo
 
 import com.mvvmredux.core.reducer.ReducerScope
 
-internal class PeopleReducer : ReducerScope<PeopleState, PeopleStateEvent>(
-    PeopleState()
-) {
+internal class PeopleReducer : ReducerScope<PeopleState, PeopleStateEvent>(PeopleState()) {
 
     override fun updateTo(stateEvent: PeopleStateEvent) = updateState {
         when (stateEvent) {
