@@ -46,9 +46,10 @@ buildscript {
         // Mockito
         mockito_kotlin_version = '2.2.0'
         mockito_core_version = '3.4.6'
+        mockito_inline_version = '3.3.3'
 
         // Tests
-        core_testing_version = '2.0.0'
+        core_testing_version = '2.1.0'
         android_test_runner = '1.2.0'
         android_test_core = '1.2.0'
         android_test_rules = '1.2.0'

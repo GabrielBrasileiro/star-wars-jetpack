@@ -23,10 +23,10 @@ import org.junit.Test
 class PeopleListViewModelTest {
 
     @get:Rule
-    val rxRule = RxSchedulerRule()
+    val instantTaskExecutor = InstantTaskExecutorRule()
 
     @get:Rule
-    val instantTaskExecutor = InstantTaskExecutorRule()
+    val rxRule = RxSchedulerRule()
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val peopleReducer = mock<PeopleReducer>()
