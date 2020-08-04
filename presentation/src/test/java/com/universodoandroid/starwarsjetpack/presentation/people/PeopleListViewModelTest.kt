@@ -56,7 +56,7 @@ class PeopleListViewModelTest {
 
         createPeopleViewModel()
 
-        inOrder(peopleReducer, peopleEvent) {
+        inOrder(peopleEvent, peopleReducer) {
             verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
             verify(peopleReducer).updateTo(PeopleStateEvent.ShowPeopleData(peopleDto))
             verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
