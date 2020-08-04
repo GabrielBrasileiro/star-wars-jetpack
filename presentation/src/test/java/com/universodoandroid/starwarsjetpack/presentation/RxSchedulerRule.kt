@@ -21,6 +21,9 @@ class RxSchedulerRule : TestRule {
                 RxJavaPlugins.setNewThreadSchedulerHandler { TRAMPOLINE }
 
                 base.evaluate()
+
+                RxAndroidPlugins.reset()
+                RxJavaPlugins.reset()
             }
         }
     }

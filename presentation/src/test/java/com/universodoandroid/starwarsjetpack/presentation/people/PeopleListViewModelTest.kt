@@ -3,7 +3,6 @@ package com.universodoandroid.starwarsjetpack.presentation.people
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.mvvmredux.core.livedata.SingleLiveEvent
-import com.mvvmredux.core.reducer.Reducer
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.reset
@@ -14,10 +13,9 @@ import com.universodoandroid.starwarsjetpack.presentation.people.data.PeopleMock
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleEvent
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleState
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleStateEvent
 import io.reactivex.Single
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -31,7 +29,7 @@ class PeopleListViewModelTest {
     val instantTaskExecutor = InstantTaskExecutorRule()
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
-    private val peopleReducer = mock<Reducer<PeopleState, PeopleStateEvent>>()
+    private val peopleReducer = mock<PeopleReducer>()
     private val peopleEvent = mock<Observer<PeopleEvent>>()
 
     private val peoplePresentationMapper = PeoplePresentationMapper()
@@ -41,11 +39,6 @@ class PeopleListViewModelTest {
     @Before
     fun setup() {
         reset(peopleUseCase)
-    }
-
-    @After
-    fun tearDown() {
-        reset(peopleEvent, peopleReducer)
     }
 
     @Test
