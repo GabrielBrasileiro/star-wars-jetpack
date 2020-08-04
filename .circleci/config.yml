@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: Run Unit Test
-          command: ./gradlew test
+          command: ./gradlew test --stacktrace
       - run:
           name: Run Build
           command: ./gradlew build
