@@ -12,8 +12,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Build
-          command: ./gradlew build
-      - run:
           name: Run Unit Test
           command: ./gradlew test
+      - run:
+          name: Run Build
+          command: ./gradlew build
