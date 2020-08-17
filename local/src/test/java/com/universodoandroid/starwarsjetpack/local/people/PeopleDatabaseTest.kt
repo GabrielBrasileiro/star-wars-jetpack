@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.local.people.dao.PersonDao
-import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock
+import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.getPersonEntity
 import com.universodoandroid.starwarsjetpack.local.people.database.PeopleDatabase
 import com.universodoandroid.starwarsjetpack.local.people.database.PeopleDatabaseImpl
 import io.reactivex.Completable
@@ -18,35 +18,27 @@ class PeopleDatabaseTest {
 
     @Test
     fun `loadPeople dao should return all saved people`() {
-        val people = listOf(
-            PeopleDataMock.getPersonEntity("1"),
-            PeopleDataMock.getPersonEntity("2")
-        )
+        val people = listOf(getPersonEntity("1"), getPersonEntity("2"))
 
         whenever(dao.getPeople()).thenReturn(Single.just(people))
 
         database.loadPeople()
             .test()
             .assertComplete()
-            .assertValue {
-                it.size == people.size && it[0].id == people[0].id
-            }
+            .assertValue(people)
     }
 
     @Test
     fun `loadPerson dao should return a unique saved person`() {
-        val expectedId = "1"
         val personId = "1"
-        val person = PeopleDataMock.getPersonEntity(expectedId)
+        val person = getPersonEntity(personId)
 
         whenever(dao.getPerson(personId)).thenReturn(Single.just(person))
 
         database.loadPerson(personId)
             .test()
             .assertComplete()
-            .assertValue {
-                it.id == expectedId
-            }
+            .assertValue(person)
     }
 
     @Test
@@ -55,6 +47,7 @@ class PeopleDatabaseTest {
 
         database.savePeople(listOf())
             .test()
+            .assertNoErrors()
             .assertComplete()
     }
 
@@ -64,6 +57,7 @@ class PeopleDatabaseTest {
 
         database.deleteData()
             .test()
+            .assertNoErrors()
             .assertComplete()
     }
 }

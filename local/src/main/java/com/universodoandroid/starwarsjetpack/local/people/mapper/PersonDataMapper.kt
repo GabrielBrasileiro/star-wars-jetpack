@@ -2,6 +2,7 @@ package com.universodoandroid.starwarsjetpack.local.people.mapper
 
 import com.universodoandroid.starwarsjetpack.data.people.entities.PersonData
 import com.universodoandroid.starwarsjetpack.local.people.database.entity.PersonEntity
+import com.universodoandroid.starwarsjetpack.local.people.mapper.imgs.DefaultPeopleImages
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 
 internal class PersonDataMapper : Mapper<PersonEntity, PersonData> {
@@ -9,6 +10,7 @@ internal class PersonDataMapper : Mapper<PersonEntity, PersonData> {
     override fun map(enter: PersonEntity): PersonData {
         return PersonData(
             id = enter.id,
+            imgUrl = enter.imgUrl,
             birthYear = enter.birthYear,
             created = enter.created,
             edited = enter.edited,

@@ -1,7 +1,7 @@
 package com.universodoandroid.starwarsjetpack.presentation.navigation.model
 
-import com.universodoandroid.starwarsjetpack.presentation.utils.livedata.State
+import com.mvvmredux.core.state.State
 
 data class NavigationState(
-    val showNavBar: Boolean = true
+    val screenSelected: Int? = null
 ) : State

@@ -25,7 +25,7 @@ internal class PeopleRepositoryImpl(
             local.getPeople().map(::dataToEntity)
         } else {
             remote.getAllPeopleData().flatMapCompletable {
-                saveLocalPeople(it.people.map { person -> peopleMapper.map(person) })
+                saveLocalPeople(it.people.map(peopleMapper::map))
             }.doOnComplete {
                 isCached(true)
             }.doOnError {
@@ -38,16 +38,16 @@ internal class PeopleRepositoryImpl(
     }
 
     override fun getPeoplePerPage(page: Int): Flowable<PeoplePage> {
-        return remote.getPeoplePerPage(page).map { peoplePageMapper.map(it) }
+        return remote.getPeoplePerPage(page).map(peoplePageMapper::map)
     }
 
     override fun saveLocalPeople(people: List<Person>): Completable {
-        val peopleData = people.map { peopleDataMapper.map(it) }
+        val peopleData = people.map(peopleDataMapper::map)
         return local.savePeople(peopleData)
     }
 
     override fun getPerson(id: String): Single<Person> {
-        return local.getPerson(id).map { peopleMapper.map(it) }
+        return local.getPerson(id).map(peopleMapper::map)
     }
 
     override fun eraseData(): Completable {
@@ -59,6 +59,6 @@ internal class PeopleRepositoryImpl(
     }
 
     private fun dataToEntity(people: List<PersonData>): List<Person> {
-        return people.map { peopleMapper.map(it) }
+        return people.map(peopleMapper::map)
     }
 }

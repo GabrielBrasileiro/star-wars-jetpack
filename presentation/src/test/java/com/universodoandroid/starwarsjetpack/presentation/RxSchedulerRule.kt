@@ -9,27 +9,23 @@ import org.junit.runners.model.Statement
 
 class RxSchedulerRule : TestRule {
 
-    private val immediate = Schedulers.trampoline()
-
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
-            @Throws(Throwable::class)
             override fun evaluate() {
-                RxAndroidPlugins.setInitMainThreadSchedulerHandler { immediate }
+                RxAndroidPlugins.reset()
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler { TRAMPOLINE }
 
-                RxJavaPlugins.setInitIoSchedulerHandler { immediate }
-                RxJavaPlugins.setInitComputationSchedulerHandler { immediate }
-                RxJavaPlugins.setInitNewThreadSchedulerHandler { immediate }
-                RxJavaPlugins.setInitSingleSchedulerHandler { immediate }
+                RxJavaPlugins.reset()
+                RxJavaPlugins.setIoSchedulerHandler { TRAMPOLINE }
+                RxJavaPlugins.setComputationSchedulerHandler { TRAMPOLINE }
+                RxJavaPlugins.setNewThreadSchedulerHandler { TRAMPOLINE }
 
-                try {
-                    base.evaluate()
-                } finally {
-                    RxJavaPlugins.reset()
-                    RxAndroidPlugins.reset()
-                }
+                base.evaluate()
             }
         }
     }
 
+    private companion object {
+        val TRAMPOLINE = Schedulers.trampoline()
+    }
 }

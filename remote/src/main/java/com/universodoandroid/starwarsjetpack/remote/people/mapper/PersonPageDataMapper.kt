@@ -6,8 +6,7 @@ import com.universodoandroid.starwarsjetpack.remote.people.remote.response.Peopl
 import com.universodoandroid.starwarsjetpack.remote.people.remote.response.PersonItemResponse
 import com.universodoandroid.starwarsjetpack.shared.mapper.Mapper
 
-internal class PersonPageDataMapper :
-    Mapper<PeopleResponse, PeoplePageData> {
+internal class PersonPageDataMapper : Mapper<PeopleResponse, PeoplePageData> {
 
     override fun map(enter: PeopleResponse): PeoplePageData {
         val hasNext = !enter.next.isNullOrBlank()
@@ -36,6 +35,7 @@ internal class PersonPageDataMapper :
         )
     }
 
-    private fun responseToEntities(response: List<PersonItemResponse>) = response.map(::fromResponse)
+    private fun responseToEntities(response: List<PersonItemResponse>) =
+        response.map(::fromResponse)
 
 }

@@ -9,6 +9,7 @@ internal class PeopleMapper : Mapper<PersonData, Person> {
     override fun map(enter: PersonData): Person {
         return Person(
             id = enter.id,
+            imgUrl = enter.imgUrl,
             birthYear = enter.birthYear,
             created = enter.created,
             edited = enter.edited,

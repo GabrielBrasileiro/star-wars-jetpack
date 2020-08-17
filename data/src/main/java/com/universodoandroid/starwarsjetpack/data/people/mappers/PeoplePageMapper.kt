@@ -13,7 +13,7 @@ internal class PeoplePageMapper(
     override fun map(enter: PeoplePageData): PeoplePage {
         return PeoplePage(
             hasNextPage = enter.hasNextPage,
-            people = enter.people.map { peopleMapper.map(it) }
+            people = enter.people.map(peopleMapper::map)
         )
     }
 }

@@ -5,9 +5,13 @@ import com.universodoandroid.starwarsjetpack.local.people.database.entity.Person
 
 internal object PeopleDataMock {
 
+    private const val defaultImgUrl = "http://image"
+    private const val defaultPersonName = "Skywalker"
+
     fun getPersonEntity(id: String) =
         PersonEntity(
             id = id,
+            imgUrl = defaultImgUrl,
             birthYear = "05/05/1999",
             created = "05/05/2018",
             edited = "05/05/2019",
@@ -17,24 +21,34 @@ internal object PeopleDataMock {
             height = "1.75",
             homeworld = "Earth",
             mass = "55",
-            name = "Skywalker",
+            name = defaultPersonName,
             skinColor = "White",
             url = "..."
         )
 
-    fun getPersonDomain(id: String) = PersonData(
+    fun getPersonData(id: String) = PersonData(
         id = id,
-        birthYear = "05/05/1998",
-        created = "05/07/2019",
-        edited = "01/08/2019",
-        eyeColor = "White",
+        imgUrl = defaultImgUrl,
+        birthYear = "05/05/1999",
+        created = "05/05/2018",
+        edited = "05/05/2019",
+        eyeColor = "Blue",
         gender = "Man",
         hairColor = "Yellow",
-        height = "1.77",
+        height = "1.75",
         homeworld = "Earth",
         mass = "55",
-        name = "Ackbar",
-        skinColor = "Black",
+        name = defaultPersonName,
+        skinColor = "White",
         url = "..."
     )
+
+    fun getPersonDataWithoutIdAndImg() = getPersonData("0").copy(
+        id = "",
+        imgUrl = ""
+    )
+
+    fun getDefaultImgUrl() = defaultImgUrl
+
+    fun getDefaultPersonName() = defaultPersonName
 }

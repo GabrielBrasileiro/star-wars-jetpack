@@ -7,11 +7,14 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.data.people.datastore.PeopleLocalData
 import com.universodoandroid.starwarsjetpack.local.cache.CachePreferences
 import com.universodoandroid.starwarsjetpack.local.cache.CacheType
+import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.getPersonData
 import com.universodoandroid.starwarsjetpack.local.people.data.PeopleDataMock.getPersonEntity
 import com.universodoandroid.starwarsjetpack.local.people.data.PeopleLocalDataImpl
 import com.universodoandroid.starwarsjetpack.local.people.database.PeopleDatabase
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonDataMapper
 import com.universodoandroid.starwarsjetpack.local.people.mapper.PersonEntityMapper
+import com.universodoandroid.starwarsjetpack.local.people.mapper.identifier.IdentifierGenerator
+import com.universodoandroid.starwarsjetpack.local.people.mapper.imgs.DefaultPeopleImages
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
@@ -22,26 +25,26 @@ class PeopleLocalDataTest {
     private val peopleDatabase = mock<PeopleDatabase>()
     private val cachePreferences = mock<CachePreferences>()
 
+    private val identifierGenerator = IdentifierGenerator()
+    private val defaultPeopleImages = DefaultPeopleImages()
+    private val entityMapper = PersonEntityMapper(identifierGenerator, defaultPeopleImages)
+    private val dataMapper = PersonDataMapper()
+
     private val peopleLocalData: PeopleLocalData =
-        PeopleLocalDataImpl(
-            peopleDatabase, cachePreferences, PersonDataMapper(), PersonEntityMapper()
-        )
+        PeopleLocalDataImpl(peopleDatabase, cachePreferences, dataMapper, entityMapper)
 
     @Test
     fun `getPeople should return all people in database`() {
-        val people = listOf(
-            getPersonEntity("1"),
-            getPersonEntity("2")
-        )
+        val people = listOf(getPersonEntity("1"), getPersonEntity("2"))
+        val expectedPeopleData = listOf(getPersonData("1"), getPersonData("2"))
 
         whenever(peopleDatabase.loadPeople()).thenReturn(Single.just(people))
 
         peopleLocalData.getPeople()
             .test()
+            .assertNoErrors()
             .assertComplete()
-            .assertValue {
-                it.size == people.size && it[0].id == people[0].id
-            }
+            .assertValue(expectedPeopleData)
     }
 
     @Test
@@ -49,15 +52,15 @@ class PeopleLocalDataTest {
         val expectedId = "1"
         val personId = "1"
         val person = getPersonEntity(expectedId)
+        val expectedData = getPersonData(expectedId)
 
         whenever(peopleDatabase.loadPerson(personId)).thenReturn(Single.just(person))
 
         peopleLocalData.getPerson(personId)
             .test()
+            .assertNoErrors()
             .assertComplete()
-            .assertValue {
-                it.id == expectedId
-            }
+            .assertValue(expectedData)
     }
 
     @Test
@@ -66,6 +69,7 @@ class PeopleLocalDataTest {
 
         peopleLocalData.savePeople(listOf())
             .test()
+            .assertNoErrors()
             .assertComplete()
     }
 
@@ -75,6 +79,7 @@ class PeopleLocalDataTest {
 
         peopleLocalData.deleteData()
             .test()
+            .assertNoErrors()
             .assertComplete()
     }
 

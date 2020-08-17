@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -13,7 +14,8 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingBottom="8dp"
-            tools:listitem="@layout/item_person" />
+            tools:listitem="@layout/item_person"
+            tools:spanCount="2" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
