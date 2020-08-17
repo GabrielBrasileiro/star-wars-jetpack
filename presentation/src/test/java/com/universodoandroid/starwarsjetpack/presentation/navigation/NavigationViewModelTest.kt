@@ -9,10 +9,9 @@ import com.universodoandroid.starwarsjetpack.presentation.navigation.model.Navig
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.NavigationViewModel
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationReducer
 import com.universodoandroid.starwarsjetpack.presentation.navigation.model.reducer.NavigationStateEvent
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class NavigationViewModelTest {
 

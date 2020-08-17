@@ -2,13 +2,15 @@ package com.universodoandroid.starwarsjetpack.local.people.mapper.imgs
 
 internal class DefaultPeopleImages {
 
+    fun getImage(name: String): String? = images[name]
+
     private val fireStore =
         "https://firebasestorage.googleapis.com/v0/b/star-wars-jetpack.appspot.com/o/characters%2"
 
     private val mediaToken =
         ".jpg?alt=media&token="
 
-    val images = hashMapOf(
+    private val images = hashMapOf(
         "Luke Skywalker" to "${fireStore}F1${mediaToken}b2401726-8d1d-4205-a365-277cc61f1043",
         "C-3PO" to "${fireStore}F2${mediaToken}257cb081-3639-483d-a4cb-5c1474ed2938",
         "R2-D2" to "${fireStore}F3${mediaToken}cbc76845-c27a-4473-8fb0-8ce764fb7aea",

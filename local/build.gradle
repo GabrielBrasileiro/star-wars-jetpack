@@ -2,8 +2,6 @@ apply from: "$rootProject.projectDir/android-build.gradle"
 apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':data')
 
     // Database

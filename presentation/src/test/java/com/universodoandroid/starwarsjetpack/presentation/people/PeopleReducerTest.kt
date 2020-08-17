@@ -22,19 +22,12 @@ class PeopleReducerTest {
 
     @Before
     fun setup() {
-        reducer = PeopleReducer()
-            .apply {
-            getState().observeForever(state)
-        }
+        reducer = PeopleReducer().apply { getState().observeForever(state) }
     }
 
     @Test
     fun `state should notify empty list`() {
-        verify(state).onChanged(
-            PeopleState(
-                listOf()
-            )
-        )
+        verify(state).onChanged(PeopleState(listOf()))
     }
 
     @Test
@@ -43,10 +36,6 @@ class PeopleReducerTest {
 
         reducer.updateTo(PeopleStateEvent.ShowPeopleData(expected))
 
-        verify(state).onChanged(
-            PeopleState(
-                expected
-            )
-        )
+        verify(state).onChanged(PeopleState(expected))
     }
 }

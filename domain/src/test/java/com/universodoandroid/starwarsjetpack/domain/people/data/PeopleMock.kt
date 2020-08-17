@@ -2,7 +2,7 @@ package com.universodoandroid.starwarsjetpack.domain.people.data
 
 import com.universodoandroid.starwarsjetpack.domain.people.entities.Person
 
-object PeopleData {
+object PeopleMock {
 
     fun getPeople() = listOf(
         getPerson("0"),
@@ -28,5 +28,4 @@ object PeopleData {
         url = "",
         vehicles = ArrayList()
     )
-
 }

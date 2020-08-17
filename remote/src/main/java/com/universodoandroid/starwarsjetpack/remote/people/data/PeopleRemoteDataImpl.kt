@@ -12,7 +12,7 @@ internal class PeopleRemoteDataImpl(
     private val mapper: Mapper<PeopleResponse, PeoplePageData>
 ) : PeopleRemoteData {
 
-    override fun getAllPeopleData(): Flowable<PeoplePageData> = sync(1)
+    override fun getAllPeopleData(): Flowable<PeoplePageData> = sync(FIRST_PAGE)
 
     private fun sync(page: Int): Flowable<PeoplePageData> {
         return getPeoplePerPage(page).concatMap {
@@ -25,6 +25,10 @@ internal class PeopleRemoteDataImpl(
     }
 
     override fun getPeoplePerPage(page: Int): Flowable<PeoplePageData> {
-        return peopleRemoteDataSource.loadPeoplePerPage(page).map { mapper.map(it) }
+        return peopleRemoteDataSource.loadPeoplePerPage(page).map(mapper::map)
+    }
+
+    private companion object {
+        const val FIRST_PAGE = 1
     }
 }

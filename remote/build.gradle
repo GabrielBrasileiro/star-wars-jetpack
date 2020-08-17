@@ -13,8 +13,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     // Dependencies
     implementation project(':data')
 

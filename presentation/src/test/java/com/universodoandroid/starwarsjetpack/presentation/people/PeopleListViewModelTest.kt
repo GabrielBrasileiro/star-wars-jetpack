@@ -12,11 +12,10 @@ import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
 import com.universodoandroid.starwarsjetpack.presentation.people.data.PeopleMock
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
-import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleEvent
+import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleStateEvent
 import io.reactivex.Single
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,10 +23,10 @@ import org.junit.Test
 class PeopleListViewModelTest {
 
     @get:Rule
-    val rxRule = RxSchedulerRule()
+    val instantTaskExecutor = InstantTaskExecutorRule()
 
     @get:Rule
-    val instantTaskExecutor = InstantTaskExecutorRule()
+    val rxRule = RxSchedulerRule()
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val peopleReducer = mock<PeopleReducer>()
@@ -42,21 +41,16 @@ class PeopleListViewModelTest {
         reset(peopleUseCase)
     }
 
-    @After
-    fun tearDown() {
-        reset(peopleEvent, peopleReducer)
-    }
-
     @Test
     fun `getPeople Should return a people list When called`() {
         val people = PeopleMock.withTwoPeople()
-        val peopleDto = people.map { peoplePresentationMapper.map(it) }
+        val peopleDto = people.map(peoplePresentationMapper::map)
 
         whenever(peopleUseCase.getPeople()).thenReturn(Single.just(people))
 
         createPeopleViewModel()
 
-        inOrder(peopleReducer, peopleEvent) {
+        inOrder(peopleEvent, peopleReducer) {
             verify(peopleEvent).onChanged(PeopleEvent.ShowLoading)
             verify(peopleReducer).updateTo(PeopleStateEvent.ShowPeopleData(peopleDto))
             verify(peopleEvent).onChanged(PeopleEvent.HideLoading)
@@ -80,10 +74,10 @@ class PeopleListViewModelTest {
     }
 
     private fun createPeopleViewModel() {
-        val mutableEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
+        val singleLiveEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
 
         peopleViewModel = PeopleListViewModel(
-            mutableEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
+            singleLiveEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
         )
     }
 }

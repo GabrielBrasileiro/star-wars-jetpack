@@ -15,11 +15,6 @@ open class BindingFragment<T : ViewDataBinding>(
     protected lateinit var binding: T
         private set
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

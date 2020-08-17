@@ -4,7 +4,5 @@ apply plugin: 'kotlin-kapt'
 apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(":domain")
 }

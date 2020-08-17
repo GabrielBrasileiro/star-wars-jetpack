@@ -1,10 +1,2 @@
 apply plugin: 'com.android.library'
 apply from: "$rootProject.projectDir/default-config.gradle"
-
-android {
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
