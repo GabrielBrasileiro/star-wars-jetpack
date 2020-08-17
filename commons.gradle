@@ -1,5 +1,6 @@
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Shared
     implementation project(":shared")

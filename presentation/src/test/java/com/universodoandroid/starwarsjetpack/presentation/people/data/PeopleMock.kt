@@ -21,7 +21,7 @@ object PeopleMock {
         PersonPresentation("1", "Darth", "", "")
     )
 
-    private fun buildPerson(id: String, name: String): Person {
+    fun buildPerson(id: String, name: String): Person {
         return Person(
             id = id,
             birthYear = "",
@@ -42,5 +42,4 @@ object PeopleMock {
             vehicles = listOf()
         )
     }
-
 }

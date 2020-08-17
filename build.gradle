@@ -1,3 +1,5 @@
+apply plugin: 'java'
+
 buildscript {
     ext {
         // Kotlin
@@ -79,8 +81,9 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+test {
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+    }
 }
-
-

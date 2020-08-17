@@ -2,14 +2,9 @@ apply from: "$rootProject.projectDir/android-build.gradle"
 apply from: "$rootProject.projectDir/commons.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':domain')
 
     implementation "com.mvvmredux:core:$mvvm_redux_version"
-
-    // Lifecycle
-    implementation "android.arch.lifecycle:extensions:$life_cycle_extension_version"
 
     // Koin
     implementation "org.koin:koin-androidx-ext:$koin_version"
@@ -18,9 +13,7 @@ dependencies {
     testImplementation "androidx.test:rules:$android_test_rules"
     testImplementation "androidx.test:core-ktx:$android_test_core"
     testImplementation "androidx.test:runner:$android_test_runner"
-    testImplementation "android.arch.core:core-testing:$core_testing_version"
-}
+    testImplementation "androidx.arch.core:core-testing:$core_testing_version"
 
-repositories {
-    mavenCentral()
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
 }

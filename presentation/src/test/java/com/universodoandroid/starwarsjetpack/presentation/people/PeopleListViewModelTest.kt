@@ -74,10 +74,10 @@ class PeopleListViewModelTest {
     }
 
     private fun createPeopleViewModel() {
-        val mutableEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
+        val singleLiveEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
 
         peopleViewModel = PeopleListViewModel(
-            mutableEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
+            singleLiveEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
         )
     }
 }

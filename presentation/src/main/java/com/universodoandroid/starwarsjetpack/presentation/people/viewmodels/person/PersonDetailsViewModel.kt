@@ -19,9 +19,9 @@ class PersonDetailsViewModel(
         getPersonUseCase.loadPerson(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .map(mapper::map)
             .subscribe({
-                val personDto = mapper.map(it)
-                sendEvent(PersonEvent.ShowUser(personDto))
+                sendEvent(PersonEvent.ShowUser(it))
             }, {
                 sendEvent(PersonEvent.ShowError(it.localizedMessage))
             })
