@@ -28,12 +28,22 @@ class MainBottomNavRouterImpl(
     }
 
     private fun showFragment(screen: Int, transaction: FragmentTransaction) {
-        if (isFragmentPresent(screen)) {
-            getFragmentByTag(screen)?.run(transaction::show)
+        val isFragmentPresent = getFragments().map { it.tag }.contains(screen.toString())
+
+        if (isFragmentPresent) {
+            recoverFragment(screen, transaction)
         } else {
-            navFragment[screen]?.value?.let { frag ->
-                transaction.add(container, frag, screen.toString())
-            }
+            addFragment(screen, transaction)
+        }
+    }
+
+    private fun recoverFragment(screen: Int, transaction: FragmentTransaction) {
+        getFragmentByTag(screen)?.run(transaction::show)
+    }
+
+    private fun addFragment(screen: Int, transaction: FragmentTransaction) {
+        navFragment[screen]?.value?.let { fragment ->
+            transaction.add(container, fragment, screen.toString())
         }
     }
 
@@ -41,19 +51,10 @@ class MainBottomNavRouterImpl(
         getFragmentByTag(screenSelected)?.run(transaction::hide)
     }
 
-    private fun isFragmentPresent(screen: Int): Boolean {
-        return fragmentManager.fragments.map { it.tag }.contains(screen.toString())
-    }
-
     private fun getFragmentByTag(screen: Int?): Fragment? {
-        return screen?.let { tag ->
-            fragmentManager.fragments.forEach {
-                if (it.tag == tag.toString()) {
-                    return it
-                }
-            }
-
-            return null
-        }
+        return getFragments().find { it.tag == screen?.toString() }
     }
+
+    private fun getFragments(): List<Fragment> = fragmentManager.fragments
+
 }

@@ -10,7 +10,7 @@
             type="com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.model.PersonPresentation" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -52,6 +52,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{person.name}"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/person_planet"
@@ -76,6 +78,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>
