@@ -3,7 +3,7 @@ apply plugin: 'java'
 buildscript {
     ext {
         // Kotlin
-        kotlin_version = '1.4.0'
+        kotlin_version = '1.4.10'
 
         // App
         app_compat_version = '1.2.0'
@@ -11,7 +11,7 @@ buildscript {
         databinding_compiler_version = '3.3.1'
 
         // Injection
-        koin_version = '2.1.5'
+        koin_version = '2.2.0-rc-3'
 
         // Navigation
         navigation_fragment_version = '1.0.0'

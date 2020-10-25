@@ -20,7 +20,6 @@ class StarWarsJetpackApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger(Level.ERROR)
             androidContext(this@StarWarsJetpackApplication)
             modules(
                 listOfModules(
