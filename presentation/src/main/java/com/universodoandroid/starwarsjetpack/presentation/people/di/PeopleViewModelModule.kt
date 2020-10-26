@@ -6,6 +6,7 @@ import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PersonDe
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.reducer.PeopleReducer
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.person.PersonDetailsViewModel
+import com.universodoandroid.starwarsjetpack.presentation.rx.DefaultRXExecutor
 import com.universodoandroid.starwarsjetpack.shared.extensions.getMapper
 import com.universodoandroid.starwarsjetpack.shared.extensions.mapper
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,6 +16,21 @@ fun getPeopleViewModelModules() = module {
     mapper { PeoplePresentationMapper() }
     mapper { PersonDetailsPresentationMapper() }
 
-    viewModel { PeopleListViewModel(SingleLiveEvent(), PeopleReducer(), get(), getMapper()) }
-    viewModel { PersonDetailsViewModel(SingleLiveEvent(), get(), getMapper()) }
+    viewModel {
+        PeopleListViewModel(
+            event = SingleLiveEvent(),
+            reducer = PeopleReducer(),
+            getPeopleUseCase = get(),
+            mapper = getMapper(),
+            rx = DefaultRXExecutor()
+        )
+    }
+    viewModel {
+        PersonDetailsViewModel(
+            event = SingleLiveEvent(),
+            getPersonUseCase = get(),
+            mapper = getMapper(),
+            rx = DefaultRXExecutor()
+        )
+    }
 }
