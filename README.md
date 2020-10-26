@@ -9,7 +9,7 @@ The project tries demonstrate how to implement a project uncoupled, trying to fo
 On this occasion the project was implemented with [SOLID](https://en.wikipedia.org/wiki/SOLID) concepts to have a better code organization. '-'
 
 ## Architecture:
-<img src="./docs/images/architecture.png">
+<img src="./docs/images/arch.png">
 
 * __Local__
   

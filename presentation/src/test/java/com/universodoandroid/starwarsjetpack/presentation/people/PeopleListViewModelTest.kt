@@ -8,7 +8,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.reset
 import com.nhaarman.mockitokotlin2.whenever
 import com.universodoandroid.starwarsjetpack.domain.people.usecase.GetPeopleUseCase
-import com.universodoandroid.starwarsjetpack.presentation.RxSchedulerRule
+import com.universodoandroid.starwarsjetpack.presentation.DefaultRXTestExecutor
 import com.universodoandroid.starwarsjetpack.presentation.people.data.PeopleMock
 import com.universodoandroid.starwarsjetpack.presentation.people.mapper.PeoplePresentationMapper
 import com.universodoandroid.starwarsjetpack.presentation.people.viewmodels.people.PeopleListViewModel
@@ -24,9 +24,6 @@ class PeopleListViewModelTest {
 
     @get:Rule
     val instantTaskExecutor = InstantTaskExecutorRule()
-
-    @get:Rule
-    val rxRule = RxSchedulerRule()
 
     private val peopleUseCase = mock<GetPeopleUseCase>()
     private val peopleReducer = mock<PeopleReducer>()
@@ -77,7 +74,11 @@ class PeopleListViewModelTest {
         val singleLiveEvent = SingleLiveEvent<PeopleEvent>().apply { observeForever(peopleEvent) }
 
         peopleViewModel = PeopleListViewModel(
-            singleLiveEvent, peopleReducer, peopleUseCase, peoplePresentationMapper
+            singleLiveEvent,
+            peopleReducer,
+            peopleUseCase,
+            peoplePresentationMapper,
+            DefaultRXTestExecutor()
         )
     }
 }
