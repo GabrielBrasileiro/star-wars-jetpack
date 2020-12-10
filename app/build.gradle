@@ -58,6 +58,12 @@ dependencies {
     
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // Tests
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test:rules:$testrules_version"
+    androidTestImplementation "androidx.test:core:1.2.0"
+    androidTestImplementation ("androidx.fragment:fragment-testing:$fragment_test_version") {
+        exclude group: 'androidx.test', module: 'core'
+    }
 }

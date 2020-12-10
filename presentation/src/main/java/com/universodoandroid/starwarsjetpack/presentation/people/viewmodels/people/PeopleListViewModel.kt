@@ -36,7 +36,8 @@ class PeopleListViewModel(
             .subscribe({
                 updateTo(PeopleStateEvent.ShowPeopleData(it))
             }, {
-                sendEvent(PeopleEvent.ShowError(it.localizedMessage))
+                val message = it.localizedMessage.orEmpty()
+                sendEvent(PeopleEvent.ShowError(message))
             })
             .pool()
     }

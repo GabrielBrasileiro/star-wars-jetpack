@@ -56,6 +56,8 @@ buildscript {
         android_test_core = '1.2.0'
         android_test_rules = '1.2.0'
         junit_version = '4.13'
+        testrules_version = '1.2.0'
+        fragment_test_version = '1.2.4'
 
         // Dependencies
         gradle_version = '4.0.1'
