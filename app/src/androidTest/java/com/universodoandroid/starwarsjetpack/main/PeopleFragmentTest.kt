@@ -55,7 +55,7 @@ class PeopleFragmentTest {
     @Test
     fun whenEnter_withError_shouldShowErrorMessage() {
         // Given
-        RepositoryMock.setupPeopleResult { Single.error(Throwable("Error to load people")) }
+        RepositoryMock.setupPeopleResult { Single.error(Throwable("Error to load all characters")) }
 
         // When
         launchFragmentInContainer<PeopleFragment>(themeResId = R.style.AppTheme)
