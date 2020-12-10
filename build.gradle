@@ -58,6 +58,7 @@ buildscript {
         junit_version = '4.13'
         testrules_version = '1.2.0'
         fragment_test_version = '1.2.4'
+        fragment_ktx_version="1.2.0"
 
         // Dependencies
         gradle_version = '4.0.1'
