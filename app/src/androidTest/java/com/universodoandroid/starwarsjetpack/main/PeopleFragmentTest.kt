@@ -1,25 +1,36 @@
 package com.universodoandroid.starwarsjetpack.main
 
-import android.app.Activity
-import android.content.Intent
-import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.ApplicationProvider
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import com.universodoandroid.starwarsjetpack.aliases.IntentParams
+import androidx.test.platform.app.InstrumentationRegistry
+import com.universodoandroid.starwarsjetpack.R
+import com.universodoandroid.starwarsjetpack.koin.KoinModules
 import com.universodoandroid.starwarsjetpack.main.utils.DataFactory
 import com.universodoandroid.starwarsjetpack.main.utils.RepositoryMock
+import com.universodoandroid.starwarsjetpack.modules.people.PeopleFragment
 import io.reactivex.Single
-import org.junit.After
+import org.junit.Before
 import org.junit.Test
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 
-class MainActivityTest {
+class PeopleFragmentTest {
 
     private val expectedFirstName = "Lucas"
     private val expectedSecondName = "Gabriel"
+
+    @Before
+    fun setup() {
+        stopKoin()
+        startKoin {
+            androidContext(InstrumentationRegistry.getInstrumentation().context)
+            modules(KoinModules().getModules())
+        }
+    }
 
     @Test
     fun whenEnter_withSuccess_shouldShowCharacters() {
@@ -34,19 +45,23 @@ class MainActivityTest {
         }
 
         // When
-        launchActivity<MainActivity>()
+        launchFragmentInContainer<PeopleFragment>(themeResId = R.style.AppTheme)
 
         // Then
         Espresso.onView(withText(expectedFirstName)).check(matches(isDisplayed()))
         Espresso.onView(withText(expectedSecondName)).check(matches(isDisplayed()))
     }
 
-    private inline fun <reified A : Activity> launchActivity(
-        params: IntentParams = {}
-    ): ActivityScenario<A>? {
-        val intent = Intent(ApplicationProvider.getApplicationContext(), A::class.java)
-        intent.apply(params)
+    @Test
+    fun whenEnter_withError_shouldShowErrorMessage() {
+        // Given
+        RepositoryMock.setupPeopleResult { Single.error(Throwable("Error to load people")) }
 
-        return ActivityScenario.launch(intent)
+        // When
+        launchFragmentInContainer<PeopleFragment>(themeResId = R.style.AppTheme)
+
+        // Then
+        Espresso.onView(withText("Error to recover people of server"))
+            .check(matches(isDisplayed()))
     }
 }

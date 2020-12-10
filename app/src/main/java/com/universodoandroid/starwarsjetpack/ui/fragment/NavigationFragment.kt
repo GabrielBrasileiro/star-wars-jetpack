@@ -2,9 +2,6 @@ package com.universodoandroid.starwarsjetpack.ui.fragment
 
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.universodoandroid.starwarsjetpack.R
 
 open class NavigationFragment(
     @LayoutRes protected val layoutResId: Int
