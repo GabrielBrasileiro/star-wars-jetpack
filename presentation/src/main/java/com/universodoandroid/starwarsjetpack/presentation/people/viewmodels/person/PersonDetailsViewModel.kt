@@ -25,7 +25,8 @@ class PersonDetailsViewModel(
             .subscribe({
                 sendEvent(PersonEvent.ShowUser(it))
             }, {
-                sendEvent(PersonEvent.ShowError(it.localizedMessage))
+                val message = it.localizedMessage.orEmpty()
+                sendEvent(PersonEvent.ShowError(message))
             })
             .pool()
     }
