@@ -51,7 +51,7 @@ class PeopleFragment : BindingFragment<FragmentPeopleBinding>(R.layout.fragment_
 
     private fun setupRecyclerView(people: List<PersonPresentation>) {
         binding.peopleRecyclerView.run {
-            layoutManager = GridLayoutManager(requireContext(), resources.defaultNumberOfColumns())
+            layoutManager = GridLayoutManager(context, resources.defaultNumberOfColumns())
             adapter = PeopleAdapter(people, ::personDetails).apply {
                 stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.ALLOW
             }
