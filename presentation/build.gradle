@@ -4,10 +4,11 @@ apply from: "$rootProject.projectDir/commons.gradle"
 dependencies {
     implementation project(':domain')
 
-    implementation "com.mvvmredux:core:$mvvm_redux_version"
+    implementation "com.github.gabrielbrasileiro.mvvm-redux:core:$mvvm_redux_version"
 
     // Koin
-    implementation "org.koin:koin-androidx-ext:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
     // Tests
     testImplementation "androidx.test:rules:$android_test_rules"

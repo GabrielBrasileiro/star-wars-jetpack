@@ -9,5 +9,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Koin
-    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
 }

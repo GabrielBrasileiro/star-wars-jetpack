@@ -13,7 +13,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 
     // Koin
-    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
 
     // Mockito
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
@@ -24,5 +24,5 @@ dependencies {
 
     // Tests
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
 }
