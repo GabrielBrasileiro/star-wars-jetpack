@@ -3,7 +3,7 @@ apply plugin: 'java'
 buildscript {
     ext {
         // Kotlin
-        kotlin_version = '1.4.10'
+        kotlin_version = '1.6.10'
 
         // App
         app_compat_version = '1.2.0'
@@ -11,7 +11,7 @@ buildscript {
         databinding_compiler_version = '3.3.1'
 
         // Injection
-        koin_version = '2.2.0-rc-3'
+        koin_version = '3.1.5'
 
         // Navigation
         navigation_fragment_version = '1.0.0'
@@ -32,7 +32,7 @@ buildscript {
 
         // Presentation
         kotlin_tx_version = '1.0.2'
-        mvvm_redux_version = '1.0.1'
+        mvvm_redux_version = '1.0.3'
 
         // Remote
         retrofit_version = '2.5.0'
@@ -67,7 +67,8 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
@@ -80,7 +81,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 
